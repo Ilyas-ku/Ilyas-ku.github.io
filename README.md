@@ -1,5 +1,5 @@
-# Portfolio
+# Ilyas Kulbarisov — Portfolio
 
-Personal portfolio: **https://ilyas-ku.github.io/**
+https://ilyas-ku.github.io/
 
-Single static page (`index.html`) listing my projects.
+Interactive maps and urban data analysis: public transport, precipitation, housing and population. The page and each work under `works/` switch between English, German and Russian.

@@ -1,427 +1,293 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ilyas Kulbarisov — Portfolio</title>
-  <meta name="description" content="Портфолио и проекты" />
-
-  <style>
-    :root{
-      /* Light */
-      --bg: #ffffff;
-      --panel: rgba(255,255,255,.72);
-      --text: #0f172a;
-      --muted: rgba(15,23,42,.68);
-      --border: rgba(15,23,42,.12);
-      --shadow: 0 18px 50px rgba(15,23,42,.08);
-      --chip: rgba(15,23,42,.06);
-      --accent: #0f172a;
-
-      --radius: 18px;
-      --maxw: 980px;
-    }
-
-    @media (prefers-color-scheme: dark){
-      :root{
-        /* Dark */
-        --bg: #0b0f19;
-        --panel: rgba(255,255,255,.06);
-        --text: rgba(255,255,255,.92);
-        --muted: rgba(255,255,255,.68);
-        --border: rgba(255,255,255,.14);
-        --shadow: 0 18px 50px rgba(0,0,0,.35);
-        --chip: rgba(255,255,255,.08);
-        --accent: rgba(255,255,255,.92);
-      }
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body{
-      margin:0;
-      color: var(--text);
-      background: radial-gradient(1200px 800px at 18% -10%, rgba(99,102,241,.18), transparent 55%),
-                  radial-gradient(1000px 700px at 92% 0%, rgba(16,185,129,.14), transparent 52%),
-                  var(--bg);
-      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      letter-spacing: -0.01em;
-    }
-
-    a{ color: inherit; text-decoration: none; }
-    a:focus-visible{ outline: 3px solid rgba(99,102,241,.45); outline-offset: 3px; border-radius: 10px; }
-
-    .wrap{
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 28px 18px 44px;
-    }
-
-    /* Top bar */
-    .top{
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      padding: 12px 0;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .bar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .brand strong{
-      font-weight: 680;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--chip);
-      border: 1px solid var(--border);
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    nav{
-      display:flex;
-      align-items:center;
-      gap: 6px;
-    }
-
-    .tab{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .tab:hover{
-      background: var(--chip);
-      border-color: var(--border);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-    .tab[aria-current="page"]{
-      background: var(--chip);
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    /* Hero */
-    .hero{
-      padding: 44px 4px 18px;
-    }
-    .hero h1{
-      font-size: clamp(34px, 5vw, 50px);
-      line-height: 1.08;
-      margin: 0 0 12px;
-      letter-spacing: -0.04em;
-    }
-    .hero p{
-      margin: 0;
-      max-width: 70ch;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .meta{
-      margin-top: 18px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .meta a{
-      border-bottom: 1px solid transparent;
-    }
-    .meta a:hover{
-      border-bottom-color: var(--border);
-      color: var(--text);
-    }
-
-    /* Sections */
-    section{
-      margin-top: 26px;
-    }
-
-    .section-title{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 12px;
-      padding: 0 4px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* Cards grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-    }
-
-    .card{
-      position: relative;
-      padding: 16px 16px 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.02);
-      transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
-      min-height: 116px;
-      display:flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(99,102,241,.35);
-      background: rgba(99,102,241,.06);
-      box-shadow: 0 16px 40px rgba(0,0,0,.12);
-    }
-
-    .card h3{
-      margin: 0 0 6px;
-      font-size: 17px;
-      letter-spacing: -0.02em;
-    }
-
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      max-width: 60ch;
-      font-size: 14px;
-    }
-
-    .card .hint{
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--chip);
-      border: 1px solid var(--border);
-      font-size: 12px;
-      color: var(--muted);
-      width: fit-content;
-    }
-
-    /* About block */
-    .about{
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .about p{
-      margin: 0;
-      color: var(--muted);
-      max-width: 78ch;
-    }
-
-    footer{
-      margin-top: 36px;
-      padding: 0 4px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{ transition: none !important; scroll-behavior: auto !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}</style>
+<title>Ilyas Kulbarisov Portfolio</title>
+<meta name="description" content="Interactive maps and urban data analysis: public transport, climate, housing and population in Germany.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a short map-legend style header with the language switch top right, then one card grid per topic; each card is a screenshot plus its name */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#15201d; --muted:#5d6b67; --line:#d6dedb; --accent:#0d7a6c; --on-accent:#ffffff;
+  --display:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1513;--surface:#151e1b;--ink:#e4ebe8;--muted:#93a39e;--line:#26332f;--accent:#3cc4ad;--on-accent:#0e1513;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1513;--surface:#151e1b;--ink:#e4ebe8;--muted:#93a39e;--line:#26332f;--accent:#3cc4ad;--on-accent:#0e1513;color-scheme:dark}
+html,body{background:var(--bg);color:var(--ink)}
+body{font:16px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
+.headrow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.subrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 32px}
+h1{font:700 clamp(2rem,5vw,3.1rem)/1.05 var(--display);letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+.intro{margin:0;color:var(--muted);max-width:56ch;font-size:1.06rem}
+.meta{display:flex;flex-direction:column;gap:6px;font:400 .8rem var(--mono);color:var(--muted);text-align:right}
+.meta a{color:var(--accent);text-decoration:none}
+.meta a:hover{text-decoration:underline}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface);flex:none}
+.lang button{font:500 .78rem var(--mono);letter-spacing:.06em;color:var(--muted);background:transparent;border:0;border-radius:999px;padding:6px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.lang button:hover:not([aria-pressed="true"]){color:var(--ink)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{display:flex;flex-direction:column;gap:16px}
+h2{font:500 .78rem var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:0;display:flex;align-items:center;gap:12px}
+h2::after{content:"";flex:1;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 22px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.wide{grid-column:span 2}
+@media (max-width:560px){.card.wide{grid-column:auto}}
+.card>a{display:flex;flex-direction:column;gap:10px;color:inherit;text-decoration:none}
+.shot{aspect-ratio:16/10;max-width:100%;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .35s ease}
+.card>a:hover img{transform:scale(1.03)}
+.card>a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+.vid{aspect-ratio:16/9;max-width:100%;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#0b1220}
+.vid video{display:block;width:100%;height:100%}
+.vid.rain{aspect-ratio:16/10;background:#0a0f12}
+.vid.rain video{object-fit:contain}
+h3{font:600 1.08rem/1.25 var(--display);margin:0;text-wrap:balance}
+.card>a:hover h3{color:var(--accent)}
+.kind{font:400 .74rem var(--mono);color:var(--muted);letter-spacing:.02em}
+.cities{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.pick{font-size:.86rem;color:var(--muted);width:100%}
+.cities a{font:500 .86rem var(--body);color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:5px 12px}
+.cities a:hover{background:var(--accent);color:var(--on-accent)}
+.cities a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--line);padding-top:20px;font:400 .8rem var(--mono);color:var(--muted)}
+footer a{color:var(--accent)}
+@media (max-width:640px){.meta{text-align:left}}
+@media (prefers-reduced-motion:reduce){.shot img{transition:none}}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="top">
-      <header class="bar">
-        <div class="brand">
-          <strong>Ilyas Kulbarisov</strong>
-          <span class="pill">Portfolio</span>
-        </div>
 
-        <nav aria-label="Навигация">
-          <a class="tab" href="#main" id="tab-main">main</a>
-          <a class="tab" href="#about" id="tab-about">about</a>
-        </nav>
-      </header>
+<div class="wrap">
+  <header>
+    <div class="headrow">
+      <h1>Ilyas Kulbarisov</h1>
+      <div class="lang" role="group" aria-label="Language" id="lang">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-de" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" id="lang-ru" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
     </div>
+    <div class="subrow">
+      <p class="intro" data-i18n="intro">Interactive maps and urban data analysis: public transport, climate, housing and population. Open data, my own processing, published as web maps and data stories.</p>
+      <div class="meta">
+        <span>Frankfurt am Main · 50.11° N, 8.68° E</span>
+        <a href="https://github.com/Ilyas-ku" target="_blank" rel="noopener">github.com/Ilyas-ku</a>
+      </div>
+    </div>
+  </header>
 
-    <main id="main">
-      <section class="hero">
-        <h1>Привет! Я Ильяс</h1>
-        <p>
-          Делаю интерактивные карты и анализ городских данных:
-          общественный транспорт, население, жильё. GIS · urban analytics · web maps.
-        </p>
-
-        <div class="meta">
-          <span>📍 Frankfurt</span>
-          <a href="https://github.com/Ilyas-ku" target="_blank" rel="noreferrer noopener">GitHub</a>
+  <section aria-labelledby="s-transit">
+    <h2 id="s-transit" data-i18n="s_transit">Public transport</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="shot"><img src="previews/transit-reach.jpg" alt="Map of areas reachable by public transport from a city centre" width="960" height="600"></div>
+        <h3 data-i18n="t_reach">Transit Reach: how far do you get in an hour?</h3>
+        <span class="kind" data-i18n="k_reach">Interactive map · GTFS with real delays</span>
+        <div class="cities" role="group" aria-label="Choose a city">
+          <span class="pick" data-i18n="also">Choose a city:</span>
+          <a href="https://ilyas-ku.github.io/rhein-main-transit-reach/" target="_blank" rel="noopener" data-i18n="frankfurt">Frankfurt (Rhein-Main)</a>
+          <a href="https://ilyas-ku.github.io/munich-transit-reach/" target="_blank" rel="noopener" data-i18n="munich">Munich</a>
+          <a href="https://ilyas-ku.github.io/stuttgart-transit-reach/" target="_blank" rel="noopener" data-i18n="stuttgart">Stuttgart</a>
+          <a href="https://ilyas-ku.github.io/duesseldorf-koeln-transit-reach/" target="_blank" rel="noopener" data-i18n="dk">Düsseldorf &amp; Köln</a>
         </div>
-      </section>
+      </article>
+      <article class="card">
+        <a href="https://ilyas-ku.github.io/rhein-main-pulse/" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/rhein-main-pulse.jpg" alt="Night map of Rhein-Main with simulated residents travelling at 07:37" width="960" height="600"></div>
+          <h3>Rhein-Main Pulse</h3>
+          <span class="kind" data-i18n="k_pulse">Simulation · one day of trips on the real timetable</span>
+        </a>
+      </article>
+    </div>
+  </section>
 
-      <section aria-labelledby="projects-title">
-        <div class="section-title">
-          <h2 id="projects-title">Projects</h2>
-        </div>
+  <section aria-labelledby="s-air">
+    <h2 id="s-air" data-i18n="s_air">Air traffic</h2>
+    <div class="grid">
+      <article class="card wide">
+        <div class="vid"><video src="media/us-ground-stop.mp4" poster="previews/us-ground-stop.jpg" controls muted playsinline preload="none" aria-label="Animated map of US air traffic during the ground stop"></video></div>
+        <h3 data-i18n="t_ground">The Day US Skies Emptied</h3>
+        <span class="kind" data-i18n="k_ground">Video · ADS-B flights during the FAA ground stop, 13 Nov 2026</span>
+      </article>
+    </div>
+  </section>
 
-        <div class="grid">
-          <a class="card" href="https://ilyas-ku.github.io/rhein-main-transit-reach/" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Web map · Transit</span>
-              <h3>Rhein-Main Transit Reach</h3>
-              <p>Куда можно доехать на общественном транспорте из любой точки Rhein-Main за 20–60 минут — с учётом реальных задержек и отмен.</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://ilyas-ku.github.io/asp-commute-map/" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Web map · Transit</span>
-              <h3>Commute to AS+P</h3>
-              <p>Где можно жить, чтобы добираться до офиса во Франкфурте за 10–60 минут, и насколько эта зона сжимается из-за задержек.</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://ilyas-ku.github.io/Germany_pop/" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Web map · Population</span>
-              <h3>Germany Buffer Map</h3>
-              <p>Клик по карте — минимальный радиус, в котором живёт столько же людей, сколько в Берлине в выбранном году (1871–2019).</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://github.com/Ilyas-ku/germany-rent-commute" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Web maps · Housing</span>
-              <h3>Salary, Rent & Commute</h3>
-              <p>Зарплаты против аренды по Германии и цена переезда за город: карты, анимация поездки и видео.</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://github.com/Ilyas-ku/ocean-currents-poster" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Poster · Python</span>
-              <h3>Ocean Currents Poster</h3>
-              <p>Постеры мирового океана: температура поверхности и основные течения, по сезонам.</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://github.com/Ilyas-ku/project.darkness" target="_blank" rel="noreferrer noopener">
-            <div>
-              <span class="badge">Game · Godot</span>
-              <h3>Сосновый лагерь</h3>
-              <p>2D top-down тактический хоррор на Godot 4: выживший против ИИ-маньяка. Прототип.</p>
-            </div>
-            <div class="hint">
-              <span>Open project</span>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </a>
-        </div>
-      </section>
+  <section aria-labelledby="s-climate">
+    <h2 id="s-climate" data-i18n="s_climate">Precipitation &amp; water</h2>
+    <div class="grid">
+      <article class="card">
+        <a href="works/precipitation-2026/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/precipitation-2026.jpg" alt="Map of Germany coloured by 2026 precipitation as a share of normal" width="960" height="600"></div>
+          <h3 data-i18n="t_precip">Germany Precipitation 2026</h3>
+          <span class="kind" data-i18n="k_precip">Interactive map · DWD 1×1 km grid vs 1991–2020</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/rain-down-the-drain/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/rain-down-the-drain.jpg" alt="Data story title: Rain down the drain" width="960" height="600"></div>
+          <h3 data-i18n="t_rain">Rain Down the Drain</h3>
+          <span class="kind" data-i18n="k_rain">Data story · Frankfurt roof runoff vs drinking water</span>
+        </a>
+      </article>
+      <article class="card">
+        <div class="vid rain"><video src="media/germany-rain-25oct2026.mp4" poster="previews/germany-rain.jpg" controls muted playsinline preload="none" aria-label="3D animation of hourly rain over Germany on 25 October 2026"></video></div>
+        <h3 data-i18n="t_rainvid">Rain over Germany, hour by hour</h3>
+        <span class="kind" data-i18n="k_rainvid">Video · DWD radar, 25 Oct 2026, 3D hexagons</span>
+      </article>
+    </div>
+  </section>
 
-      <section id="about" aria-labelledby="about-title">
-        <div class="section-title">
-          <h2 id="about-title">About</h2>
-        </div>
+  <section aria-labelledby="s-housing">
+    <h2 id="s-housing" data-i18n="s_housing">Housing &amp; construction</h2>
+    <div class="grid">
+      <article class="card">
+        <a href="works/flat-30-percent/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/flat-30-percent.jpg" alt="Infographic of affordable flat sizes by distance from the centre" width="960" height="600"></div>
+          <h3 data-i18n="t_flat">How much flat does 30 % of net pay rent?</h3>
+          <span class="kind" data-i18n="k_flat">Infographic · 7 German cities, 0–40 km</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/housing-7-cities/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/housing-7-cities.jpg" alt="Charts of new flats completed in seven German cities" width="960" height="600"></div>
+          <h3 data-i18n="t_housing">Housing in Germany’s 7 Largest Cities</h3>
+          <span class="kind" data-i18n="k_housing">Report · completions, rents, prices 2021–2025</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/ile-de-france-prices/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/ile-de-france-prices.jpg" alt="Île-de-France price per square metre summary" width="960" height="600"></div>
+          <h3 data-i18n="t_idf">What a Square Metre Costs in Île-de-France</h3>
+          <span class="kind" data-i18n="k_idf">Analysis · 749,655 sales, DVF 2014–2025</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/berlin-construction/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/berlin-construction.jpg" alt="Map of Berlin construction sites found in aerial photos" width="960" height="600"></div>
+          <h3 data-i18n="t_constr">Berlin Construction Sites 2006–2026</h3>
+          <span class="kind" data-i18n="k_constr">Interactive map · 2,104 sites from orthophotos</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/europacity-berlin/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/europacity-berlin.jpg" alt="Before and after aerial photos of Europacity in Berlin" width="960" height="600"></div>
+          <h3>Europacity Berlin 2016–2026</h3>
+          <span class="kind" data-i18n="k_europa">Before/after · aerial photo comparison</span>
+        </a>
+      </article>
+    </div>
+  </section>
 
-        <div class="about">
-          <p>
-            Работаю с открытыми данными: расписания GTFS и GTFS-Realtime, статистика населения,
-            границы муниципалитетов. Собираю данные сам, считаю маршруты и доступность и
-            показываю результат на интерактивных веб-картах (MapLibre, Vite). Все проекты —
-            на <a href="https://github.com/Ilyas-ku" target="_blank" rel="noreferrer noopener"><u>GitHub</u></a>.
-          </p>
-        </div>
-      </section>
+  <section aria-labelledby="s-land">
+    <h2 id="s-land" data-i18n="s_land">Population, land &amp; everyday life</h2>
+    <div class="grid">
+      <article class="card">
+        <a href="https://ilyas-ku.github.io/Germany_pop/" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/population-buffer.jpg" alt="Map of Germany with a circle holding as many people as Berlin" width="960" height="600"></div>
+          <h3 data-i18n="t_pop">How Much Land Holds as Many People as Berlin?</h3>
+          <span class="kind" data-i18n="k_pop">Interactive map · population 1871–2019</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/amsterbrusseldorf/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/amsterbrusseldorf.jpg" alt="Title page: can Amsterbrusseldorf feed itself" width="960" height="600"></div>
+          <h3 data-i18n="t_amster">Can Amsterbrusseldorf Feed Itself?</h3>
+          <span class="kind" data-i18n="k_amster">Analysis · land balance for 39.2 million people</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/beer-bun-index/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/beer-bun-index.jpg" alt="The Beer-Bun Index methodology page" width="960" height="600"></div>
+          <h3 data-i18n="t_beer">The Beer-Bun Index</h3>
+          <span class="kind" data-i18n="k_beer">Method · bakeries vs bars in 500 m hexagons</span>
+        </a>
+      </article>
+      <article class="card">
+        <a href="works/frankfurt-accidents/index.html" target="_blank" rel="noopener">
+          <div class="shot"><img src="previews/frankfurt-accidents.jpg" alt="Grid map of accident trends in Frankfurt" width="960" height="600"></div>
+          <h3 data-i18n="t_acc">Frankfurt Traffic Accidents 2020–2025</h3>
+          <span class="kind" data-i18n="k_acc">Analysis · 17,722 accidents on a 250 m grid</span>
+        </a>
+      </article>
+    </div>
+  </section>
 
-      <footer>
-        © <span id="y"></span> • Сделано просто и аккуратно.
-      </footer>
-    </main>
-  </div>
+  <footer><span data-i18n="footer">Data: DWD, Destatis, Zensus 2022, DELFI, Geoportal Berlin, DVF, adsb.lol, OpenStreetMap and others, credited on each page.</span> <span data-i18n="code">Code:</span> <a href="https://github.com/Ilyas-ku" target="_blank" rel="noopener">GitHub</a>.</footer>
+</div>
 
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Active tab highlight based on hash
-    const setActive = () => {
-      const hash = window.location.hash || "#main";
-      const mainTab = document.getElementById("tab-main");
-      const aboutTab = document.getElementById("tab-about");
-
-      mainTab.removeAttribute("aria-current");
-      aboutTab.removeAttribute("aria-current");
-
-      if (hash === "#about") aboutTab.setAttribute("aria-current", "page");
-      else mainTab.setAttribute("aria-current", "page");
-    };
-
-    window.addEventListener("hashchange", setActive);
-    setActive();
-  </script>
+<script>
+const T = {
+  de: {
+    intro: "Interaktive Karten und Analysen städtischer Daten: ÖPNV, Klima, Wohnen und Bevölkerung. Offene Daten, eigene Auswertung, veröffentlicht als Webkarten und Datenstorys.",
+    s_transit: "Öffentlicher Verkehr", s_air: "Luftverkehr", s_climate: "Niederschlag & Wasser", s_housing: "Wohnen & Bauen", s_land: "Bevölkerung, Fläche & Alltag",
+    t_reach: "Transit Reach: Wie weit kommt man in einer Stunde?", k_reach: "Interaktive Karte · GTFS mit echten Verspätungen",
+    also: "Stadt wählen:", frankfurt: "Frankfurt (Rhein-Main)", munich: "München", stuttgart: "Stuttgart", dk: "Düsseldorf & Köln",
+    k_pulse: "Simulation · ein Tag voller Wege nach echtem Fahrplan",
+    t_ground: "Der Tag, an dem sich der US-Himmel leerte", k_ground: "Video · ADS-B-Flüge während des FAA-Ground-Stops am 13.11.2026",
+    t_precip: "Niederschlag in Deutschland 2026", k_precip: "Interaktive Karte · DWD-Raster 1×1 km vs. 1991–2020",
+    t_rain: "Regen in den Kanal", k_rain: "Datenstory · Dachabfluss in Frankfurt vs. Trinkwasser",
+    t_rainvid: "Regen über Deutschland, Stunde für Stunde", k_rainvid: "Video · DWD-Radar, 25.10.2026, 3D-Sechsecke",
+    t_flat: "Wie viel Wohnung mietet man für 30 % vom Netto?", k_flat: "Infografik · 7 deutsche Städte, 0–40 km",
+    t_housing: "Wohnen in den 7 größten Städten Deutschlands", k_housing: "Bericht · Fertigstellungen, Mieten, Preise 2021–2025",
+    t_idf: "Was ein Quadratmeter in der Île-de-France kostet", k_idf: "Analyse · 749.655 Verkäufe, DVF 2014–2025",
+    t_constr: "Baustellen in Berlin 2006–2026", k_constr: "Interaktive Karte · 2.104 Baustellen aus Orthofotos",
+    k_europa: "Vorher/Nachher · Luftbildvergleich",
+    t_pop: "Wie viel Fläche fasst so viele Menschen wie Berlin?", k_pop: "Interaktive Karte · Bevölkerung 1871–2019",
+    t_amster: "Kann sich Amsterbrusseldorf selbst ernähren?", k_amster: "Analyse · Flächenbilanz für 39,2 Mio. Menschen",
+    t_beer: "Der Bier-Brötchen-Index", k_beer: "Methode · Bäckereien vs. Kneipen in 500-m-Sechsecken",
+    t_acc: "Verkehrsunfälle in Frankfurt 2020–2025", k_acc: "Analyse · 17.722 Unfälle im 250-m-Raster",
+    footer: "Daten: DWD, Destatis, Zensus 2022, DELFI, Geoportal Berlin, DVF, adsb.lol, OpenStreetMap und weitere, Quellen auf jeder Seite.", code: "Code:"
+  },
+  ru: {
+    intro: "Интерактивные карты и анализ городских данных: общественный транспорт, климат, жильё и население. Открытые данные и собственная обработка, результат в виде веб-карт и историй на данных.",
+    s_transit: "Общественный транспорт", s_air: "Авиация", s_climate: "Осадки и вода", s_housing: "Жильё и стройка", s_land: "Население, земля и повседневная жизнь",
+    t_reach: "Transit Reach: куда можно доехать за час?", k_reach: "Интерактивная карта · GTFS с реальными задержками",
+    also: "Выберите город:", frankfurt: "Франкфурт (Рейн-Майн)", munich: "Мюнхен", stuttgart: "Штутгарт", dk: "Дюссельдорф и Кёльн",
+    k_pulse: "Симуляция · один день поездок по реальному расписанию",
+    t_ground: "День, когда опустело небо США", k_ground: "Видео · полёты по данным ADS-B во время остановки вылетов FAA 13.11.2026",
+    t_precip: "Осадки в Германии 2026", k_precip: "Интерактивная карта · сетка DWD 1×1 км и норма 1991–2020",
+    t_rain: "Дождь в канализацию", k_rain: "История на данных · сток с крыш Франкфурта и питьевая вода",
+    t_rainvid: "Дождь над Германией, час за часом", k_rainvid: "Видео · радар DWD, 25.10.2026, 3D-шестиугольники",
+    t_flat: "Какую квартиру можно снять за 30 % зарплаты?", k_flat: "Инфографика · 7 городов Германии, 0–40 км",
+    t_housing: "Жильё в 7 крупнейших городах Германии", k_housing: "Обзор · ввод жилья, аренда, цены 2021–2025",
+    t_idf: "Сколько стоит квадратный метр в Иль-де-Франс", k_idf: "Анализ · 749 655 сделок, DVF 2014–2025",
+    t_constr: "Стройплощадки Берлина 2006–2026", k_constr: "Интерактивная карта · 2 104 площадки по ортофото",
+    k_europa: "До и после · сравнение аэрофотоснимков",
+    t_pop: "Сколько земли вмещает столько же людей, сколько Берлин?", k_pop: "Интерактивная карта · население 1871–2019",
+    t_amster: "Может ли Amsterbrusseldorf прокормить себя?", k_amster: "Анализ · земельный баланс для 39,2 млн человек",
+    t_beer: "Индекс пива и булочек", k_beer: "Методология · пекарни и бары в шестиугольниках 500 м",
+    t_acc: "ДТП во Франкфурте 2020–2025", k_acc: "Анализ · 17 722 ДТП на сетке 250 м",
+    footer: "Данные: DWD, Destatis, Zensus 2022, DELFI, Geoportal Berlin, DVF, adsb.lol, OpenStreetMap и другие, источники указаны на каждой странице.", code: "Код:"
+  }
+};
+const nodes = [...document.querySelectorAll("[data-i18n]")];
+nodes.forEach(n => n.dataset.en = n.textContent);
+const LABEL = { en: "Language", de: "Sprache", ru: "Язык" };
+function setLang(l) {
+  if (!["en", "de", "ru"].includes(l)) l = "en";
+  nodes.forEach(n => { n.textContent = (T[l] && T[l][n.dataset.i18n]) || n.dataset.en; });
+  document.documentElement.lang = l;
+  document.getElementById("lang").setAttribute("aria-label", LABEL[l]);
+  document.querySelectorAll("#lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
+  // works open in the same language
+  document.querySelectorAll('a[href^="works/"]').forEach(a => { a.href = a.getAttribute("href").split("#")[0] + "#" + l; });
+  try { localStorage.setItem("lang", l); } catch (e) {}
+}
+document.querySelectorAll("#lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+let saved = null;
+try { saved = localStorage.getItem("lang"); } catch (e) {}
+setLang(saved || "en");
+</script>
 </body>
 </html>

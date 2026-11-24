@@ -1,0 +1,996 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Can Amsterbrusseldorf Feed Itself?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F1F3F0;
+  --surface:#FBFCFA;
+  --surface-2:#E9ECE7;
+  --line:#D6DBD4;
+  --line-soft:#E3E7E1;
+  --ink:#1C211E;
+  --ink-2:#40473F;
+  --ink-3:#6C7469;
+  --gold:#9C6B21;
+  --gold-soft:#F0E4CC;
+  --green:#2F6B4F;
+  --green-soft:#DDE9E0;
+  --clay:#A8442F;
+  --clay-soft:#F3DFD8;
+  --shadow:0 1px 2px rgba(28,33,30,.05), 0 8px 24px -12px rgba(28,33,30,.18);
+  --measure:35rem;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#141815;
+    --surface:#1C211D;
+    --surface-2:#242A25;
+    --line:#333A33;
+    --line-soft:#2A312B;
+    --ink:#E7EBE5;
+    --ink-2:#BDC4BA;
+    --ink-3:#8B948A;
+    --gold:#D4A055;
+    --gold-soft:#39301F;
+    --green:#6FB68B;
+    --green-soft:#1F2E26;
+    --clay:#D9846B;
+    --clay-soft:#33221D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141815;
+  --surface:#1C211D;
+  --surface-2:#242A25;
+  --line:#333A33;
+  --line-soft:#2A312B;
+  --ink:#E7EBE5;
+  --ink-2:#BDC4BA;
+  --ink-3:#8B948A;
+  --gold:#D4A055;
+  --gold-soft:#39301F;
+  --green:#6FB68B;
+  --green-soft:#1F2E26;
+  --clay:#D9846B;
+  --clay-soft:#33221D;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Golos Text","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 6rem;
+}
+.wrap{max-width:74rem;margin:0 auto;padding:0 1.5rem}
+.col{max-width:var(--measure);margin-left:auto;margin-right:auto}
+
+h1,h2,h3,h4{font-family:Literata,Georgia,"Times New Roman",serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.4rem);line-height:1.1;font-weight:600;letter-spacing:-.015em}
+h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.18;font-weight:600;letter-spacing:-.01em}
+h3{font-size:1.16rem;line-height:1.3;font-weight:600}
+h4{font-size:1rem;line-height:1.35;font-weight:600}
+p{margin:0}
+a{color:var(--gold)}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;
+}
+.num{font-variant-numeric:tabular-nums}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:.88em}
+code{background:var(--surface-2);padding:.1em .38em;border-radius:3px;color:var(--ink-2)}
+
+/* ---------- masthead ---------- */
+header.top{
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+  padding:4.5rem 0 3rem;
+  margin-bottom:3.5rem;
+}
+header.top .col{display:flex;flex-direction:column;gap:1.4rem}
+.lede{font-size:1.16rem;line-height:1.6;color:var(--ink-2);max-width:34rem}
+.meta{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;
+  padding-top:1.1rem;border-top:1px solid var(--line-soft);
+  font-size:.82rem;color:var(--ink-3);
+}
+
+/* ---------- headline answer ---------- */
+.answer{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:2px;box-shadow:var(--shadow);
+  padding:1.9rem 1.9rem 1.6rem;
+  display:flex;flex-direction:column;gap:1.1rem;
+}
+.answer-row{display:flex;flex-wrap:wrap;gap:2.2rem;align-items:flex-end}
+.big{
+  font-family:Literata,Georgia,serif;font-weight:700;
+  font-size:clamp(3rem,9vw,4.6rem);line-height:.92;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums;
+}
+.big.strike{color:var(--ink-3);font-size:clamp(1.8rem,5vw,2.6rem);position:relative;font-weight:400}
+.big.strike::after{
+  content:"";position:absolute;left:-4%;right:-4%;top:52%;height:2px;
+  background:var(--clay);transform:rotate(-7deg);
+}
+.big-label{font-size:.82rem;color:var(--ink-3);line-height:1.4;max-width:12rem}
+
+/* ---------- section ---------- */
+section{margin-top:4.5rem}
+.sec-head{
+  display:flex;gap:1rem;align-items:baseline;
+  padding-bottom:.9rem;margin-bottom:1.8rem;
+  border-bottom:1px solid var(--line);
+}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:600;
+  color:var(--gold);flex:none;padding-top:.2rem;
+}
+.stack{display:flex;flex-direction:column;gap:1.15rem}
+.stack.tight{gap:.8rem}
+
+/* ---------- definition ---------- */
+.def{
+  background:var(--surface);border-left:2px solid var(--gold);
+  padding:1rem 1.15rem;border-radius:0 2px 2px 0;
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.def-term{font-family:Literata,Georgia,serif;font-weight:600;font-size:1rem}
+.def p{font-size:.94rem;line-height:1.6;color:var(--ink-2)}
+
+/* ---------- callouts ---------- */
+.note{
+  border:1px solid var(--line);background:var(--surface);
+  padding:1.05rem 1.2rem;border-radius:2px;
+  display:flex;flex-direction:column;gap:.5rem;font-size:.95rem;color:var(--ink-2);
+}
+.note.warn{border-color:color-mix(in srgb,var(--clay) 40%,var(--line));background:var(--clay-soft)}
+.note.warn .note-t{color:var(--clay)}
+.note.good{border-color:color-mix(in srgb,var(--green) 35%,var(--line));background:var(--green-soft)}
+.note.good .note-t{color:var(--green)}
+.note-t{font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
+.note p{color:inherit}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:2px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+caption{
+  caption-side:top;text-align:left;padding:.85rem 1rem .55rem;
+  font-size:.8rem;color:var(--ink-3);border-bottom:1px solid var(--line-soft);
+}
+th,td{padding:.6rem 1rem;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+thead th{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{font-weight:600;background:var(--surface-2)}
+.swatch{display:inline-block;width:.72em;height:.72em;border-radius:2px;margin-right:.5em;vertical-align:baseline}
+
+/* ---------- correction ledger ---------- */
+.ledger{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:2px;background:var(--surface);overflow:hidden}
+.ledger-row{
+  display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;
+  padding:.95rem 1.15rem;border-bottom:1px solid var(--line-soft);
+}
+.ledger-row:last-child{border-bottom:none}
+.ledger-row.start,.ledger-row.end{background:var(--surface-2)}
+.ledger-what{font-size:.94rem;line-height:1.45}
+.ledger-what small{display:block;color:var(--ink-3);font-size:.82rem;margin-top:.15rem}
+.delta{font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.delta.dn{color:var(--clay)}
+.delta.up{color:var(--green)}
+.delta.flat{color:var(--ink-3)}
+.running{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:1rem;
+  font-variant-numeric:tabular-nums;min-width:4.2rem;text-align:right;
+}
+
+/* ---------- scenario bars ---------- */
+.bars{display:flex;flex-direction:column;gap:.85rem}
+.bar-row{display:grid;grid-template-columns:minmax(9rem,14rem) 1fr auto;gap:1rem;align-items:center;font-size:.92rem}
+.track{height:.7rem;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.fill{height:100%;background:var(--gold);border-radius:2px}
+.fill.g{background:var(--green)}
+.bar-val{font-family:"IBM Plex Mono",monospace;font-weight:600;font-variant-numeric:tabular-nums;min-width:3.2rem;text-align:right}
+
+/* ---------- steps ---------- */
+ol.steps{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.6rem;counter-reset:s}
+ol.steps>li{
+  counter-increment:s;display:grid;grid-template-columns:2rem 1fr;gap:1rem;align-items:start;
+}
+ol.steps>li::before{
+  content:counter(s);font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:600;
+  color:var(--gold);border:1px solid var(--line);border-radius:2px;
+  width:2rem;height:2rem;display:grid;place-items:center;background:var(--surface);
+}
+ol.steps h4{margin-bottom:.35rem}
+ol.steps p{font-size:.96rem;color:var(--ink-2)}
+
+ul.plain{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.55rem}
+ul.plain li{padding-left:.15rem}
+ul.plain li::marker{color:var(--gold)}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.1rem;font-size:.94rem}
+.kv dt{color:var(--ink-3);white-space:nowrap}
+.kv dd{margin:0;font-variant-numeric:tabular-nums}
+
+footer{
+  margin-top:5rem;padding-top:2rem;border-top:1px solid var(--line);
+  font-size:.84rem;color:var(--ink-3);
+}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (max-width:640px){
+  body{font-size:16px}
+  .ledger-row{grid-template-columns:1fr auto;row-gap:.4rem}
+  .ledger-row .running{grid-column:2}
+  .bar-row{grid-template-columns:1fr;gap:.3rem}
+}
+</style>
+
+<header class="top">
+  <div class="wrap col">
+    <div class="eyebrow">Method and results · land balance</div>
+    <h1>Can Amsterbrusseldorf feed itself?</h1>
+    <p class="lede">
+      The urban belt from Amsterdam through Brussels to the Ruhr is one of the most densely populated areas in Europe. We calculated whether its own land would be enough to grow what it eats.
+    </p>
+    <div class="meta">
+      <span>39.2 million people</span>
+      <span>98 NUTS 3 regions</span>
+      <span>66,682 km²</span>
+      <span>Netherlands · Belgium · Germany</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="col answer">
+    <div class="eyebrow">Short answer</div>
+    <div class="answer-row">
+      <div>
+        <div class="big">43&nbsp;%</div>
+        <div class="big-label">of the farmland it needs lies within the region’s borders</div>
+      </div>
+      <div>
+        <div class="big strike">52&nbsp;%</div>
+        <div class="big-label">first estimate, which turned out to be too high</div>
+      </div>
+    </div>
+    <p style="font-size:.95rem;color:var(--ink-2)">
+      No. At today’s diet and level of waste, the region cannot feed itself: it is short of about 4.4 million hectares. But if it did not throw away and overeat a third of its food, the balance would rise to <strong>72&nbsp;%</strong>. Below is how this was calculated and why the first figure was wrong.
+    </p>
+  </div>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Where the question came from</h2></div>
+    <div class="stack">
+      <p>
+        It started with a land cover map of Germany: how much of the country is fields, forest and towns. One figure came out of it: almost half of Germany is farmland, and the country’s food self-sufficiency is about 89&nbsp;%.
+      </p>
+      <p>
+        A comment raised a fair objection: measuring food security in Europe country by country makes little sense. Cities and farming here do not follow national borders. And it named a concrete example: <strong>Amsterbrusseldorf</strong>.
+      </p>
+      <div class="def">
+        <div class="def-term">Amsterbrusseldorf</div>
+        <p>
+          An informal name for the continuous urban network between Amsterdam, Brussels and Düsseldorf. It is neither an administrative unit nor a statistical region, so it has no ready-made boundary and no statistics of its own. We had to draw the boundary ourselves.
+        </p>
+      </div>
+      <p>
+        We deliberately ask whether the region “<em>could</em> feed itself”, not whether it “is self-sufficient”. The difference matters.
+      </p>
+      <div class="note">
+        <span class="note-t">What we calculate and what we do not</span>
+        <p>
+          <strong>Self-sufficiency</strong> is about real flows: what is imported, exported and stored. Such data are simply not openly available at the regional level for three countries.
+        </p>
+        <p>
+          <strong>Capacity to feed itself</strong> is about land: how much there is and how much is needed. That is arithmetic, and it can be calculated honestly. That is what we calculate.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">02</span><h2>How we drew the boundary</h2></div>
+    <div class="stack">
+      <p>
+        With no official boundary, it has to be built reproducibly, so that anyone can repeat and check it. We based it on the EU statistical regions.
+      </p>
+      <div class="def">
+        <div class="def-term">NUTS</div>
+        <p>
+          The EU’s common system of statistical regions. Three nested levels: NUTS&nbsp;1 is a large part of a country (for example all of North Rhine-Westphalia), NUTS&nbsp;2 is a province, NUTS&nbsp;3 is the finest level.
+        </p>
+        <p>
+          We work at <strong>NUTS&nbsp;3</strong>because it is the only level with comparable granularity in all three countries: 40 COROP regions in the Netherlands, 44 arrondissements in Belgium and about 400 districts (Kreise) in Germany. At NUTS&nbsp;1 we would have had to take whole federal states instead of a corridor.
+        </p>
+      </div>
+      <p>Building the boundary takes four mechanical steps:</p>
+      <ol class="steps">
+        <li>
+          <div>
+            <h4>Draw the corridor axis</h4>
+            <p>
+              A polyline through cities: Amsterdam → Utrecht → Rotterdam → Antwerp → Brussels, a second branch Antwerp → Eindhoven → Venlo → Düsseldorf → Essen → Dortmund, and a third Düsseldorf → Cologne → Bonn. Three branches rather than one line, because the corridor is Y-shaped and a single polyline would draw a false diagonal across Belgium.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Extend 60 km to each side</h4>
+            <p>
+              A buffer around the axis. 60 km, because we care not only about the built-up area but also about the farmland around it that could in theory feed it.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Take the regions whose centre falls inside</h4>
+            <p>
+              The boundary follows whole NUTS&nbsp;3 regions instead of cutting them in half. This matters: population is published for the whole region, and splitting it would mean dividing it by eye.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Keep only the connected part</h4>
+            <p>
+              The buffer can catch a region across a bay or a gap. A disconnected “food system region” cannot be defended, so we keep the largest continuous block.
+            </p>
+          </div>
+        </li>
+      </ol>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Result: 98 regions, 66,682 km², roughly the size of Ireland</caption>
+          <thead><tr><th>Country</th><th class="n">Regions</th><th class="n">Area, km²</th><th class="n">Population</th></tr></thead>
+          <tbody>
+            <tr><td>Netherlands</td><td class="n">27</td><td class="n">23,324</td><td class="n">14.6 million</td></tr>
+            <tr><td>Germany</td><td class="n">50</td><td class="n">28,827</td><td class="n">16.1 million</td></tr>
+            <tr><td>Belgium</td><td class="n">21</td><td class="n">14,531</td><td class="n">8.4 million</td></tr>
+            <tr class="total"><td>Total</td><td class="n">98</td><td class="n">66,682</td><td class="n">39.2 million</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.94rem;color:var(--ink-3)">
+        The buffer radius is an arbitrary choice, so we tested others: at 50 km and 75 km the final answer shifts by a few percentage points but does not change in kind. The check is described in section&nbsp;07.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Why we count hectares, not tonnes</h2></div>
+    <div class="stack">
+      <p>
+        The obvious approach is to take production in tonnes and divide it by consumption in tonnes, product by product. We rejected it, and this is the main methodological decision of the whole study. There are three reasons.
+      </p>
+      <h3>Reason one: feed</h3>
+      <p>
+        The Netherlands is a major pork exporter. But much of the feed for those pigs is soy from Brazil. Counting that pork as “local food production” is wrong: the land that grew it is in another hemisphere.
+      </p>
+      <p>
+        With tonnes, this gap has to be patched with a separate, more complex indicator. With hectares, the problem does not arise at all: a product’s land footprint <em>by construction</em> includes the land used for feed.
+      </p>
+      <h3>Reason two: incomparable statistics</h3>
+      <p>
+        The three countries have different reporting categories, levels of detail and years. Combining them is the most laborious part of such work. Land, on the other hand, comes from a satellite image that is the same on both sides of the border: the satellite does not know where Belgium ends.
+      </p>
+      <h3>Reason three: the boundary can be drawn anywhere</h3>
+      <p>
+        A raster can be cut by any polygon. That is what lets us use a functional corridor instead of a bag of ready-made statistical units, which is exactly what the original comment was about.
+      </p>
+      <div class="def">
+        <div class="def-term">Raster</div>
+        <p>
+          An image divided into a grid of identical cells (pixels), where each cell stores a value; here it is a land cover class code. Unlike vector boundaries, a raster can be clipped to any outline and summed over any area.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Supply: how much land there is</h2></div>
+    <div class="stack">
+      <div class="def">
+        <div class="def-term">Sentinel-2 land cover, 10 m</div>
+        <p>
+          A ready-made product by Esri, Impact Observatory and Microsoft: all land divided into 10×10 metre squares, each assigned to one of nine classes such as water, trees, crops and built area. It is based on 2024 imagery from the European Space Agency’s Sentinel-2 satellites. Stated accuracy is above 75&nbsp;%.
+        </p>
+      </div>
+      <p>
+        The data come in tiles by grid zone. Our region falls into two:
+        <code>31U</code> and <code>32U</code>. Both had already been downloaded for the earlier map of Germany, so no new downloads were needed.
+      </p>
+      <div class="note warn">
+        <span class="note-t">A technical detail without which nothing works</span>
+        <p>
+          One tile is 44,754 × 89,383 pixels, that is <strong>4.0 GB</strong> uncompressed. It cannot be read into memory whole. We read it decimated: we request the reduced copy embedded in the file and take, in each coarse cell, the <em>most frequent</em> class. Peak read is 35 MB instead of 4 GB.
+        </p>
+        <p>
+          Taking the “most frequent” class is essential: class codes cannot be averaged. The average of “water” (1) and “crops” (5) would give “flooded vegetation” (4), a class that is not there.
+        </p>
+      </div>
+      <p>
+        Everything is then reprojected to <code>EPSG:3035</code> on a 100-metre grid.
+      </p>
+      <div class="def">
+        <div class="def-term">EPSG:3035, an equal-area projection</div>
+        <p>
+          A way of flattening the curved surface of the Earth onto a plane. “Equal-area” means areas are not distorted: a cell in the north of the region has exactly the same area as a cell in the south. For counting hectares this is a must; in the usual Mercator projection the north would be stretched and areas overstated.
+        </p>
+      </div>
+      <p>
+        The result is a grid of 3950 × 3538 cells, 14 million pixels, clipped to the AOI boundary. Each cell is 100×100 m = 1 hectare, so measuring area comes down to counting cells.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Land cover of the region, 2024. The classified area matched the AOI area exactly, so the clipping is correct</caption>
+          <thead><tr><th>Class</th><th class="n">Share</th><th class="n">Hectares</th></tr></thead>
+          <tbody>
+            <tr><td><span class="swatch" style="background:#dfbb5e"></span>Crops</td><td class="n">45.88 %</td><td class="n">3,059,356</td></tr>
+            <tr><td><span class="swatch" style="background:#cf5340"></span>Built area</td><td class="n">22.32 %</td><td class="n">1,488,463</td></tr>
+            <tr><td><span class="swatch" style="background:#3d8f5c"></span>Trees</td><td class="n">21.05 %</td><td class="n">1,403,964</td></tr>
+            <tr><td><span class="swatch" style="background:#dde2bc"></span>Rangeland</td><td class="n">5.20 %</td><td class="n">346,989</td></tr>
+            <tr><td><span class="swatch" style="background:#3f9fd4"></span>Water</td><td class="n">5.00 %</td><td class="n">333,386</td></tr>
+            <tr><td><span class="swatch" style="background:#9078bd"></span>Flooded vegetation</td><td class="n">0.48 %</td><td class="n">32,050</td></tr>
+            <tr class="total"><td>Farmland (crops + rangeland)</td><td class="n">51.08 %</td><td class="n">3,406,345</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note good">
+        <span class="note-t">The first real finding</span>
+        <p>
+          <strong>22.3&nbsp;% built-up.</strong> For Germany as a whole it is 10.7&nbsp;%. So this corridor has twice the national share of land under towns and roads. The comment that started it all called the region one of the most urbanised in Europe, and the figure confirms it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">05</span><h2>An important correction: the satellite cannot tell pasture from fields</h2></div>
+    <div class="stack">
+      <p>
+        In the table above, rangeland covers only 5.2&nbsp;%. For the Netherlands and Flanders, where dairy farming is the backbone of agriculture, that looked suspicious. We checked it against an independent source.
+      </p>
+      <div class="def">
+        <div class="def-term">Farm Structure Survey (FSS)</div>
+        <p>
+          The EU’s official farm census: farmers are asked directly how much land they have and what is on it. It gives <strong>land use</strong> : how land is used legally and economically. The satellite gives <strong>land cover</strong> : what is physically visible from above. These are different things, and here they diverged.
+        </p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Share of permanent grassland: the two sources differ threefold</caption>
+          <thead><tr><th>Source</th><th class="n">Permanent grassland</th></tr></thead>
+          <tbody>
+            <tr><td>Eurostat farm survey</td><td class="n">31.4 %</td></tr>
+            <tr><td>Esri raster, “rangeland” class</td><td class="n">9.4 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The reason is clear if you picture a Dutch meadow: mown, fertilised, sown ryegrass. From above it looks like an ordinary cultivated field, and the algorithm puts it in the “crops” class. Esri’s “rangeland” class mostly catches semi-natural grassland.
+      </p>
+      <div class="note good">
+        <span class="note-t">How we solved it</span>
+        <p>
+          <strong>The total</strong> farmland area from the raster agrees with the survey within a few percent, so it can be trusted. Only the split inside it disagrees. So: <strong>we take the total from the raster</strong> (continuous, 10 metres, recent 2024 data), and <strong>the split into arable land and grassland from the survey</strong>
+          (authoritative on land use), separately for each NUTS&nbsp;2 region.
+        </p>
+        <p>Either source on its own would give a worse result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Demand: how much land is needed</h2></div>
+    <div class="stack">
+      <p>
+        Demand is population multiplied by the land footprint of the diet: how many hectares a year it takes to feed one person.
+      </p>
+
+      <h3>Population</h3>
+      <p>
+        Taken directly from Eurostat for each NUTS&nbsp;3 region for 2024. Because the AOI follows whole regions, the figures simply add up and nothing has to be split by eye. Total: <strong>39,162,588</strong> people.
+      </p>
+
+      <h3>What people eat</h3>
+      <div class="def">
+        <div class="def-term">FAO Food Balance Sheets (FBS)</div>
+        <p>
+          The UN’s annual summary for each country: how much was produced, imported, exported, used for feed and seed, and how much in the end <strong>reached people</strong> , in kilograms per person per year and kilocalories per day.
+        </p>
+        <p>
+          Note: this is the level of <em>supply</em>, meaning what reached the shop, not what was actually eaten. The difference is waste and overeating. We will come back to this; it turns out to be the most interesting part.
+        </p>
+      </div>
+      <p>
+        We use 13 non-overlapping groups: cereals, potatoes and roots, sugar, pulses, vegetable oils, vegetables, fruit, and separately beef, pork, poultry, mutton, eggs and milk.
+      </p>
+
+      <h3>Yields must be local</h3>
+      <p>
+        To turn kilograms into hectares you need yields. And here generic figures are completely unsuitable.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Regional yields weighted by arable area (Eurostat, 2022)</caption>
+          <thead><tr><th>Crop</th><th class="n">t/ha</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Cereals</td><td class="n">8.19</td><td>average of wheat, barley and maize</td></tr>
+            <tr><td>Potatoes</td><td class="n">39.65</td><td></td></tr>
+            <tr><td>Sugar beet</td><td class="n">77.97</td><td>about 16 % sugar</td></tr>
+            <tr><td>Rapeseed</td><td class="n">4.20</td><td>about 40 % oil</td></tr>
+            <tr><td>Pulses</td><td class="n">3.95</td><td></td></tr>
+            <tr><td>Vegetables</td><td class="n">30.00</td><td style="color:var(--clay)">assumed, not measured</td></tr>
+            <tr><td>Fruit</td><td class="n">20.00</td><td style="color:var(--clay)">assumed, not measured</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Wheat in the Netherlands yields <strong>9.39 t/ha</strong> , almost three times the world average of about 3.5 and one of the highest in the world. With world or even national averages, the region’s capacity to feed itself would come out several times too low. This is not a detail but one of the key decisions.
+      </p>
+
+      <h3>Meat and milk: feed conversion ratios</h3>
+      <div class="def">
+        <div class="def-term">Feed conversion ratio (FCR)</div>
+        <p>
+          How many kilograms of feed an animal must eat to produce one kilogram of product. A pig does not turn feed into meat one to one: a kilogram of pork takes several kilograms of grain. FCR converts an animal product into arable area.
+        </p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Kilograms of feed per kilogram of product as eaten</caption>
+          <thead><tr><th>Product</th><th class="n">Concentrates (arable)</th><th class="n">Roughage (grassland)</th></tr></thead>
+          <tbody>
+            <tr><td>Beef</td><td class="n">5.0</td><td class="n">20.0</td></tr>
+            <tr><td>Pork</td><td class="n">6.4</td><td class="n">—</td></tr>
+            <tr><td>Poultry</td><td class="n">3.3</td><td class="n">—</td></tr>
+            <tr><td>Mutton</td><td class="n">3.0</td><td class="n">22.0</td></tr>
+            <tr><td>Eggs</td><td class="n">2.3</td><td class="n">—</td></tr>
+            <tr><td>Milk</td><td class="n">0.35</td><td class="n">1.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="note-t">A mistake we had to fix along the way</span>
+        <p>
+          At first we used ratios <em>per live weight</em> of the animal. But FAO reports consumption as the product is eaten. The yield from live weight to retail is about 0.55 for pigs and 0.50 for cattle, so an edible kilogram takes almost twice as much feed.
+        </p>
+        <p>
+          The mistake understated the land footprint by about a third: it gave 0.12–0.14 ha per person, lower than anything published for European diets. After the fix it came to 0.15–0.18 ha, inside the known range. The mismatch with the literature was the signal that something was wrong.
+        </p>
+      </div>
+      <p>
+        Roughage is counted in <strong>dry matter</strong> , that is without water, because fresh grass is 80&nbsp;% water and comparing it with grain by fresh weight makes no sense. Grassland yield is assumed at 9 t of dry matter per hectare per year.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Land footprint of the diet, hectares per person per year</caption>
+          <thead><tr><th>Country</th><th class="n">Arable</th><th class="n">Grassland</th><th class="n">Total</th></tr></thead>
+          <tbody>
+            <tr><td>Netherlands</td><td class="n">0.1037</td><td class="n">0.0808</td><td class="n">0.1845</td></tr>
+            <tr><td>Germany</td><td class="n">0.1003</td><td class="n">0.0618</td><td class="n">0.1620</td></tr>
+            <tr><td>Belgium</td><td class="n">0.0975</td><td class="n">0.0554</td><td class="n">0.1529</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.94rem;color:var(--ink-3)">
+        Each resident is counted with their own country’s diet: the Dutch with the Dutch diet, Germans with the German one, Belgians with the Belgian one.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Results and checks</h2></div>
+    <div class="stack">
+      <p>The balance is supply divided by demand.</p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>The region’s land balance in the original calculation</caption>
+          <thead><tr><th></th><th class="n">Available, ha</th><th class="n">Needed, ha</th><th class="n">Balance</th></tr></thead>
+          <tbody>
+            <tr><td>Arable</td><td class="n">2,351,970</td><td class="n">3,952,949</td><td class="n">59.5 %</td></tr>
+            <tr><td>Grassland</td><td class="n">1,054,375</td><td class="n">2,642,468</td><td class="n">39.9 %</td></tr>
+            <tr class="total"><td>Total</td><td class="n">3,406,345</td><td class="n">6,595,417</td><td class="n">51.6 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Per person: the region has <strong>870 m²</strong> of farmland per resident, while the diet needs <strong>1,684 m²</strong>. It is short by about half.
+      </p>
+
+      <h3>Who does worst, and it is unexpected</h3>
+      <div class="bars" style="margin:.4rem 0">
+        <div class="bar-row"><span>Belgium</span><span class="track"><span class="fill" style="width:60.7%"></span></span><span class="bar-val">60.7 %</span></div>
+        <div class="bar-row"><span>Germany</span><span class="track"><span class="fill" style="width:54.4%"></span></span><span class="bar-val">54.4 %</span></div>
+        <div class="bar-row"><span>Netherlands</span><span class="track"><span class="fill" style="width:44.6%"></span></span><span class="bar-val">44.6 %</span></div>
+      </div>
+      <p>
+        The Netherlands comes last, even though it is an agricultural superpower and the world’s second-largest food exporter. Record yields still do not outweigh record population density. This is the direct answer to the original comment: a country looks different on its own than as part of the agglomeration.
+      </p>
+
+      <h3>Huge spread inside the region</h3>
+      <p>
+        Only <strong>23 of 98 regions</strong>are self-sufficient in land, and 5.5 million of the 39.2 million people live in them.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Extremes among NUTS 3 regions</caption>
+          <thead><tr><th>Region</th><th class="n">Balance</th><th class="n">Population</th></tr></thead>
+          <tbody>
+            <tr><td>Vulkaneifel (rural Germany)</td><td class="n">403 %</td><td class="n">60k</td></tr>
+            <tr><td>Zeeuwsch-Vlaanderen (Zeeland)</td><td class="n">318 %</td><td class="n">106k</td></tr>
+            <tr><td>Brussels</td><td class="n">0.2 %</td><td class="n">1,264k</td></tr>
+            <tr><td>Oberhausen (Ruhr)</td><td class="n">1.5 %</td><td class="n">214k</td></tr>
+            <tr><td>The Hague</td><td class="n">3.2 %</td><td class="n">918k</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What we checked</h3>
+      <ul class="plain">
+        <li><strong>Does the area add up?</strong> The classified area matched the AOI area exactly, so clipping to the boundary works.</li>
+        <li><strong>Does it match official statistics?</strong> Farmland from the raster is 3.19 million ha; the farm survey gives 3.34 million ha for regions that extend beyond the AOI. The gap is small and in the expected direction.</li>
+        <li><strong>How much does the result depend on assumptions?</strong> With feed ratios changed by ±20&nbsp;%, the balance lies between 44.9&nbsp;% and 60.7&nbsp;%. With buffers of 50, 60 and 75 km it is 45.6&nbsp;%, 51.6&nbsp;% and 50.1&nbsp;%.</li>
+      </ul>
+      <p>
+        Both sensitivity checks move the figure by a few percentage points and do not change the conclusion. The problem, as it turned out, lay elsewhere.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Where the calculation was wrong</h2></div>
+    <div class="stack">
+      <p>
+        After getting 51.6&nbsp;%, we checked three suspicions. One was confirmed in a serious way.
+      </p>
+
+      <h3>The model covered only 77–83 % of dietary calories</h3>
+      <p>
+        We took 13 commodity groups, but missed animal fats and butter (about 294 kcal a day for the Dutch), alcohol (129), other vegetable oils (101), as well as fish, coffee, cocoa, nuts and offal.
+      </p>
+      <div class="tbl-wrap">
+        <table>
+          <caption>What share of daily calories the model covered</caption>
+          <thead><tr><th>Country</th><th class="n">Covered</th><th class="n">Total supply</th><th class="n">Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Netherlands</td><td class="n">2,874</td><td class="n">3,472</td><td class="n">82.8 %</td></tr>
+            <tr><td>Germany</td><td class="n">2,952</td><td class="n">3,600</td><td class="n">82.0 %</td></tr>
+            <tr><td>Belgium</td><td class="n">3,010</td><td class="n">3,918</td><td class="n">76.8 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Demand was understated by about a fifth, which means the balance was overstated. This is the largest error in the whole study.
+      </p>
+      <p style="font-size:.94rem;color:var(--ink-3)">
+        Along the way we found a trap: in the FAO file the rows “Eggs” and “Milk” appear twice, under different item codes, with identical values. The calculation takes the first occurrence and is therefore correct, but the very first check script added both rows and reported 102&nbsp;% coverage, an impossible value that pointed to the problem.
+      </p>
+
+      <h3>Feed from arable land was wrongly assigned to grassland</h3>
+      <p>
+        We put all ruminant roughage on grassland. But according to Eurostat, green fodder grows mostly <em>on arable land</em>: 397,700 ha in the Netherlands, 276,060 ha in Belgium and 2,770,600 ha in Germany. For the Netherlands that is about 47&nbsp;% of all arable land.
+      </p>
+      <p>
+        Silage maize yields 12–15 t of dry matter per hectare against 9 for grassland. So less land is needed for feed than we calculated. This error works the other way: it made the balance look <em>worse</em>.
+      </p>
+
+      <h3>The result did not converge with raster resolution</h3>
+      <div class="tbl-wrap">
+        <table>
+          <caption>Arable area by cell size</caption>
+          <thead><tr><th class="n">Cell</th><th class="n">Arable, ha</th><th class="n">Grassland, ha</th></tr></thead>
+          <tbody>
+            <tr><td class="n">200 m</td><td class="n">3,139,528</td><td class="n">311,464</td></tr>
+            <tr><td class="n">100 m</td><td class="n">3,059,356</td><td class="n">346,989</td></tr>
+            <tr><td class="n">50 m</td><td class="n">3,024,270</td><td class="n">362,905</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        A coarse cell systematically overstates arable land: the “most frequent class” rule swallows small patches of other cover. The drift between 100 and 50 metres has not stopped yet, so the final figure has to be calculated at 50 metres or finer.
+      </p>
+
+      <h3>How the corrections add up</h3>
+      <div class="ledger">
+        <div class="ledger-row start">
+          <div class="ledger-what">Original result</div>
+          <div class="delta flat">—</div>
+          <div class="running">51.4 %</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-what">Full diet coverage<small>80 % of calories counted instead of 100 %</small></div>
+          <div class="delta dn">−10.3</div>
+          <div class="running">41.1 %</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-what">Half of the feed moved to arable land<small>13 vs 9 t of dry matter per hectare</small></div>
+          <div class="delta up">+2.1</div>
+          <div class="running">43.2 %</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-what">50 m raster instead of 100 m<small>removes the overstatement of arable land</small></div>
+          <div class="delta dn">−0.2</div>
+          <div class="running">43.0 %</div>
+        </div>
+        <div class="ledger-row end">
+          <div class="ledger-what"><strong>Corrected estimate</strong></div>
+          <div class="delta flat">—</div>
+          <div class="running" style="color:var(--gold)">43.0 %</div>
+        </div>
+      </div>
+      <p>
+        The gap between 52 and 43&nbsp;% is larger than the whole stated sensitivity range. Publishing the original figure would have been wrong.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">09</span><h2>The most interesting part is the question itself</h2></div>
+    <div class="stack">
+      <p>
+        The region “supplies” about 3,663 kcal per person per day. An adult actually needs around 2,200–2,500. The difference is spoilage, retail waste, food thrown away at home and overeating.
+      </p>
+      <p>
+        So all along we were checking whether there is enough land to provide <em>today’s level of supply including its losses</em>. That is a much stricter test than “is there enough land to feed everyone”.
+      </p>
+      <div class="bars" style="margin:.6rem 0">
+        <div class="bar-row"><span>Current supply</span><span class="track"><span class="fill" style="width:43%"></span></span><span class="bar-val">43 %</span></div>
+        <div class="bar-row"><span>2,500 kcal, no waste</span><span class="track"><span class="fill g" style="width:63%"></span></span><span class="bar-val">63 %</span></div>
+        <div class="bar-row"><span>2,200 kcal, no waste</span><span class="track"><span class="fill g" style="width:72%"></span></span><span class="bar-val">72 %</span></div>
+      </div>
+      <div class="note good">
+        <span class="note-t">A conclusion stronger than the original one</span>
+        <p>
+          In terms of land, the region is almost self-sufficient, if it did not throw away and overeat a third of its food. The shortage of hectares and the shortage of thrift are of the same order here. This is closer to what food system experts actually discuss than the original question about self-sufficiency.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Weak points</h2></div>
+    <div class="stack">
+      <p>
+        Below is what the study does not account for. Some of it can be fixed; some needs data we do not have.
+      </p>
+
+      <h3>Not accounted for at all</h3>
+      <ul class="plain">
+        <li>
+          <strong>The Dutch nitrogen crisis.</strong> Livestock numbers are being cut by law because of nitrogen emissions. We calculate the biophysical capacity of the land, but the real ceiling is now set by environmental regulation, not hectares. For this region it may matter more than all the other caveats.
+        </li>
+        <li>
+          <strong>Nutritional adequacy.</strong> Enough hectares does not mean a balanced diet. The region could grow the required area and still fall short on particular nutrients.
+        </li>
+        <li>
+          <strong>Energy crops.</strong> In Germany about 14&nbsp;% of farmland is used for biogas and biodiesel. We treat all arable land as available for food. For a “could” question this is acceptable, but it is an unstated assumption, not a fact.
+        </li>
+        <li>
+          <strong>Greenhouses.</strong> The Westland produces 500–700 t/ha of tomatoes against the 30 t/ha we assume for vegetables, and it stands on land the satellite classifies as built-up. The region’s real vegetable capacity is higher than in the model.
+        </li>
+        <li>
+          <strong>Fish and seafood.</strong> They need no land at all and are not in the model.
+        </li>
+        <li>
+          <strong>Crop rotation, fallow, soil quality, year-to-year variation in yields.</strong>
+        </li>
+      </ul>
+
+      <h3>Weak assumptions</h3>
+      <ul class="plain">
+        <li>
+          Yields for vegetables (30 t/ha) and fruit (20 t/ha) <strong>are assumed, not measured</strong> : Eurostat has no regional data for these crops. Together they make up about 8&nbsp;% of the land footprint.
+        </li>
+        <li>
+          Grassland yield is one constant of 9 t/ha for the whole region, although it varies noticeably.
+        </li>
+        <li>
+          Feed is calculated with local cereal yields (8.19 t/ha), whereas real compound feed is largely soy, and soy yields 2–3 t/ha. This makes the estimate optimistic.
+        </li>
+        <li>
+          The diet is a national average applied to residents by country of residence.
+        </li>
+        <li>
+          Data come from different years: land cover 2024, population 2024, yields 2022, farm survey 2020, FAO balances 2022.
+        </li>
+      </ul>
+
+      <h3>Conceptual</h3>
+      <ul class="plain">
+        <li>
+          <strong>This is cover, not use.</strong> The satellite sees a field but not what grows on it or who owns it.
+        </li>
+        <li>
+          <strong>This is capacity, not trade.</strong> The calculation says nothing about actual supply, imports or stocks.
+        </li>
+        <li>
+          <strong>The boundary is arbitrary in its details.</strong> The AOI also includes clearly peripheral districts such as Hochsauerland and Namur. A different set of cities on the axis would give a different figure.
+        </li>
+        <li>
+          <strong>There is no real uncertainty interval.</strong> We varied parameters one at a time; an honest confidence interval needs them varied jointly.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <section class="col">
+    <div class="sec-head"><span class="sec-num">11</span><h2>What to do next</h2></div>
+    <div class="stack">
+      <p>In order of impact on the result:</p>
+      <ol class="steps">
+        <li><div><h4>Raise diet coverage to about 95 % of calories</h4><p>Mechanical work, but it shifts the result the most, by 10 percentage points.</p></div></li>
+        <li><div><h4>Split roughage between arable land and grassland</h4><p>Using the actual green fodder areas from Eurostat instead of putting it all on grassland.</p></div></li>
+        <li><div><h4>Recalculate supply at 50 metres</h4><p>And make sure the figure finally converges.</p></div></li>
+        <li><div><h4>Replace assumed yields with real ones</h4><p>Vegetables and fruit are the only values taken out of thin air.</p></div></li>
+        <li><div><h4>Run a Monte Carlo analysis</h4><p>Vary feed ratios and yields jointly instead of one parameter at a time, to give an honest interval instead of a single number.</p></div></li>
+        <li><div><h4>Add scenarios</h4><p>“No waste” and “less meat”. These are not error fixes but the better story: they show that the demand lever is stronger here than the land lever.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="col">
+    <div class="stack tight">
+      <p>
+        <strong>Data.</strong> Sentinel-2 10 m land cover 2024: Esri, Impact Observatory, Microsoft. Region boundaries: Eurostat GISCO NUTS 2024. Population, yields and farm structure survey: Eurostat. Food balance sheets: UN FAO. Feed conversion ratios follow Alexander et al. (2016) in order of magnitude.
+      </p>
+      <p>
+        All figures in this document are calculated and reproducible from the source code. The final estimate is <strong>43&nbsp;%</strong>; the previously published figure of 51.6&nbsp;% contained a systematic bias described in section 08.
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+
+
+<script id="i18n-data">window.I18N={"dict": {"Can Amsterbrusseldorf Feed Itself?": ["Kann sich Amsterbrusseldorf selbst ernähren?", "Может ли Amsterbrusseldorf прокормить себя?"], "Method and results · land balance": ["Methode und Ergebnisse · Flächenbilanz", "Методология и результаты · земельный баланс"], "Can Amsterbrusseldorf feed itself?": ["Kann sich Amsterbrusseldorf selbst ernähren?", "Может ли Amsterbrusseldorf прокормить себя"], "The urban belt from Amsterdam through Brussels to the Ruhr is one of the most densely populated areas in Europe. We calculated whether its own land would be enough to grow what it eats.": ["Der Städtegürtel von Amsterdam über Brüssel bis ins Ruhrgebiet ist eines der am dichtesten besiedelten Gebiete Europas. Wir haben berechnet, ob seine eigene Fläche reichen würde, um anzubauen, was er isst.", "Городской пояс от Амстердама через Брюссель до Рура — одна из самых плотнозаселённых территорий Европы. Мы посчитали, хватит ли ему собственной земли, чтобы вырастить то, что он съедает."], "39.2 million people": ["39,2 Mio. Menschen", "39,2 млн человек"], "98 NUTS 3 regions": ["98 NUTS-3-Regionen", "98 регионов NUTS 3"], "66,682 km²": ["66.682 km²", "66 682 км²"], "Netherlands · Belgium · Germany": ["Niederlande · Belgien · Deutschland", "Нидерланды · Бельгия · Германия"], "Short answer": ["Kurze Antwort", "Короткий ответ"], "of the farmland it needs lies within the region’s borders": ["der benötigten Agrarfläche liegen innerhalb der eigenen Grenzen", "от нужной ему сельхозземли регион имеет в своих границах"], "first estimate, which turned out to be too high": ["erste Schätzung, die sich als zu hoch erwies", "первая оценка, оказалась завышенной"], "No. At today’s diet and level of waste, the region cannot feed itself: it is short of about 4.4 million hectares. But if it did not throw away and overeat a third of its food, the balance would rise to": ["Nein. Bei heutiger Ernährung und heutigen Verlusten kann sich die Region nicht selbst ernähren: Ihr fehlen rund 4,4 Mio. Hektar. Würde sie aber kein Drittel ihrer Lebensmittel wegwerfen und zu viel essen, stiege die Bilanz auf", "Нет, при нынешнем уровне питания и потерь регион себя не прокормит — ему не хватает примерно 4,4 млн гектаров. Но если бы он не выбрасывал и не переедал треть еды, баланс поднялся бы до"], ". Below is how this was calculated and why the first figure was wrong.": [". Unten steht, wie das berechnet wurde und warum die erste Zahl falsch war.", ". Ниже — как это посчитано и почему первая цифра была неверна."], "Where the question came from": ["Woher die Frage kam", "Откуда взялся вопрос"], "It started with a land cover map of Germany: how much of the country is fields, forest and towns. One figure came out of it: almost half of Germany is farmland, and the country’s food self-sufficiency is about 89 %.": ["Am Anfang stand eine Karte der Bodenbedeckung Deutschlands: wie viel des Landes Felder, Wald und Städte sind. Daraus ergab sich eine Zahl: Fast die Hälfte Deutschlands ist Agrarfläche, und der Selbstversorgungsgrad des Landes liegt bei etwa 89 %.", "До этого была карта земельного покрова Германии: сколько страны занято полями, лесом, городами. Из неё вышла цифра — почти половина Германии под сельским хозяйством, а продовольственная самообеспеченность страны около 89 %."], "A comment raised a fair objection: measuring food security in Europe country by country makes little sense. Cities and farming here do not follow national borders. And it named a concrete example:": ["Ein Kommentar brachte einen berechtigten Einwand: Ernährungssicherheit in Europa Land für Land zu messen, ergibt wenig Sinn. Städte und Landwirtschaft folgen hier keinen Staatsgrenzen. Und er nannte ein konkretes Beispiel:", "В комментариях прозвучало возражение по существу: продовольственную обеспеченность в Европе бессмысленно мерить по отдельным странам. Города и сельское хозяйство здесь не совпадают с границами. И был назван конкретный пример —"], "An informal name for the continuous urban network between Amsterdam, Brussels and Düsseldorf. It is neither an administrative unit nor a statistical region, so it has no ready-made boundary and no statistics of its own. We had to draw the boundary ourselves.": ["Ein inoffizieller Name für das zusammenhängende Städtenetz zwischen Amsterdam, Brüssel und Düsseldorf. Es ist weder Verwaltungseinheit noch statistische Region, hat also keine fertige Grenze und keine eigene Statistik. Die Grenze mussten wir selbst ziehen.", "Неофициальное название непрерывной городской сети между Амстердамом, Брюсселем и Дюссельдорфом. Это не административная единица и не статистический регион — у него нет готовых границ и нет собственной статистики. Придумать границу нужно самим."], "We deliberately ask whether the region “": ["Wir fragen bewusst, ob die Region sich „", "Мы намеренно ставим вопрос как «"], "could": ["könnte", "мог бы"], "feed itself”, not whether it “is self-sufficient”. The difference matters.": ["selbst ernähren“, nicht, ob sie „selbstversorgend ist“. Der Unterschied ist wichtig.", "прокормить», а не «самодостаточен ли». Разница принципиальная."], "What we calculate and what we do not": ["Was wir berechnen und was nicht", "Что мы считаем и чего не считаем"], "Self-sufficiency": ["Selbstversorgung", "Самодостаточность"], "is about real flows: what is imported, exported and stored. Such data are simply not openly available at the regional level for three countries.": ["betrifft reale Ströme: was eingeführt, ausgeführt und gelagert wird. Solche Daten gibt es für Regionen in drei Ländern schlicht nicht offen.", "— это про реальные потоки: что ввозится, что вывозится, что лежит на складах. Таких данных на уровне регионов трёх стран в открытом доступе просто нет."], "Capacity to feed itself": ["Fähigkeit zur Selbsternährung", "Способность прокормить"], "is about land: how much there is and how much is needed. That is arithmetic, and it can be calculated honestly. That is what we calculate.": ["betrifft die Fläche: wie viel vorhanden und wie viel nötig ist. Das ist Arithmetik und lässt sich ehrlich berechnen. Genau das berechnen wir.", "— это про землю: сколько её есть и сколько нужно. Это арифметика, и её можно посчитать честно. Именно её мы и считаем."], "How we drew the boundary": ["Wie wir die Grenze gezogen haben", "Как мы провели границу"], "With no official boundary, it has to be built reproducibly, so that anyone can repeat and check it. We based it on the EU statistical regions.": ["Ohne amtliche Grenze muss sie reproduzierbar gebaut werden, damit jeder sie nachvollziehen und prüfen kann. Grundlage sind die statistischen Regionen der EU.", "Раз официальной границы нет, её нужно построить воспроизводимо — чтобы любой мог повторить и проверить. Мы взяли за основу статистические регионы Евросоюза."], "The EU’s common system of statistical regions. Three nested levels: NUTS 1 is a large part of a country (for example all of North Rhine-Westphalia), NUTS 2 is a province, NUTS 3 is the finest level.": ["Das einheitliche System statistischer Regionen der EU. Drei ineinander verschachtelte Ebenen: NUTS 1 ist ein großer Landesteil (etwa ganz Nordrhein-Westfalen), NUTS 2 ein Regierungsbezirk bzw. eine Provinz, NUTS 3 die feinste Ebene.", "Единая система статистических регионов ЕС. Три уровня вложены друг в друга: NUTS 1 — крупные части страны (например, вся земля Северный Рейн-Вестфалия), NUTS 2 — области, NUTS 3 — самый мелкий уровень."], "We work at": ["Wir arbeiten auf", "Мы работаем на"], "because it is the only level with comparable granularity in all three countries: 40 COROP regions in the Netherlands, 44 arrondissements in Belgium and about 400 districts (Kreise) in Germany. At NUTS 1 we would have had to take whole federal states instead of a corridor.": [", weil nur diese Ebene in allen drei Ländern vergleichbar fein ist: 40 COROP-Regionen in den Niederlanden, 44 Arrondissements in Belgien und rund 400 Kreise in Deutschland. Auf NUTS 1 hätten wir statt eines Korridors ganze Bundesländer nehmen müssen.", ", потому что это единственный уровень, где дробность сопоставима во всех трёх странах: 40 регионов COROP в Нидерландах, 44 округа в Бельгии, около 400 районов (Kreise) в Германии. На NUTS 1 вместо коридора пришлось бы взять целые федеральные земли."], "Building the boundary takes four mechanical steps:": ["Die Grenze entsteht in vier mechanischen Schritten:", "Построение границы — четыре механических шага:"], "Draw the corridor axis": ["Korridorachse ziehen", "Провести ось коридора"], "A polyline through cities: Amsterdam → Utrecht → Rotterdam → Antwerp → Brussels, a second branch Antwerp → Eindhoven → Venlo → Düsseldorf → Essen → Dortmund, and a third Düsseldorf → Cologne → Bonn. Three branches rather than one line, because the corridor is Y-shaped and a single polyline would draw a false diagonal across Belgium.": ["Ein Linienzug durch Städte: Amsterdam → Utrecht → Rotterdam → Antwerpen → Brüssel, ein zweiter Ast Antwerpen → Eindhoven → Venlo → Düsseldorf → Essen → Dortmund und ein dritter Düsseldorf → Köln → Bonn. Drei Äste statt einer Linie, weil der Korridor Y-förmig ist und ein einzelner Linienzug eine falsche Diagonale durch Belgien ziehen würde.", "Ломаная через города: Амстердам → Утрехт → Роттердам → Антверпен → Брюссель, вторая ветка Антверпен → Эйндховен → Венло → Дюссельдорф → Эссен → Дортмунд, третья Дюссельдорф → Кёльн → Бонн. Три ветки, а не одна линия, потому что коридор Y-образный — одна ломаная прочертила бы ложную диагональ через Бельгию."], "Extend 60 km to each side": ["60 km zu beiden Seiten", "Отступить 60 км в стороны"], "A buffer around the axis. 60 km, because we care not only about the built-up area but also about the farmland around it that could in theory feed it.": ["Ein Puffer um die Achse. 60 km, weil uns nicht nur die bebaute Fläche interessiert, sondern auch das Umland, das sie theoretisch ernähren könnte.", "Буфер вокруг оси. 60 км — потому что нас интересует не только застройка, но и сельская округа, которая теоретически могла бы её кормить."], "Take the regions whose centre falls inside": ["Regionen nehmen, deren Mittelpunkt innen liegt", "Взять регионы, чей центр попал внутрь"], "The boundary follows whole NUTS 3 regions instead of cutting them in half. This matters: population is published for the whole region, and splitting it would mean dividing it by eye.": ["Die Grenze folgt ganzen NUTS-3-Regionen, statt sie zu halbieren. Das ist wichtig: Die Bevölkerung wird für die ganze Region veröffentlicht, und beim Zerschneiden müsste man sie nach Augenmaß aufteilen.", "Граница идёт по целым регионам NUTS 3, а не режет их пополам. Это важно: население публикуется на весь регион, и при разрезании его пришлось бы делить на глаз."], "Keep only the connected part": ["Nur den zusammenhängenden Teil behalten", "Оставить только связный кусок"], "The buffer can catch a region across a bay or a gap. A disconnected “food system region” cannot be defended, so we keep the largest continuous block.": ["Der Puffer kann eine Region über eine Bucht oder Lücke hinweg erfassen. Eine nicht zusammenhängende „Ernährungsregion“ lässt sich nicht begründen, also behalten wir den größten zusammenhängenden Block.", "Буфер может зацепить регион через залив или разрыв. Несвязный «регион продовольственной системы» защитить невозможно, поэтому оставляем крупнейший непрерывный блок."], "Result: 98 regions, 66,682 km², roughly the size of Ireland": ["Ergebnis: 98 Regionen, 66.682 km², etwa die Fläche Irlands", "Что получилось: 98 регионов, 66 682 км² — примерно площадь Ирландии"], "Country": ["Land", "Страна"], "Regions": ["Regionen", "Регионов"], "Area, km²": ["Fläche, km²", "Площадь, км²"], "Population": ["Bevölkerung", "Население"], "Netherlands": ["Niederlande", "Нидерланды"], "14.6 million": ["14,6 Mio.", "14,6 млн"], "Germany": ["Deutschland", "Германия"], "16.1 million": ["16,1 Mio.", "16,1 млн"], "Belgium": ["Belgien", "Бельгия"], "8.4 million": ["8,4 Mio.", "8,4 млн"], "Total": ["Gesamt", "Всего"], "39.2 million": ["39,2 Mio.", "39,2 млн"], "The buffer radius is an arbitrary choice, so we tested others: at 50 km and 75 km the final answer shifts by a few percentage points but does not change in kind. The check is described in section 07.": ["Der Pufferradius ist willkürlich gewählt, daher haben wir andere getestet: Bei 50 und 75 km verschiebt sich das Ergebnis um einige Prozentpunkte, ändert sich aber nicht grundsätzlich. Die Prüfung steht in Abschnitt 07.", "Радиус буфера — решение произвольное, поэтому мы проверили и другие: при 50 км и 75 км итоговый ответ меняется на несколько процентных пунктов, но не качественно. Проверка описана в разделе 07."], "Why we count hectares, not tonnes": ["Warum wir Hektar zählen und nicht Tonnen", "Почему мы считаем гектары, а не тонны"], "The obvious approach is to take production in tonnes and divide it by consumption in tonnes, product by product. We rejected it, and this is the main methodological decision of the whole study. There are three reasons.": ["Naheliegend wäre, Produktion in Tonnen durch Verbrauch in Tonnen zu teilen, Produkt für Produkt. Das haben wir verworfen, und das ist die wichtigste methodische Entscheidung der Arbeit. Es gibt drei Gründe.", "Очевидный подход — взять производство в тоннах и поделить на потребление в тоннах, по каждому продукту. Мы от него отказались, и это главное методологическое решение всей работы. Причины три."], "Reason one: feed": ["Erster Grund: Futter", "Причина первая: корма"], "The Netherlands is a major pork exporter. But much of the feed for those pigs is soy from Brazil. Counting that pork as “local food production” is wrong: the land that grew it is in another hemisphere.": ["Die Niederlande exportieren viel Schweinefleisch. Doch ein großer Teil des Futters für diese Schweine ist Soja aus Brasilien. Dieses Schweinefleisch als „lokale Nahrungsproduktion“ zu zählen, ist falsch: Die Fläche, auf der es gewachsen ist, liegt auf der anderen Erdhalbkugel.", "Нидерланды — крупный экспортёр свинины. Но значительная часть кормов для этих свиней — соя из Бразилии. Засчитать такую свинину в «местное производство еды» неправильно: земля, которая её вырастила, находится в другом полушарии."], "With tonnes, this gap has to be patched with a separate, more complex indicator. With hectares, the problem does not arise at all: a product’s land footprint": ["Mit Tonnen muss diese Lücke mit einem eigenen, komplizierteren Indikator geflickt werden. Mit Hektar entsteht das Problem gar nicht: Der Flächenfußabdruck eines Produkts", "В подходе «тонны» эту дыру приходится латать отдельным, более сложным показателем. В подходе «гектары» проблема не возникает вовсе: земельный след продукта"], "by construction": ["enthält per Konstruktion", "по построению"], "includes the land used for feed.": ["die Fläche für das Futter.", "включает землю под корма."], "Reason two: incomparable statistics": ["Zweiter Grund: unvergleichbare Statistiken", "Причина вторая: несопоставимость статистики"], "The three countries have different reporting categories, levels of detail and years. Combining them is the most laborious part of such work. Land, on the other hand, comes from a satellite image that is the same on both sides of the border: the satellite does not know where Belgium ends.": ["Die drei Länder haben unterschiedliche Berichtskategorien, Detailgrade und Jahre. Sie zusammenzuführen ist der aufwendigste Teil solcher Arbeit. Fläche dagegen stammt aus einem Satellitenbild, das auf beiden Seiten der Grenze gleich ist: Der Satellit weiß nicht, wo Belgien endet.", "У трёх стран разные категории отчётности, разные уровни детализации, разные годы. Сведение их вместе — самая трудоёмкая часть такой работы. Если же считать землю, она берётся из спутникового снимка, который одинаков по обе стороны границы — спутник не знает, где кончается Бельгия."], "Reason three: the boundary can be drawn anywhere": ["Dritter Grund: Die Grenze kann beliebig verlaufen", "Причина третья: границу можно провести любую"], "A raster can be cut by any polygon. That is what lets us use a functional corridor instead of a bag of ready-made statistical units, which is exactly what the original comment was about.": ["Ein Raster lässt sich mit jedem Polygon zuschneiden. Deshalb können wir einen funktionalen Korridor nehmen statt eines Sacks fertiger statistischer Einheiten, und genau darum ging es im ursprünglichen Kommentar.", "Растр режется любым многоугольником. Именно это позволяет взять функциональный коридор, а не мешок готовых статистических единиц — то есть ровно то, о чём был исходный комментарий."], "Raster": ["Raster", "Растр"], "An image divided into a grid of identical cells (pixels), where each cell stores a value; here it is a land cover class code. Unlike vector boundaries, a raster can be clipped to any outline and summed over any area.": ["Ein Bild aus einem Gitter gleich großer Zellen (Pixel), in dem jede Zelle einen Wert speichert; hier ist es der Code der Bodenbedeckung. Anders als Vektorgrenzen lässt sich ein Raster an jedem Umriss zuschneiden und über jedes Gebiet summieren.", "Изображение, разбитое на сетку одинаковых клеток (пикселей), где каждая клетка хранит значение — здесь это код типа земельного покрова. В отличие от векторных границ, растр можно обрезать по любому контуру и сложить по любой территории."], "Supply: how much land there is": ["Angebot: wie viel Fläche es gibt", "Предложение: сколько земли есть"], "Sentinel-2 land cover, 10 m": ["Bodenbedeckung Sentinel-2, 10 m", "Земельный покров Sentinel-2, 10 м"], "A ready-made product by Esri, Impact Observatory and Microsoft: all land divided into 10×10 metre squares, each assigned to one of nine classes such as water, trees, crops and built area. It is based on 2024 imagery from the European Space Agency’s Sentinel-2 satellites. Stated accuracy is above 75 %.": ["Ein fertiges Produkt von Esri, Impact Observatory und Microsoft: die gesamte Landfläche in 10×10-m-Quadrate geteilt, jedes einer von neun Klassen zugeordnet, etwa Wasser, Bäume, Ackerland und bebaute Fläche. Grundlage sind Aufnahmen der Sentinel-2-Satelliten der Europäischen Weltraumorganisation von 2024. Die angegebene Genauigkeit liegt über 75 %.", "Готовый продукт Esri, Impact Observatory и Microsoft: вся суша, разбитая на квадраты 10×10 метров, каждый отнесён к одному из девяти классов — вода, деревья, посевы, застройка и так далее. Основан на снимках спутников Sentinel-2 Европейского космического агентства за 2024 год. Заявленная точность — выше 75 %."], "The data come in tiles by grid zone. Our region falls into two:": ["Die Daten kommen in Kacheln nach Gitterzonen. Unsere Region liegt in zwei:", "Данные приходят плитками по зонам координатной сетки. Наш регион попадает в две:"], "and": ["und", "и"], ". Both had already been downloaded for the earlier map of Germany, so no new downloads were needed.": [". Beide waren schon für die frühere Deutschlandkarte heruntergeladen, neue Downloads waren nicht nötig.", ". Обе уже были скачаны для предыдущей карты Германии, так что новых загрузок не потребовалось."], "A technical detail without which nothing works": ["Ein technisches Detail, ohne das nichts funktioniert", "Техническая деталь, без которой ничего не работает"], "One tile is 44,754 × 89,383 pixels, that is": ["Eine Kachel hat 44.754 × 89.383 Pixel, das sind", "Одна плитка — это 44 754 × 89 383 пикселя, то есть"], "4.0 GB": ["4,0 GB", "4,0 ГБ"], "uncompressed. It cannot be read into memory whole. We read it decimated: we request the reduced copy embedded in the file and take, in each coarse cell, the": ["unkomprimiert. Komplett in den Speicher laden geht nicht. Wir lesen ausgedünnt: Wir fragen die in der Datei eingebettete verkleinerte Kopie ab und nehmen in jeder groben Zelle die", "в распакованном виде. Прочитать её целиком в память нельзя. Мы читаем прореженно: сразу запрашиваем уменьшенную копию, встроенную в файл, и берём в каждой крупной клетке"], "most frequent": ["häufigste", "самый частый"], "class. Peak read is 35 MB instead of 4 GB.": ["Klasse. Maximal werden 35 MB statt 4 GB gelesen.", "класс. Пиковое чтение — 35 МБ вместо 4 ГБ."], "Taking the “most frequent” class is essential: class codes cannot be averaged. The average of “water” (1) and “crops” (5) would give “flooded vegetation” (4), a class that is not there.": ["Die „häufigste“ Klasse zu nehmen ist entscheidend: Klassencodes darf man nicht mitteln. Der Mittelwert aus „Wasser“ (1) und „Ackerland“ (5) ergäbe „überflutete Vegetation“ (4), eine Klasse, die dort gar nicht vorkommt.", "Брать «самый частый» принципиально: усреднять коды классов нельзя. Среднее между «вода» (1) и «посевы» (5) дало бы «затопленная растительность» (4) — класс, которого в этом месте нет."], "Everything is then reprojected to": ["Danach wird alles umprojiziert nach", "Дальше всё переводится в проекцию"], "on a 100-metre grid.": ["auf ein 100-m-Raster.", "на сетку 100 метров."], "EPSG:3035, an equal-area projection": ["EPSG:3035, eine flächentreue Projektion", "EPSG:3035 — равновеликая проекция"], "A way of flattening the curved surface of the Earth onto a plane. “Equal-area” means areas are not distorted: a cell in the north of the region has exactly the same area as a cell in the south. For counting hectares this is a must; in the usual Mercator projection the north would be stretched and areas overstated.": ["Eine Art, die gekrümmte Erdoberfläche in die Ebene zu bringen. „Flächentreu“ heißt, Flächen werden nicht verzerrt: Eine Zelle im Norden der Region ist genauso groß wie eine im Süden. Zum Zählen von Hektar ist das Pflicht; in der üblichen Mercator-Projektion wäre der Norden gestreckt und Flächen zu groß.", "Способ разложить кривую поверхность Земли на плоскость. «Равновеликая» значит, что площади не искажаются: клетка на севере региона имеет ровно ту же площадь, что клетка на юге. Для подсчёта гектаров это обязательное условие — в обычной картографической проекции Меркатора север был бы растянут и площади завышены."], "The result is a grid of 3950 × 3538 cells, 14 million pixels, clipped to the AOI boundary. Each cell is 100×100 m = 1 hectare, so measuring area comes down to counting cells.": ["Das Ergebnis ist ein Raster aus 3950 × 3538 Zellen, 14 Mio. Pixel, zugeschnitten auf die AOI-Grenze. Jede Zelle misst 100×100 m = 1 Hektar, also wird Flächenmessung zum Zählen von Zellen.", "Результат — сетка 3950 × 3538 клеток, 14 млн пикселей, обрезанная по границе AOI. Каждая клетка 100×100 м = 1 гектар, поэтому подсчёт площади сводится к подсчёту клеток."], "Land cover of the region, 2024. The classified area matched the AOI area exactly, so the clipping is correct": ["Bodenbedeckung der Region, 2024. Die klassifizierte Fläche stimmte exakt mit der AOI-Fläche überein, der Zuschnitt ist also korrekt", "Земельный покров региона, 2024 год. Классифицированная площадь совпала с площадью AOI ровно — значит, обрезка корректна"], "Class": ["Klasse", "Класс"], "Share": ["Anteil", "Доля"], "Hectares": ["Hektar", "Гектаров"], "Crops": ["Ackerland", "Посевы"], "Built area": ["Bebaute Fläche", "Застройка"], "Trees": ["Bäume", "Деревья"], "Rangeland": ["Grasland", "Пастбища"], "Water": ["Wasser", "Вода"], "Flooded vegetation": ["Überflutete Vegetation", "Затопленная растительность"], "Farmland (crops + rangeland)": ["Agrarfläche (Ackerland + Grasland)", "Сельхозземля (посевы + пастбища)"], "The first real finding": ["Das erste inhaltliche Ergebnis", "Первый содержательный результат"], "22.3 % built-up.": ["22,3 % bebaut.", "22,3 % застройки."], "For Germany as a whole it is 10.7 %. So this corridor has twice the national share of land under towns and roads. The comment that started it all called the region one of the most urbanised in Europe, and the figure confirms it.": ["Für Deutschland insgesamt sind es 10,7 %. In diesem Korridor liegt also doppelt so viel Fläche unter Städten und Straßen wie im Landesdurchschnitt. Der Kommentar, mit dem alles begann, nannte die Region eine der am stärksten verstädterten Europas, und die Zahl bestätigt das.", "По Германии в целом — 10,7 %. То есть в этом коридоре под городами и дорогами вдвое большая доля земли, чем в среднем по стране. Комментарий, с которого всё началось, назвал регион одним из самых урбанизированных в Европе — цифра это подтверждает."], "An important correction: the satellite cannot tell pasture from fields": ["Eine wichtige Korrektur: Der Satellit unterscheidet Weide nicht von Feld", "Важная поправка: спутник не отличает пастбище от поля"], "In the table above, rangeland covers only 5.2 %. For the Netherlands and Flanders, where dairy farming is the backbone of agriculture, that looked suspicious. We checked it against an independent source.": ["In der Tabelle oben macht Grasland nur 5,2 % aus. Für die Niederlande und Flandern, wo Milchviehhaltung das Rückgrat der Landwirtschaft ist, wirkte das verdächtig. Wir haben es mit einer unabhängigen Quelle geprüft.", "В таблице выше пастбища занимают всего 5,2 %. Для Нидерландов и Фландрии, где молочное животноводство — основа сельского хозяйства, это выглядело подозрительно. Мы проверили по независимому источнику."], "Farm Structure Survey (FSS)": ["Agrarstrukturerhebung (FSS)", "Обследование структуры хозяйств (FSS)"], "The EU’s official farm census: farmers are asked directly how much land they have and what is on it. It gives": ["Die amtliche Erhebung der EU: Landwirte werden direkt gefragt, wie viel Fläche sie haben und was darauf steht. Sie liefert", "Официальная перепись Евросоюза: у фермеров напрямую спрашивают, сколько у них земли и что на ней. Даёт"], "land use": ["Landnutzung", "землепользование"], ": how land is used legally and economically. The satellite gives": [": wie Fläche rechtlich und wirtschaftlich genutzt wird. Der Satellit liefert", "— как землю применяют юридически и хозяйственно. Спутник же даёт"], "land cover": ["Bodenbedeckung", "земельный покров"], ": what is physically visible from above. These are different things, and here they diverged.": [": was von oben physisch zu sehen ist. Das sind verschiedene Dinge, und hier liefen sie auseinander.", "— что физически видно сверху. Это разные вещи, и здесь они разошлись."], "Share of permanent grassland: the two sources differ threefold": ["Anteil des Dauergrünlands: die beiden Quellen weichen um das Dreifache ab", "Доля постоянных лугов — два источника расходятся втрое"], "Source": ["Quelle", "Источник"], "Permanent grassland": ["Dauergrünland", "Постоянные луга"], "Eurostat farm survey": ["Eurostat-Agrarerhebung", "Обследование хозяйств Eurostat"], "Esri raster, “rangeland” class": ["Esri-Raster, Klasse „Grasland“", "Растр Esri, класс «пастбища»"], "The reason is clear if you picture a Dutch meadow: mown, fertilised, sown ryegrass. From above it looks like an ordinary cultivated field, and the algorithm puts it in the “crops” class. Esri’s “rangeland” class mostly catches semi-natural grassland.": ["Der Grund wird klar, wenn man sich eine niederländische Wiese vorstellt: gemähtes, gedüngtes, eingesätes Weidelgras. Von oben sieht sie aus wie ein gewöhnliches bewirtschaftetes Feld, und der Algorithmus ordnet sie der Klasse „Ackerland“ zu. Die Esri-Klasse „Grasland“ erfasst eher naturnahes Grasland.", "Причина понятна, если представить голландский луг: это скошенный, удобренный, засеянный райграс. Сверху он выглядит как обычное возделанное поле, и алгоритм относит его к классу «посевы». Класс «пастбища» у Esri ловит скорее полуестественные травяные земли."], "How we solved it": ["Wie wir das gelöst haben", "Как мы это решили"], "The total": ["Die gesamte", "Суммарная"], "farmland area from the raster agrees with the survey within a few percent, so it can be trusted. Only the split inside it disagrees. So:": ["Agrarfläche aus dem Raster stimmt mit der Erhebung auf wenige Prozent überein, ihr kann man trauen. Nur die Aufteilung darin weicht ab. Daher:", "сельхозплощадь по растру сходится с обследованием в пределах нескольких процентов — ей верить можно. Не сходится только внутреннее деление. Поэтому:"], "we take the total from the raster": ["die Summe nehmen wir aus dem Raster", "сумму берём из растра"], "(continuous, 10 metres, recent 2024 data), and": ["(flächendeckend, 10 Meter, aktuelle Daten von 2024), und", "(сплошной, 10 метров, свежий 2024 год), а"], "the split into arable land and grassland from the survey": ["die Aufteilung in Acker und Grünland aus der Erhebung", "деление на пашню и луга — из обследования"], "(authoritative on land use), separately for each NUTS 2 region.": ["(maßgeblich für die Landnutzung), getrennt für jede NUTS-2-Region.", "(авторитетное по землепользованию), отдельно для каждого региона NUTS 2."], "Either source on its own would give a worse result.": ["Jede der beiden Quellen allein ergäbe ein schlechteres Ergebnis.", "Любой из двух источников по отдельности дал бы результат хуже."], "Demand: how much land is needed": ["Nachfrage: wie viel Fläche nötig ist", "Спрос: сколько земли нужно"], "Demand is population multiplied by the land footprint of the diet: how many hectares a year it takes to feed one person.": ["Die Nachfrage ist die Bevölkerung mal dem Flächenfußabdruck der Ernährung: wie viele Hektar pro Jahr nötig sind, um einen Menschen zu ernähren.", "Спрос — это население, умноженное на «земельный след» диеты: сколько гектаров в год нужно, чтобы прокормить одного человека."], "Taken directly from Eurostat for each NUTS 3 region for 2024. Because the AOI follows whole regions, the figures simply add up and nothing has to be split by eye. Total:": ["Direkt von Eurostat für jede NUTS-3-Region für 2024. Da die AOI ganzen Regionen folgt, lassen sich die Zahlen einfach addieren, nichts muss nach Augenmaß geteilt werden. Insgesamt:", "Берём напрямую из Eurostat по каждому региону NUTS 3 за 2024 год. Поскольку граница AOI проведена по целым регионам, цифры просто складываются — никакого деления «на глаз» не требуется. Итого"], "people.": ["Menschen.", "человек."], "What people eat": ["Was Menschen essen", "Что люди едят"], "FAO Food Balance Sheets (FBS)": ["FAO-Ernährungsbilanzen (FBS)", "Продовольственные балансы ФАО (FBS)"], "The UN’s annual summary for each country: how much was produced, imported, exported, used for feed and seed, and how much in the end": ["Die jährliche UN-Übersicht für jedes Land: wie viel produziert, eingeführt, ausgeführt, verfüttert und als Saatgut verwendet wurde und wie viel am Ende", "Ежегодная сводка ООН по каждой стране: сколько произведено, ввезено, вывезено, ушло на корма и семена, и сколько в итоге"], "reached people": ["bei den Menschen ankam", "досталось людям"], ", in kilograms per person per year and kilocalories per day.": [", in Kilogramm pro Person und Jahr und in Kilokalorien pro Tag.", "— в килограммах на человека в год и в килокалориях в сутки."], "Note: this is the level of": ["Wichtig: Das ist die Ebene der", "Важно: это уровень"], "supply": ["Versorgung", "поставки"], ", meaning what reached the shop, not what was actually eaten. The difference is waste and overeating. We will come back to this; it turns out to be the most interesting part.": [", also was im Laden ankam, nicht was tatsächlich gegessen wurde. Der Unterschied sind Verluste und Überessen. Darauf kommen wir zurück; es wird sich als der spannendste Teil erweisen.", ", то есть то, что дошло до магазина, а не то, что реально съедено. Разница между ними — потери и переедание. Мы к этому вернёмся, это окажется самым интересным местом."], "We use 13 non-overlapping groups: cereals, potatoes and roots, sugar, pulses, vegetable oils, vegetables, fruit, and separately beef, pork, poultry, mutton, eggs and milk.": ["Wir nutzen 13 überschneidungsfreie Gruppen: Getreide, Kartoffeln und Knollen, Zucker, Hülsenfrüchte, Pflanzenöle, Gemüse, Obst sowie getrennt Rind, Schwein, Geflügel, Schaf, Eier und Milch.", "Мы берём 13 непересекающихся групп: зерновые, картофель и корнеплоды, сахар, бобовые, растительные масла, овощи, фрукты — и отдельно говядину, свинину, птицу, баранину, яйца, молоко."], "Yields must be local": ["Erträge müssen lokal sein", "Урожайность — обязательно местная"], "To turn kilograms into hectares you need yields. And here generic figures are completely unsuitable.": ["Um Kilogramm in Hektar umzurechnen, braucht man Erträge. Und hier taugen allgemeine Zahlen überhaupt nicht.", "Чтобы перевести килограммы в гектары, нужна урожайность. И вот здесь общие цифры не годятся категорически."], "Regional yields weighted by arable area (Eurostat, 2022)": ["Regionale Erträge, gewichtet nach Ackerfläche (Eurostat, 2022)", "Урожайность в регионе, взвешенная по площади пашни (Eurostat, 2022)"], "Crop": ["Kultur", "Культура"], "t/ha": ["t/ha", "т/га"], "Note": ["Anmerkung", "Комментарий"], "Cereals": ["Getreide", "Зерновые"], "average of wheat, barley and maize": ["Mittel aus Weizen, Gerste und Mais", "среднее по пшенице, ячменю, кукурузе"], "Potatoes": ["Kartoffeln", "Картофель"], "Sugar beet": ["Zuckerrüben", "Сахарная свёкла"], "about 16 % sugar": ["etwa 16 % Zucker", "сахара из неё ~16 %"], "Rapeseed": ["Raps", "Рапс"], "about 40 % oil": ["etwa 40 % Öl", "масла из него ~40 %"], "Pulses": ["Hülsenfrüchte", "Бобовые"], "Vegetables": ["Gemüse", "Овощи"], "assumed, not measured": ["angenommen, nicht gemessen", "принято, не измерено"], "Fruit": ["Obst", "Фрукты"], "Wheat in the Netherlands yields": ["Weizen bringt in den Niederlanden", "Пшеница в Нидерландах даёт"], "9.39 t/ha": ["9,39 t/ha", "9,39 т/га"], ", almost three times the world average of about 3.5 and one of the highest in the world. With world or even national averages, the region’s capacity to feed itself would come out several times too low. This is not a detail but one of the key decisions.": [", fast das Dreifache des Weltmittels von etwa 3,5 und einer der höchsten Werte der Welt. Mit Welt- oder auch nur nationalen Mitteln käme die Selbstversorgungsfähigkeit der Region um ein Vielfaches zu niedrig heraus. Das ist kein Detail, sondern eine der zentralen Entscheidungen.", "— почти втрое выше среднемировых ~3,5 и одна из самых высоких в мире. Если бы мы взяли мировые или даже национальные средние, способность региона прокормить себя оказалась бы заниженной в разы. Это не мелочь, а одно из ключевых решений."], "Meat and milk: feed conversion ratios": ["Fleisch und Milch: Futterverwertung", "Мясо и молоко: коэффициенты конверсии корма"], "Feed conversion ratio (FCR)": ["Futterverwertung (FCR)", "Коэффициент конверсии корма (FCR)"], "How many kilograms of feed an animal must eat to produce one kilogram of product. A pig does not turn feed into meat one to one: a kilogram of pork takes several kilograms of grain. FCR converts an animal product into arable area.": ["Wie viele Kilogramm Futter ein Tier fressen muss, um ein Kilogramm Produkt zu liefern. Ein Schwein wandelt Futter nicht eins zu eins in Fleisch um: Ein Kilogramm Schweinefleisch kostet mehrere Kilogramm Getreide. Über die FCR wird ein tierisches Produkt in Ackerfläche umgerechnet.", "Сколько килограммов корма нужно скормить животному, чтобы получить один килограмм продукта. Свинья не превращает корм в мясо один к одному — на килограмм свинины уходит несколько килограммов зерна. Через FCR животный продукт пересчитывается в площадь пашни."], "Kilograms of feed per kilogram of product as eaten": ["Kilogramm Futter pro Kilogramm Produkt in verzehrfertiger Form", "Килограммов корма на килограмм продукта в том виде, в каком его едят"], "Product": ["Produkt", "Продукт"], "Concentrates (arable)": ["Kraftfutter (Acker)", "Концентраты (пашня)"], "Roughage (grassland)": ["Raufutter (Grünland)", "Грубый корм (луга)"], "Beef": ["Rind", "Говядина"], "Pork": ["Schwein", "Свинина"], "Poultry": ["Geflügel", "Птица"], "Mutton": ["Schaf", "Баранина"], "Eggs": ["Eier", "Яйца"], "Milk": ["Milch", "Молоко"], "A mistake we had to fix along the way": ["Ein Fehler, den wir unterwegs korrigieren mussten", "Ошибка, которую пришлось исправить по ходу"], "At first we used ratios": ["Zunächst nahmen wir Koeffizienten", "Сначала мы взяли коэффициенты"], "per live weight": ["bezogen auf das Lebendgewicht", "на живой вес"], "of the animal. But FAO reports consumption as the product is eaten. The yield from live weight to retail is about 0.55 for pigs and 0.50 for cattle, so an edible kilogram takes almost twice as much feed.": ["des Tieres. Die FAO gibt den Verbrauch aber im verzehrfertigen Gewicht an. Die Ausbeute vom Lebend- zum Verkaufsgewicht liegt bei etwa 0,55 bei Schweinen und 0,50 bei Rindern, ein essbares Kilogramm braucht also fast doppelt so viel Futter.", "животного. Но ФАО даёт потребление в том весе, в каком продукт едят. Выход из живого веса в розничный — примерно 0,55 у свиней и 0,50 у крупного рогатого скота, то есть на съедобный килограмм корма уходит почти вдвое больше."], "The mistake understated the land footprint by about a third: it gave 0.12–0.14 ha per person, lower than anything published for European diets. After the fix it came to 0.15–0.18 ha, inside the known range. The mismatch with the literature was the signal that something was wrong.": ["Der Fehler unterschätzte den Flächenfußabdruck um etwa ein Drittel: Es ergaben sich 0,12–0,14 ha pro Person, weniger als alles, was für europäische Ernährung veröffentlicht ist. Nach der Korrektur waren es 0,15–0,18 ha, innerhalb der bekannten Spanne. Die Abweichung von der Literatur war das Signal, dass etwas nicht stimmte.", "Ошибка занижала земельный след примерно на треть: получалось 0,12–0,14 га на человека — ниже всего, что публикуется для европейских диет. После исправления вышло 0,15–0,18 га, что уже внутри известного диапазона. Несоответствие литературе и было сигналом, что что-то не так."], "Roughage is counted in": ["Raufutter wird gerechnet in", "Грубый корм считается в"], "dry matter": ["Trockenmasse", "сухом веществе"], ", that is without water, because fresh grass is 80 % water and comparing it with grain by fresh weight makes no sense. Grassland yield is assumed at 9 t of dry matter per hectare per year.": [", also ohne Wasser, denn frisches Gras besteht zu 80 % aus Wasser, und ein Vergleich mit Getreide nach Frischgewicht ergibt keinen Sinn. Der Grünlandertrag ist mit 9 t Trockenmasse pro Hektar und Jahr angesetzt.", "— то есть без воды, потому что свежая трава на 80 % состоит из воды и сравнивать её с зерном по сырому весу бессмысленно. Урожайность лугов принята 9 т сухого вещества с гектара в год."], "Land footprint of the diet, hectares per person per year": ["Flächenfußabdruck der Ernährung, Hektar pro Person und Jahr", "Земельный след диеты, гектаров на человека в год"], "Arable": ["Acker", "Пашня"], "Grassland": ["Grünland", "Луга"], "Each resident is counted with their own country’s diet: the Dutch with the Dutch diet, Germans with the German one, Belgians with the Belgian one.": ["Jeder Einwohner wird mit der Ernährung seines Landes gerechnet: Niederländer mit der niederländischen, Deutsche mit der deutschen, Belgier mit der belgischen.", "Каждый житель считается по диете своей страны: голландцы по голландской, немцы по немецкой, бельгийцы по бельгийской."], "Results and checks": ["Ergebnis und Prüfungen", "Результат и проверки"], "The balance is supply divided by demand.": ["Die Bilanz ist Angebot geteilt durch Nachfrage.", "Баланс — это предложение, поделённое на спрос."], "The region’s land balance in the original calculation": ["Flächenbilanz der Region in der ursprünglichen Rechnung", "Земельный баланс региона в первоначальном расчёте"], "Available, ha": ["Vorhanden, ha", "Есть, га"], "Needed, ha": ["Benötigt, ha", "Нужно, га"], "Balance": ["Bilanz", "Баланс"], "Per person: the region has": ["Pro Person: Die Region hat", "В пересчёте на человека: в регионе"], "870 m²": ["870 m²", "870 м²"], "of farmland per resident, while the diet needs": ["Agrarfläche je Einwohner, die Ernährung braucht aber", "сельхозземли на жителя, а диета требует"], "1,684 m²": ["1.684 m²", "1 684 м²"], ". It is short by about half.": [". Es fehlt etwa die Hälfte.", ". Не хватает примерно вдвое."], "Who does worst, and it is unexpected": ["Wer am schlechtesten dasteht, und das überrascht", "Кто хуже всех — и это неожиданно"], "The Netherlands comes last, even though it is an agricultural superpower and the world’s second-largest food exporter. Record yields still do not outweigh record population density. This is the direct answer to the original comment: a country looks different on its own than as part of the agglomeration.": ["Die Niederlande landen auf dem letzten Platz, obwohl sie eine Agrar-Supermacht und der zweitgrößte Lebensmittelexporteur der Welt sind. Rekorderträge wiegen die Rekordbevölkerungsdichte trotzdem nicht auf. Das ist die direkte Antwort auf den ursprünglichen Kommentar: Ein Land sieht allein betrachtet anders aus als als Teil der Agglomeration.", "Нидерланды — на последнем месте, хотя это сельскохозяйственная сверхдержава и второй экспортёр продовольствия в мире. Причина в том, что рекордная урожайность всё равно не перевешивает рекордную плотность населения. Это и есть прямой ответ на исходный комментарий: по отдельности страна выглядит иначе, чем в составе агломерации."], "Huge spread inside the region": ["Innerhalb der Region ist die Streuung enorm", "Внутри региона разброс огромный"], "Only": ["Nur", "Самодостаточны по земле только"], "23 of 98 regions": ["23 von 98 Regionen", "23 региона из 98"], "are self-sufficient in land, and 5.5 million of the 39.2 million people live in them.": ["sind flächenmäßig selbstversorgend, und in ihnen leben 5,5 Mio. der 39,2 Mio. Menschen.", ", и живёт в них 5,5 млн человек из 39,2 млн."], "Extremes among NUTS 3 regions": ["Extremwerte der NUTS-3-Regionen", "Крайние значения по регионам NUTS 3"], "Region": ["Region", "Регион"], "Vulkaneifel (rural Germany)": ["Vulkaneifel (ländliches Deutschland)", "Vulkaneifel (сельская Германия)"], "60k": ["60 Tsd.", "60 тыс."], "Zeeuwsch-Vlaanderen (Zeeland)": ["Zeeuwsch-Vlaanderen (Zeeland)", "Zeeuwsch-Vlaanderen (Зеландия)"], "106k": ["106 Tsd.", "106 тыс."], "Brussels": ["Brüssel", "Брюссель"], "1,264k": ["1.264 Tsd.", "1 264 тыс."], "Oberhausen (Ruhr)": ["Oberhausen (Ruhrgebiet)", "Оберхаузен (Рур)"], "214k": ["214 Tsd.", "214 тыс."], "The Hague": ["Den Haag", "Гаага"], "918k": ["918 Tsd.", "918 тыс."], "What we checked": ["Was wir geprüft haben", "Что мы проверяли"], "Does the area add up?": ["Stimmt die Fläche?", "Сходится ли площадь."], "The classified area matched the AOI area exactly, so clipping to the boundary works.": ["Die klassifizierte Fläche stimmte exakt mit der AOI-Fläche überein, der Zuschnitt an der Grenze funktioniert.", "Классифицированная площадь совпала с площадью AOI ровно — обрезка по границе работает."], "Does it match official statistics?": ["Passt es zur amtlichen Statistik?", "Сходится ли с официальной статистикой."], "Farmland from the raster is 3.19 million ha; the farm survey gives 3.34 million ha for regions that extend beyond the AOI. The gap is small and in the expected direction.": ["Die Agrarfläche aus dem Raster beträgt 3,19 Mio. ha, die Agrarerhebung ergibt 3,34 Mio. ha für Regionen, die über die AOI hinausreichen. Die Abweichung ist klein und geht in die erwartete Richtung.", "Сельхозплощадь по растру — 3,19 млн га, по обследованию хозяйств — 3,34 млн га на регионах, которые выходят за границы AOI. Расхождение в ожидаемую сторону и малой величины."], "How much does the result depend on assumptions?": ["Wie stark hängt das Ergebnis von Annahmen ab?", "Насколько результат зависит от допущений."], "With feed ratios changed by ±20 %, the balance lies between 44.9 % and 60.7 %. With buffers of 50, 60 and 75 km it is 45.6 %, 51.6 % and 50.1 %.": ["Bei Futterkoeffizienten ±20 % liegt die Bilanz zwischen 44,9 % und 60,7 %. Bei Puffern von 50, 60 und 75 km beträgt sie 45,6 %, 51,6 % und 50,1 %.", "При изменении коэффициентов корма на ±20 % баланс лежит между 44,9 % и 60,7 %. При буфере 50, 60 и 75 км — 45,6 %, 51,6 % и 50,1 %."], "Both sensitivity checks move the figure by a few percentage points and do not change the conclusion. The problem, as it turned out, lay elsewhere.": ["Beide Sensitivitätsprüfungen verschieben die Zahl um einige Prozentpunkte und ändern die Schlussfolgerung nicht. Das Problem lag, wie sich zeigte, woanders.", "Обе проверки чувствительности двигают цифру на единицы процентных пунктов и вывода не меняют. Проблема, как выяснилось, была не в них."], "Where the calculation was wrong": ["Wo die Rechnung falsch war", "Где расчёт оказался неверен"], "After getting 51.6 %, we checked three suspicions. One was confirmed in a serious way.": ["Nach dem Ergebnis von 51,6 % haben wir drei Verdachtsfälle geprüft. Einer bestätigte sich deutlich.", "После получения 51,6 % мы проверили три подозрения. Одно подтвердилось серьёзно."], "The model covered only 77–83 % of dietary calories": ["Das Modell erfasste nur 77–83 % der Nahrungskalorien", "Модель учитывала только 77–83 % калорий диеты"], "We took 13 commodity groups, but missed animal fats and butter (about 294 kcal a day for the Dutch), alcohol (129), other vegetable oils (101), as well as fish, coffee, cocoa, nuts and offal.": ["Wir nahmen 13 Warengruppen, übersahen aber tierische Fette und Butter (bei Niederländern etwa 294 kcal am Tag), Alkohol (129), sonstige Pflanzenöle (101) sowie Fisch, Kaffee, Kakao, Nüsse und Innereien.", "Мы взяли 13 товарных групп — но мимо прошли животные жиры и сливочное масло (около 294 ккал в сутки у голландцев), алкоголь (129), прочие растительные масла (101), а также рыба, кофе, какао, орехи и субпродукты."], "What share of daily calories the model covered": ["Welchen Anteil der täglichen Kalorien das Modell erfasste", "Какую долю суточных калорий модель вообще учитывала"], "Covered": ["Erfasst", "Учтено"], "Total supply": ["Gesamtversorgung", "Всего поставляется"], "Coverage": ["Abdeckung", "Покрытие"], "Demand was understated by about a fifth, which means the balance was overstated. This is the largest error in the whole study.": ["Die Nachfrage war um etwa ein Fünftel zu niedrig, die Bilanz also zu hoch. Das ist der größte Fehler der ganzen Arbeit.", "Спрос занижен примерно на пятую часть — а значит, баланс завышен. Это самая крупная ошибка во всей работе."], "Along the way we found a trap: in the FAO file the rows “Eggs” and “Milk” appear twice, under different item codes, with identical values. The calculation takes the first occurrence and is therefore correct, but the very first check script added both rows and reported 102 % coverage, an impossible value that pointed to the problem.": ["Nebenbei fanden wir eine Falle: In der FAO-Datei stehen die Zeilen „Eier“ und „Milch“ doppelt, unter verschiedenen Warencodes und mit gleichen Werten. Die Rechnung nimmt das erste Vorkommen und ist daher korrekt, aber das allererste Prüfskript addierte beide Zeilen und meldete 102 % Abdeckung, ein unmöglicher Wert, der auf das Problem hinwies.", "Попутно нашлась ловушка: в файле ФАО строки «Яйца» и «Молоко» присутствуют дважды, под разными кодами товара, с одинаковыми значениями. Расчёт берёт первое вхождение и потому корректен, но первый же проверочный скрипт сложил обе строки и выдал покрытие 102 % — невозможную величину, которая и указала на проблему."], "Feed from arable land was wrongly assigned to grassland": ["Futter vom Acker wurde fälschlich dem Grünland zugerechnet", "Корма с пашни ошибочно отнесены к лугам"], "We put all ruminant roughage on grassland. But according to Eurostat, green fodder grows mostly": ["Wir haben das gesamte Raufutter der Wiederkäuer dem Grünland zugeschlagen. Laut Eurostat wächst Grünfutter aber überwiegend", "Мы вешали весь грубый корм жвачных на луга. Но по Eurostat зелёные корма растут в основном"], "on arable land": ["auf Ackerland", "на пашне"], ": 397,700 ha in the Netherlands, 276,060 ha in Belgium and 2,770,600 ha in Germany. For the Netherlands that is about 47 % of all arable land.": [": 397.700 ha in den Niederlanden, 276.060 ha in Belgien und 2.770.600 ha in Deutschland. Für die Niederlande sind das etwa 47 % des gesamten Ackerlands.", ": 397 700 га в Нидерландах, 276 060 га в Бельгии, 2 770 600 га в Германии. Для Нидерландов это около 47 % всей пашни страны."], "Silage maize yields 12–15 t of dry matter per hectare against 9 for grassland. So less land is needed for feed than we calculated. This error works the other way: it made the balance look": ["Silomais liefert 12–15 t Trockenmasse pro Hektar gegenüber 9 bei Grünland. Für Futter braucht man also weniger Fläche, als wir gerechnet hatten. Dieser Fehler wirkt in die andere Richtung: Er ließ die Bilanz", "Силосная кукуруза даёт 12–15 т сухого вещества с гектара против 9 у луга. То есть земли на корм нужно меньше, чем мы посчитали. Эта ошибка действует в противоположную сторону — она баланс"], "worse": ["schlechter aussehen", "занижала"], "The result did not converge with raster resolution": ["Das Ergebnis konvergierte nicht mit der Rasterauflösung", "Расчёт не сошёлся по разрешению растра"], "Arable area by cell size": ["Ackerfläche nach Zellgröße", "Площадь пашни в зависимости от размера клетки"], "Cell": ["Zelle", "Клетка"], "Arable, ha": ["Acker, ha", "Пашня, га"], "Grassland, ha": ["Grünland, ha", "Луга, га"], "200 m": ["200 m", "200 м"], "100 m": ["100 m", "100 м"], "50 m": ["50 m", "50 м"], "A coarse cell systematically overstates arable land: the “most frequent class” rule swallows small patches of other cover. The drift between 100 and 50 metres has not stopped yet, so the final figure has to be calculated at 50 metres or finer.": ["Eine grobe Zelle überschätzt Ackerland systematisch: Die Regel „häufigste Klasse“ schluckt kleine Flecken anderer Bedeckung. Die Drift zwischen 100 und 50 Metern hat noch nicht aufgehört, also muss die Endzahl auf 50 Metern oder feiner berechnet werden.", "Крупная клетка систематически завышает пашню: правило «самый частый класс» поглощает мелкие вкрапления другого покрова. Дрейф между 100 и 50 метрами ещё не остановился — значит, итоговую цифру нужно считать на 50 метрах или мельче."], "How the corrections add up": ["Wie sich die Korrekturen summieren", "Как поправки складываются"], "Original result": ["Ursprüngliches Ergebnis", "Первоначальный результат"], "Full diet coverage": ["Volle Abdeckung der Ernährung", "Полное покрытие диеты"], "80 % of calories counted instead of 100 %": ["80 % der Kalorien erfasst statt 100 %", "учитывалось 80 % калорий вместо 100 %"], "Half of the feed moved to arable land": ["Die Hälfte des Futters auf Ackerland verlegt", "Половина кормов перенесена на пашню"], "13 vs 9 t of dry matter per hectare": ["13 statt 9 t Trockenmasse pro Hektar", "13 против 9 т сухого вещества с гектара"], "50 m raster instead of 100 m": ["Raster 50 m statt 100 m", "Растр 50 м вместо 100 м"], "removes the overstatement of arable land": ["beseitigt die Überschätzung des Ackerlands", "устраняет завышение пашни"], "Corrected estimate": ["Korrigierte Schätzung", "Исправленная оценка"], "The gap between 52 and 43 % is larger than the whole stated sensitivity range. Publishing the original figure would have been wrong.": ["Der Abstand zwischen 52 und 43 % ist größer als die gesamte angegebene Sensitivitätsspanne. Die ursprüngliche Zahl zu veröffentlichen wäre falsch gewesen.", "Разрыв между 52 и 43 % больше, чем весь заявленный диапазон чувствительности. Публиковать первоначальную цифру было бы неверно."], "The most interesting part is the question itself": ["Am spannendsten ist die Frage selbst", "Самое интересное — в самой постановке вопроса"], "The region “supplies” about 3,663 kcal per person per day. An adult actually needs around 2,200–2,500. The difference is spoilage, retail waste, food thrown away at home and overeating.": ["Die Region „versorgt“ etwa 3.663 kcal pro Person und Tag. Ein Erwachsener braucht tatsächlich etwa 2.200–2.500. Der Unterschied sind Verderb, Handelsverluste, zu Hause weggeworfenes Essen und Überessen.", "Регион «поставляет» около 3 663 ккал на человека в сутки. Реально взрослому нужно порядка 2 200–2 500. Разница — это порча, отходы торговли, выброшенная дома еда и переедание."], "So all along we were checking whether there is enough land to provide": ["Wir haben also die ganze Zeit geprüft, ob die Fläche reicht, um", "То есть мы всё это время считали, хватит ли земли, чтобы обеспечить"], "today’s level of supply including its losses": ["das heutige Versorgungsniveau samt Verlusten", "нынешний уровень снабжения вместе с его потерями"], ". That is a much stricter test than “is there enough land to feed everyone”.": ["zu sichern. Das ist ein deutlich strengerer Test als „reicht die Fläche, um alle satt zu machen“.", ". Это заметно более жёсткий тест, чем «хватит ли земли, чтобы всех накормить»."], "Current supply": ["Heutige Versorgung", "Нынешнее снабжение"], "2,500 kcal, no waste": ["2.500 kcal, ohne Verluste", "2 500 ккал, без потерь"], "2,200 kcal, no waste": ["2.200 kcal, ohne Verluste", "2 200 ккал, без потерь"], "A conclusion stronger than the original one": ["Eine Schlussfolgerung, die stärker ist als die ursprüngliche", "Вывод, который сильнее исходного"], "In terms of land, the region is almost self-sufficient, if it did not throw away and overeat a third of its food. The shortage of hectares and the shortage of thrift are of the same order here. This is closer to what food system experts actually discuss than the original question about self-sufficiency.": ["Flächenmäßig ist die Region fast selbstversorgend, wenn sie nicht ein Drittel ihrer Lebensmittel wegwerfen und zu viel essen würde. Der Mangel an Hektar und der Mangel an Sparsamkeit liegen hier in derselben Größenordnung. Das ist näher an dem, was Fachleute für Ernährungssysteme tatsächlich diskutieren, als die ursprüngliche Frage nach Selbstversorgung.", "По земле регион почти самодостаточен — если бы не выбрасывал и не переедал треть еды. Дефицит гектаров и дефицит бережливости здесь одного порядка. Это ближе к тому, что реально обсуждают специалисты по продовольственным системам, чем исходный вопрос про самообеспеченность."], "Weak points": ["Schwachstellen", "Слабые места"], "Below is what the study does not account for. Some of it can be fixed; some needs data we do not have.": ["Unten steht, was die Studie nicht berücksichtigt. Manches lässt sich beheben, für anderes fehlen uns Daten.", "Ниже — то, что исследование не учитывает. Часть можно починить, часть требует данных, которых у нас нет."], "Not accounted for at all": ["Gar nicht berücksichtigt", "Не учтено вовсе"], "The Dutch nitrogen crisis.": ["Die niederländische Stickstoffkrise.", "Азотный кризис Нидерландов."], "Livestock numbers are being cut by law because of nitrogen emissions. We calculate the biophysical capacity of the land, but the real ceiling is now set by environmental regulation, not hectares. For this region it may matter more than all the other caveats.": ["Die Tierbestände werden wegen Stickstoffemissionen per Gesetz verringert. Wir berechnen die biophysikalische Kapazität der Fläche, aber die tatsächliche Obergrenze setzt derzeit die Umweltregulierung, nicht die Hektarzahl. Für diese Region wiegt das womöglich schwerer als alle anderen Vorbehalte.", "Поголовье скота сокращают по закону из-за выбросов азота. Мы считаем биофизическую ёмкость земли, но реальный потолок сейчас задаёт экологическое регулирование, а не гектары. Для этого региона это, возможно, важнее всех остальных оговорок."], "Nutritional adequacy.": ["Ausgewogenheit der Ernährung.", "Питательная полноценность."], "Enough hectares does not mean a balanced diet. The region could grow the required area and still fall short on particular nutrients.": ["Genug Hektar bedeuten keine ausgewogene Ernährung. Die Region könnte die nötige Fläche bewirtschaften und trotzdem bei einzelnen Nährstoffen zu kurz kommen.", "Достаточно гектаров — не значит сбалансированный рацион. Регион мог бы вырастить нужную площадь и всё равно не покрыть потребность в отдельных веществах."], "Energy crops.": ["Energiepflanzen.", "Энергетические культуры."], "In Germany about 14 % of farmland is used for biogas and biodiesel. We treat all arable land as available for food. For a “could” question this is acceptable, but it is an unstated assumption, not a fact.": ["In Deutschland dienen etwa 14 % der Agrarfläche Biogas und Biodiesel. Wir behandeln alles Ackerland als für Nahrung verfügbar. Für eine „könnte“-Frage ist das zulässig, aber es ist eine stillschweigende Annahme, keine Tatsache.", "В Германии около 14 % сельхозземли занято биогазом и биодизелем. Мы считаем всю пашню доступной под еду. Для вопроса «мог бы» это допустимо, но это молчаливое допущение, а не факт."], "Greenhouses.": ["Gewächshäuser.", "Теплицы."], "The Westland produces 500–700 t/ha of tomatoes against the 30 t/ha we assume for vegetables, and it stands on land the satellite classifies as built-up. The region’s real vegetable capacity is higher than in the model.": ["Das Westland erzeugt 500–700 t/ha Tomaten gegenüber den von uns für Gemüse angesetzten 30 t/ha, und es steht auf Fläche, die der Satellit als bebaut einstuft. Die tatsächliche Gemüsekapazität der Region ist höher als im Modell.", "Вестланд даёт 500–700 т/га томатов против принятых нами 30 т/га для овощей, и стоит на земле, которую спутник относит к застройке. Реальная овощная мощность региона выше модельной."], "Fish and seafood.": ["Fisch und Meeresfrüchte.", "Рыба и морепродукты."], "They need no land at all and are not in the model.": ["Sie brauchen überhaupt keine Fläche und sind nicht im Modell.", "Земли не требуют вообще, в модель не входят."], "Crop rotation, fallow, soil quality, year-to-year variation in yields.": ["Fruchtfolge, Brache, Bodenqualität, jährliche Ertragsschwankungen.", "Севооборот, пары, качество почв, межгодовая изменчивость урожаев."], "Weak assumptions": ["Schwache Annahmen", "Слабые допущения"], "Yields for vegetables (30 t/ha) and fruit (20 t/ha)": ["Die Erträge für Gemüse (30 t/ha) und Obst (20 t/ha)", "Урожайность овощей (30 т/га) и фруктов (20 т/га)"], "are assumed, not measured": ["sind angenommen, nicht gemessen", "принята, а не измерена"], ": Eurostat has no regional data for these crops. Together they make up about 8 % of the land footprint.": [": Eurostat hat für diese Kulturen keine regionalen Daten. Zusammen machen sie etwa 8 % des Flächenfußabdrucks aus.", "— в Eurostat для этих культур не оказалось региональных данных. Вместе они дают около 8 % земельного следа."], "Grassland yield is one constant of 9 t/ha for the whole region, although it varies noticeably.": ["Der Grünlandertrag ist eine Konstante von 9 t/ha für die ganze Region, obwohl er deutlich schwankt.", "Урожайность лугов — одна константа 9 т/га на весь регион, хотя она заметно различается."], "Feed is calculated with local cereal yields (8.19 t/ha), whereas real compound feed is largely soy, and soy yields 2–3 t/ha. This makes the estimate optimistic.": ["Futter wird mit lokalen Getreideerträgen (8,19 t/ha) gerechnet, während echtes Mischfutter großenteils aus Soja besteht, und Soja bringt 2–3 t/ha. Das macht die Schätzung optimistisch.", "Корма считаются по местной урожайности зерновых (8,19 т/га), тогда как реальный комбикорм во многом соевый, а соя даёт 2–3 т/га. Это делает оценку оптимистичной."], "The diet is a national average applied to residents by country of residence.": ["Die Ernährung ist ein nationaler Durchschnitt, angewandt nach Wohnsitzland.", "Диета берётся национальная средняя и применяется к жителям по стране проживания."], "Data come from different years: land cover 2024, population 2024, yields 2022, farm survey 2020, FAO balances 2022.": ["Die Daten stammen aus verschiedenen Jahren: Bodenbedeckung 2024, Bevölkerung 2024, Erträge 2022, Agrarerhebung 2020, FAO-Bilanzen 2022.", "Данные разных лет: покров 2024, население 2024, урожайность 2022, обследование хозяйств 2020, балансы ФАО 2022."], "Conceptual": ["Konzeptionell", "Концептуальные"], "This is cover, not use.": ["Das ist Bedeckung, nicht Nutzung.", "Это покров, а не использование."], "The satellite sees a field but not what grows on it or who owns it.": ["Der Satellit sieht ein Feld, aber nicht, was darauf wächst und wem es gehört.", "Спутник видит поле, но не видит, что на нём растёт и кому оно принадлежит."], "This is capacity, not trade.": ["Das ist Kapazität, nicht Handel.", "Это способность, а не торговля."], "The calculation says nothing about actual supply, imports or stocks.": ["Die Rechnung sagt nichts über tatsächliche Lieferungen, Importe oder Vorräte.", "Расчёт ничего не говорит о реальных поставках, импорте и запасах."], "The boundary is arbitrary in its details.": ["Die Grenze ist im Detail willkürlich.", "Граница произвольна в деталях."], "The AOI also includes clearly peripheral districts such as Hochsauerland and Namur. A different set of cities on the axis would give a different figure.": ["Die AOI enthält auch klar periphere Kreise wie den Hochsauerlandkreis und Namur. Andere Städte auf der Achse ergäben eine andere Zahl.", "В AOI попали и явно нецентральные районы — Хохзауэрланд, Намюр. Другой набор городов в оси дал бы другую цифру."], "There is no real uncertainty interval.": ["Es gibt kein echtes Unsicherheitsintervall.", "Нет настоящего интервала неопределённости."], "We varied parameters one at a time; an honest confidence interval needs them varied jointly.": ["Wir haben Parameter einzeln variiert; ein ehrliches Konfidenzintervall erfordert eine gemeinsame Variation.", "Мы меняли параметры по одному; честный доверительный интервал требует совместного перебора."], "What to do next": ["Was als Nächstes zu tun ist", "Что делать дальше"], "In order of impact on the result:": ["Geordnet nach Einfluss auf das Ergebnis:", "По убыванию влияния на результат:"], "Raise diet coverage to about 95 % of calories": ["Abdeckung der Ernährung auf etwa 95 % der Kalorien bringen", "Закрыть покрытие диеты до ~95 % калорий"], "Mechanical work, but it shifts the result the most, by 10 percentage points.": ["Mechanische Arbeit, die das Ergebnis aber am stärksten verschiebt, um 10 Prozentpunkte.", "Механическая работа, но именно она смещает результат сильнее всего — на 10 процентных пунктов."], "Split roughage between arable land and grassland": ["Raufutter zwischen Acker und Grünland aufteilen", "Разделить грубый корм между пашней и лугами"], "Using the actual green fodder areas from Eurostat instead of putting it all on grassland.": ["Anhand der tatsächlichen Grünfutterflächen von Eurostat, statt alles dem Grünland zuzurechnen.", "По фактическим площадям зелёных кормов из Eurostat, а не относить всё на луга."], "Recalculate supply at 50 metres": ["Angebot auf 50 Metern neu berechnen", "Пересчитать предложение на 50 метрах"], "And make sure the figure finally converges.": ["Und sicherstellen, dass die Zahl endlich konvergiert.", "И убедиться, что цифра наконец сошлась."], "Replace assumed yields with real ones": ["Angenommene Erträge durch echte ersetzen", "Заменить принятые урожайности реальными"], "Vegetables and fruit are the only values taken out of thin air.": ["Gemüse und Obst sind die einzigen aus der Luft gegriffenen Werte.", "Овощи и фрукты — единственные величины, взятые с потолка."], "Run a Monte Carlo analysis": ["Eine Monte-Carlo-Analyse rechnen", "Прогнать метод Монте-Карло"], "Vary feed ratios and yields jointly instead of one parameter at a time, to give an honest interval instead of a single number.": ["Futterkoeffizienten und Erträge gemeinsam statt einzeln variieren, um ein ehrliches Intervall statt einer einzelnen Zahl anzugeben.", "Совместный перебор коэффициентов корма и урожайностей вместо проверок по одному параметру — чтобы дать честный интервал вместо одной цифры."], "Add scenarios": ["Szenarien ergänzen", "Добавить сценарии"], "“No waste” and “less meat”. These are not error fixes but the better story: they show that the demand lever is stronger here than the land lever.": ["„Ohne Verluste“ und „weniger Fleisch“. Das sind keine Fehlerkorrekturen, sondern die bessere Geschichte: Sie zeigen, dass der Hebel der Nachfrage hier stärker ist als der Hebel der Fläche.", "«Без потерь» и «меньше мяса». Это не исправление ошибок, а лучший сюжет: они показывают, что рычаг спроса здесь сильнее рычага земли."], "Data.": ["Daten.", "Данные."], "Sentinel-2 10 m land cover 2024: Esri, Impact Observatory, Microsoft. Region boundaries: Eurostat GISCO NUTS 2024. Population, yields and farm structure survey: Eurostat. Food balance sheets: UN FAO. Feed conversion ratios follow Alexander et al. (2016) in order of magnitude.": ["Bodenbedeckung Sentinel-2 10 m 2024: Esri, Impact Observatory, Microsoft. Regionsgrenzen: Eurostat GISCO NUTS 2024. Bevölkerung, Erträge und Agrarstrukturerhebung: Eurostat. Ernährungsbilanzen: FAO der Vereinten Nationen. Futterverwertungskoeffizienten folgen in der Größenordnung Alexander et al. (2016).", "Земельный покров Sentinel-2 10 м 2024 — Esri, Impact Observatory, Microsoft. Границы регионов — Eurostat GISCO NUTS 2024. Население, урожайность и обследование структуры хозяйств — Eurostat. Продовольственные балансы — ФАО ООН. Коэффициенты конверсии корма — по порядку величины следуют Alexander et al. (2016)."], "All figures in this document are calculated and reproducible from the source code. The final estimate is": ["Alle Zahlen in diesem Dokument sind berechnet und aus dem Quellcode reproduzierbar. Die Endschätzung beträgt", "Все цифры в этом документе получены расчётом и воспроизводимы из исходного кода. Итоговая оценка —"], "; the previously published figure of 51.6 % contained a systematic bias described in section 08.": ["; die zuvor veröffentlichte Zahl von 51,6 % enthielt eine systematische Verzerrung, die in Abschnitt 08 beschrieben ist.", "; ранее опубликованная цифра 51,6 % содержала систематическое смещение, описанное в разделе 08."]}, "frag": []};</script>
+<script id="i18n-runtime">(function () {
+  // Page translations: exact text lookups (I18N.dict) plus substring rules
+  // (I18N.frag) for text that scripts build at runtime. English is the source.
+  var D = (window.I18N && window.I18N.dict) || {};
+  var F = ((window.I18N && window.I18N.frag) || []).slice().sort(function (a, b) { return b[0].length - a[0].length; });
+  var LANGS = ["en", "de", "ru"], IDX = { de: 0, ru: 1 };
+  var ATTRS = ["aria-label", "placeholder", "title", "alt"];
+  var orig = new WeakMap(), origAttr = new WeakMap(), wrote = new WeakMap(), wroteAttr = new WeakMap();
+  var lang = "en";
+
+  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  function tr(en) {
+    if (lang === "en") return en;
+    var k = norm(en);
+    if (!k || !/[A-Za-zÀ-ÿ]/.test(k)) return en;
+    var hit = D[k];
+    var out = hit ? hit[IDX[lang]] : null;
+    if (out == null) {
+      // pad with spaces so rules that start or end with a space also match at the edges
+      var t = " " + k + " ", changed = false;
+      for (var i = 0; i < F.length; i++) {
+        if (t.indexOf(F[i][0]) !== -1) { t = t.split(F[i][0]).join(F[i][1 + IDX[lang]]); changed = true; }
+      }
+      if (!changed) return en;
+      out = t.trim();
+    }
+    var lead = en.match(/^\s*/)[0], trail = en.match(/\s*$/)[0];
+    return lead + out + trail;
+  }
+  function doText(n) {
+    var p = n.parentNode;
+    if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName) || (p.closest && p.closest("#i18n-switch"))) return;
+    if (!orig.has(n)) orig.set(n, n.nodeValue);
+    var v = tr(orig.get(n));
+    if (n.nodeValue !== v) { wrote.set(n, v); n.nodeValue = v; }
+  }
+  function doEl(el) {
+    if (el.id === "i18n-switch") return;
+    var m = origAttr.get(el);
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a)) continue;
+      if (!m) { m = {}; origAttr.set(el, m); }
+      if (!(a in m)) m[a] = el.getAttribute(a);
+      var v = tr(m[a]);
+      if (el.getAttribute(a) !== v) {
+        var w = wroteAttr.get(el) || {}; w[a] = v; wroteAttr.set(el, w);
+        el.setAttribute(a, v);
+      }
+    }
+  }
+  function walk(root) {
+    if (root.nodeType === 3) { doText(root); return; }
+    if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/.test(root.nodeName)) return;
+    doEl(root);
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    var n;
+    while ((n = w.nextNode())) {
+      if (n.nodeType === 3) doText(n);
+      else if (n.id === "i18n-switch") continue;
+      else doEl(n);
+    }
+  }
+  var titleEn = document.title;
+  function apply() {
+    walk(document.body);
+    document.title = tr(titleEn);
+    document.documentElement.lang = lang;
+  }
+  // Page scripts keep writing English; record it as the new original and
+  // translate it, but ignore the mutations this script made itself.
+  new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) {
+      var m = ms[i], t = m.target;
+      if (m.type === "characterData") {
+        if (t.nodeValue === wrote.get(t)) continue;
+        orig.set(t, t.nodeValue);
+        if (lang !== "en") doText(t);
+      } else if (m.type === "attributes") {
+        var a = m.attributeName, val = t.getAttribute(a), w = wroteAttr.get(t);
+        if (w && w[a] === val) continue;
+        var o = origAttr.get(t) || {};
+        o[a] = val; origAttr.set(t, o);
+        if (lang !== "en") doEl(t);
+      } else if (lang !== "en") {
+        for (var j = 0; j < m.addedNodes.length; j++) walk(m.addedNodes[j]);
+      }
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+
+  var css = document.createElement("style");
+  css.textContent =
+    "#i18n-switch{position:fixed;z-index:2147483000;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(20,28,26,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.25);font:500 12px/1 ui-monospace,Menlo,monospace}" +
+    "#i18n-switch button{all:unset;cursor:pointer;color:#cfd8d5;padding:6px 9px;border-radius:999px;letter-spacing:.05em}" +
+    "#i18n-switch button[aria-pressed=true]{background:#3cc4ad;color:#0e1513}" +
+    "#i18n-switch button:focus-visible{outline:2px solid #3cc4ad;outline-offset:2px}";
+  document.head.appendChild(css);
+  var box = document.createElement("div");
+  box.id = "i18n-switch"; box.setAttribute("role", "group"); box.setAttribute("aria-label", "Language");
+  LANGS.forEach(function (l) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = l.toUpperCase(); b.dataset.lang = l;
+    b.addEventListener("click", function () { set(l, true); });
+    box.appendChild(b);
+  });
+  document.body.appendChild(box);
+
+  function set(l, save) {
+    lang = LANGS.indexOf(l) >= 0 ? l : "en";
+    [].forEach.call(box.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    apply();
+    if (save) { try { localStorage.setItem("lang", lang); } catch (e) {} }
+  }
+  var start = (location.hash || "").replace("#", "");
+  if (LANGS.indexOf(start) < 0) { try { start = localStorage.getItem("lang"); } catch (e) { start = null; } }
+  set(start || "en", false);
+})();
+</script>
+</body></html>

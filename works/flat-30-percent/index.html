@@ -1,0 +1,180 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Flat for 30 % of Pay</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one wide infographic sheet — header, legend, city rows of houses by distance. Single dark neon theme by design. */
+:root{color-scheme:dark;--bg:#0B0E1A;--fg:#E6E8F0;--muted:#8A90A8;--line:#1E2440;--ground:#262C48;
+--small:#FF3396;--big:#26FFDB;--city:#596FFF;
+--display:"Chakra Petch",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body);margin:0}
+.sheet{max-width:1180px;margin:0 auto;padding-block:36px 28px;padding-inline:24px;display:flex;flex-direction:column;gap:14px}
+h1{font:700 clamp(26px,4vw,40px)/1.1 var(--display);margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:70ch}
+.legend{display:flex;flex-wrap:wrap;gap:22px;font-size:14px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:50%}
+.scroll{overflow-x:auto;margin-top:8px}
+svg{display:block;width:100%;min-width:760px;height:auto}
+.foot{color:var(--muted);font:12px var(--mono);margin:6px 0 0}
+</style>
+<div class="sheet">
+<h1>How much flat does 30 % of net pay rent?</h1>
+<p class="sub">Median wage in the city, single, warm rent of a new lease. Bigger house = bigger flat (sizes exaggerated). Label colour shows the 60 m² threshold.</p>
+<div class="legend">
+<span><i style="background:var(--small);box-shadow:0 0 8px var(--small)"></i>under 60 m²</span>
+<span><i style="background:var(--big);box-shadow:0 0 8px var(--big)"></i>60 m² or more</span>
+</div>
+<div class="scroll"><svg id="chart" viewBox="0 0 1180 1770" role="img" aria-label="Flat size affordable with 30 % of net pay in seven German cities at 0 to 40 km from the centre"></svg></div>
+<p class="foot">Distance from the main station, ±5 km. Warm rent: BBSR asking rents 2025, Zensus 2022, Mikrozensus 2022. Net pay: BA wage 2024, single, tax class I, 2025 rules.</p>
+</div>
+<script>
+const D=[["Berlin",2708,812,[47,48,51,57,65]],["Hamburg",2882,865,[50,49,54,60,64]],["Munich",3308,992,[40,42,49,53,58]],["Cologne",2866,860,[51,55,60,59,67]],["Frankfurt",3228,968,[48,54,60,60,69]],["Stuttgart",3292,988,[52,55,61,63,69]],["Düsseldorf",3003,901,[55,62,75,69,74]]];
+const K={small:{top:"#FF3396",body:"#3A0B24",door:"#86134B",win:"#FFD1E6"},big:{top:"#26FFDB",body:"#01332B",door:"#05705F",win:"#CFFFF6"}};
+const cols=[410,580,750,920,1090],dists=["Centre","10 km","20 km","30 km","40 km"],rowH=240,top0=80;
+const fmt=n=>n.toLocaleString("en-US");
+let s=`<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
+dists.forEach((d,i)=>s+=`<text x="${cols[i]}" y="40" text-anchor="middle" fill="var(--muted)" font-family="var(--mono)" font-size="15">${d}</text>`);
+function house(cx,gy,m2){
+  const lab=m2>=60?"#26FFDB":"#FF3396", H="#596FFF";
+  const w=44+(m2-40)*3.0, bh=w*.55, rh=w*.42, x=cx-w/2, by=gy-bh, sw=Math.max(2,w*.022);
+  const dw=w*.18, dh=bh*.5;
+  let g=`<path d="M${x} ${gy} V${by} L${cx} ${by-rh} L${x+w} ${by} V${gy}" fill="rgba(89,111,255,.10)" stroke="${H}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)"/>`;
+  g+=`<path d="M${cx-dw/2} ${gy} V${gy-dh} H${cx+dw/2} V${gy}" fill="none" stroke="${H}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+  g+=`<text x="${cx}" y="${by-rh-16}" text-anchor="middle" fill="${lab}" font-family="var(--display)" font-weight="700" font-size="30">${m2} m²</text>`;
+  return g;
+}
+D.forEach(([c,net,rent,v],r)=>{
+  const gy=top0+r*rowH+rowH-30;
+  if(r) s+=`<line x1="0" x2="1180" y1="${gy-rowH+30}" y2="${gy-rowH+30}" stroke="var(--line)"/>`;
+  s+=`<text x="0" y="${gy-70}" fill="var(--fg)" font-family="var(--display)" font-weight="700" font-size="30">${c}</text>`;
+  s+=`<text x="0" y="${gy-40}" fill="var(--muted)" font-size="16">net ${fmt(net)} €</text><text x="0" y="${gy-16}" fill="var(--muted)" font-size="16">${fmt(rent)} € for rent</text>`;
+  const sx=258;[[0,40,"#2A3160"],[20,64,"#343C75"],[40,48,"#2A3160"],[60,32,"#222850"]].forEach(([dx,h,f])=>s+=`<rect x="${sx+dx}" y="${gy-h}" width="18" height="${h}" rx="2" fill="${f}"/>`);
+  [[sx+25,gy-54],[sx+25,gy-40],[sx+45,gy-36],[sx+5,gy-28]].forEach(([wx,wy])=>s+=`<rect x="${wx}" y="${wy}" width="5" height="5" fill="#596FFF" opacity=".7"/>`);
+  s+=`<line x1="250" x2="1180" y1="${gy}" y2="${gy}" stroke="var(--ground)" stroke-width="2"/>`;
+  v.forEach((m,i)=>s+=house(cols[i],gy,m));
+});
+document.getElementById("chart").innerHTML=s;
+</script>
+
+
+
+<script id="i18n-data">window.I18N={"dict": {"Flat for 30 % of Pay": ["Wohnung für 30 % vom Lohn", "Квартира за 30 % зарплаты"], "How much flat does 30 % of net pay rent?": ["Wie viel Wohnung mietet man für 30 % vom Netto?", "Какую квартиру можно снять за 30 % зарплаты?"], "Median wage in the city, single, warm rent of a new lease. Bigger house = bigger flat (sizes exaggerated). Label colour shows the 60 m² threshold.": ["Medianlohn in der Stadt, Single, Warmmiete bei Neuvermietung. Größeres Haus = größere Wohnung (Größen überzeichnet). Die Farbe der Beschriftung zeigt die Schwelle von 60 m².", "Медианная зарплата в городе, один человек, тёплая аренда по новому договору. Чем больше дом, тем больше квартира (размеры преувеличены). Цвет подписи показывает порог 60 м²."], "under 60 m²": ["unter 60 m²", "меньше 60 м²"], "60 m² or more": ["60 m² oder mehr", "60 м² и больше"], "Distance from the main station, ±5 km. Warm rent: BBSR asking rents 2025, Zensus 2022, Mikrozensus 2022. Net pay: BA wage 2024, single, tax class I, 2025 rules.": ["Entfernung vom Hauptbahnhof, ±5 km. Warmmiete: BBSR-Angebotsmieten 2025, Zensus 2022, Mikrozensus 2022. Netto: BA-Entgelt 2024, Single, Steuerklasse I, Regeln 2025.", "Расстояние от главного вокзала, ±5 км. Тёплая аренда: ставки в объявлениях BBSR 2025, Zensus 2022, Mikrozensus 2022. Зарплата на руки: данные BA за 2024, один человек, налоговый класс I, правила 2025 года."], "Flat size affordable with 30 % of net pay in seven German cities at 0 to 40 km from the centre": ["Wohnungsgröße, die man sich mit 30 % vom Netto leisten kann, in sieben deutschen Städten, 0 bis 40 km vom Zentrum", "Площадь квартиры, доступная за 30 % зарплаты, в семи городах Германии на расстоянии 0–40 км от центра"], "Centre": ["Zentrum", "Центр"], "Munich": ["München", "Мюнхен"], "Cologne": ["Köln", "Кёльн"], "Berlin": ["Berlin", "Берлин"], "Hamburg": ["Hamburg", "Гамбург"], "Frankfurt": ["Frankfurt", "Франкфурт"], "Stuttgart": ["Stuttgart", "Штутгарт"], "Düsseldorf": ["Düsseldorf", "Дюссельдорф"]}, "frag": [["net ", "netto ", "на руки "], [" € for rent", " € für Miete", " € на аренду"], [" m²", " m²", " м²"], [" km", " km", " км"]]};</script>
+<script id="i18n-runtime">(function () {
+  // Page translations: exact text lookups (I18N.dict) plus substring rules
+  // (I18N.frag) for text that scripts build at runtime. English is the source.
+  var D = (window.I18N && window.I18N.dict) || {};
+  var F = ((window.I18N && window.I18N.frag) || []).slice().sort(function (a, b) { return b[0].length - a[0].length; });
+  var LANGS = ["en", "de", "ru"], IDX = { de: 0, ru: 1 };
+  var ATTRS = ["aria-label", "placeholder", "title", "alt"];
+  var orig = new WeakMap(), origAttr = new WeakMap(), wrote = new WeakMap(), wroteAttr = new WeakMap();
+  var lang = "en";
+
+  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  function tr(en) {
+    if (lang === "en") return en;
+    var k = norm(en);
+    if (!k || !/[A-Za-zÀ-ÿ]/.test(k)) return en;
+    var hit = D[k];
+    var out = hit ? hit[IDX[lang]] : null;
+    if (out == null) {
+      // pad with spaces so rules that start or end with a space also match at the edges
+      var t = " " + k + " ", changed = false;
+      for (var i = 0; i < F.length; i++) {
+        if (t.indexOf(F[i][0]) !== -1) { t = t.split(F[i][0]).join(F[i][1 + IDX[lang]]); changed = true; }
+      }
+      if (!changed) return en;
+      out = t.trim();
+    }
+    var lead = en.match(/^\s*/)[0], trail = en.match(/\s*$/)[0];
+    return lead + out + trail;
+  }
+  function doText(n) {
+    var p = n.parentNode;
+    if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName) || (p.closest && p.closest("#i18n-switch"))) return;
+    if (!orig.has(n)) orig.set(n, n.nodeValue);
+    var v = tr(orig.get(n));
+    if (n.nodeValue !== v) { wrote.set(n, v); n.nodeValue = v; }
+  }
+  function doEl(el) {
+    if (el.id === "i18n-switch") return;
+    var m = origAttr.get(el);
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a)) continue;
+      if (!m) { m = {}; origAttr.set(el, m); }
+      if (!(a in m)) m[a] = el.getAttribute(a);
+      var v = tr(m[a]);
+      if (el.getAttribute(a) !== v) {
+        var w = wroteAttr.get(el) || {}; w[a] = v; wroteAttr.set(el, w);
+        el.setAttribute(a, v);
+      }
+    }
+  }
+  function walk(root) {
+    if (root.nodeType === 3) { doText(root); return; }
+    if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/.test(root.nodeName)) return;
+    doEl(root);
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    var n;
+    while ((n = w.nextNode())) {
+      if (n.nodeType === 3) doText(n);
+      else if (n.id === "i18n-switch") continue;
+      else doEl(n);
+    }
+  }
+  var titleEn = document.title;
+  function apply() {
+    walk(document.body);
+    document.title = tr(titleEn);
+    document.documentElement.lang = lang;
+  }
+  // Page scripts keep writing English; record it as the new original and
+  // translate it, but ignore the mutations this script made itself.
+  new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) {
+      var m = ms[i], t = m.target;
+      if (m.type === "characterData") {
+        if (t.nodeValue === wrote.get(t)) continue;
+        orig.set(t, t.nodeValue);
+        if (lang !== "en") doText(t);
+      } else if (m.type === "attributes") {
+        var a = m.attributeName, val = t.getAttribute(a), w = wroteAttr.get(t);
+        if (w && w[a] === val) continue;
+        var o = origAttr.get(t) || {};
+        o[a] = val; origAttr.set(t, o);
+        if (lang !== "en") doEl(t);
+      } else if (lang !== "en") {
+        for (var j = 0; j < m.addedNodes.length; j++) walk(m.addedNodes[j]);
+      }
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+
+  var css = document.createElement("style");
+  css.textContent =
+    "#i18n-switch{position:fixed;z-index:2147483000;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(20,28,26,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.25);font:500 12px/1 ui-monospace,Menlo,monospace}" +
+    "#i18n-switch button{all:unset;cursor:pointer;color:#cfd8d5;padding:6px 9px;border-radius:999px;letter-spacing:.05em}" +
+    "#i18n-switch button[aria-pressed=true]{background:#3cc4ad;color:#0e1513}" +
+    "#i18n-switch button:focus-visible{outline:2px solid #3cc4ad;outline-offset:2px}";
+  document.head.appendChild(css);
+  var box = document.createElement("div");
+  box.id = "i18n-switch"; box.setAttribute("role", "group"); box.setAttribute("aria-label", "Language");
+  LANGS.forEach(function (l) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = l.toUpperCase(); b.dataset.lang = l;
+    b.addEventListener("click", function () { set(l, true); });
+    box.appendChild(b);
+  });
+  document.body.appendChild(box);
+
+  function set(l, save) {
+    lang = LANGS.indexOf(l) >= 0 ? l : "en";
+    [].forEach.call(box.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    apply();
+    if (save) { try { localStorage.setItem("lang", lang); } catch (e) {} }
+  }
+  var start = (location.hash || "").replace("#", "");
+  if (LANGS.indexOf(start) < 0) { try { start = localStorage.getItem("lang"); } catch (e) { start = null; } }
+  set(start || "en", false);
+})();
+</script>
+</body></html>

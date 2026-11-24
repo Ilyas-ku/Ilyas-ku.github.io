@@ -1,0 +1,868 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>The Beer-Bun Index — Methodology &amp; City Findings</title>
+<style>
+  @font-face {
+    font-family: "Fraunces-fallback";
+    src: local("Georgia");
+  }
+
+  :root {
+    --paper: #f2ece1;
+    --paper-raised: #ffffff;
+    --ink: #211a14;
+    --ink-soft: #5a4f42;
+    --ink-faint: #8a7d6c;
+    --rule: #d9cdb8;
+    --malt: #a9701f;
+    --malt-soft: #e8d3ab;
+    --malt-deep: #7a4f14;
+    --wine: #7a2735;
+    --wine-soft: #e9c9ca;
+    --wine-deep: #591a25;
+    --balance: #6b6250;
+    --good-bg: #eef1e1;
+    --shadow: rgba(60, 42, 20, 0.14);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1a1510;
+      --paper-raised: #241d16;
+      --ink: #f1e9dc;
+      --ink-soft: #cabfab;
+      --ink-faint: #8d8272;
+      --rule: #3a3024;
+      --malt: #e0ac5f;
+      --malt-soft: #4a3a20;
+      --malt-deep: #f3c988;
+      --wine: #d98a95;
+      --wine-soft: #4a2229;
+      --wine-deep: #f0a8b1;
+      --balance: #b3a88f;
+      --good-bg: #2a2c1e;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #1a1510;
+    --paper-raised: #241d16;
+    --ink: #f1e9dc;
+    --ink-soft: #cabfab;
+    --ink-faint: #8d8272;
+    --rule: #3a3024;
+    --malt: #e0ac5f;
+    --malt-soft: #4a3a20;
+    --malt-deep: #f3c988;
+    --wine: #d98a95;
+    --wine-soft: #4a2229;
+    --wine-deep: #f0a8b1;
+    --balance: #b3a88f;
+    --good-bg: #2a2c1e;
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  :root[data-theme="light"] {
+    --paper: #f2ece1;
+    --paper-raised: #ffffff;
+    --ink: #211a14;
+    --ink-soft: #5a4f42;
+    --ink-faint: #8a7d6c;
+    --rule: #d9cdb8;
+    --malt: #a9701f;
+    --malt-soft: #e8d3ab;
+    --malt-deep: #7a4f14;
+    --wine: #7a2735;
+    --wine-soft: #e9c9ca;
+    --wine-deep: #591a25;
+    --balance: #6b6250;
+    --good-bg: #eef1e1;
+    --shadow: rgba(60, 42, 20, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+
+  .body-face {
+    font-family: "Charter", "Iowan Old Style", "Georgia", "Segoe UI", serif;
+  }
+
+  body {
+    font-family: "Charter", "Iowan Old Style", Georgia, serif;
+  }
+
+  .display {
+    font-family: "Canela", "Fraunces-fallback", "Iowan Old Style", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .mono, .tabular, table td, table th {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4.5rem 1.75rem 6rem;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    margin-bottom: 3.5rem;
+  }
+
+  .kicker {
+    color: var(--wine);
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 2rem;
+    height: 2px;
+    background: var(--wine);
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    margin: 0 0 0.9rem;
+    line-height: 1.08;
+  }
+
+  .dek {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .meta-item .label { color: var(--ink-faint); margin-bottom: 0.25rem; }
+  .meta-item .value { font-size: 0.98rem; color: var(--ink); }
+
+  /* ---------- Section scaffolding ---------- */
+
+  section { margin-bottom: 3.75rem; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .section-num {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--ink);
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin: 1.6rem 0 0.6rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  p.wide { max-width: none; }
+
+  ul, ol { margin: 0 0 1rem; padding-left: 1.3rem; max-width: 66ch; }
+  li { margin-bottom: 0.4rem; }
+
+  code {
+    font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+    font-size: 0.86em;
+    background: var(--malt-soft);
+    color: var(--malt-deep);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  :root[data-theme="dark"] code, @media (prefers-color-scheme: dark) { }
+
+  a { color: var(--wine); }
+
+  /* ---------- Formula card ---------- */
+
+  .formula-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    margin: 1.2rem 0;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+
+  .formula {
+    font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+    font-size: 0.95rem;
+    color: var(--malt-deep);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  :root[data-theme="dark"] .formula, .formula { color: var(--malt-deep); }
+
+  .formula-note {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Pipeline steps ---------- */
+
+  .pipeline {
+    display: grid;
+    gap: 0.6rem;
+    margin: 1.2rem 0;
+  }
+
+  .pipe-step {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.9rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pipe-step:last-child { border-bottom: none; }
+
+  .pipe-step .step-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 700;
+    color: var(--wine);
+    font-size: 0.95rem;
+  }
+
+  .pipe-step .step-body strong { color: var(--ink); }
+  .pipe-step .step-body { font-size: 0.96rem; color: var(--ink-soft); }
+
+  /* ---------- Table ---------- */
+
+  .table-scroll {
+    overflow-x: auto;
+    margin: 0 0 1.2rem;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--paper-raised);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 720px;
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 0.65rem 0.9rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  th:first-child, td:first-child { text-align: left; }
+
+  thead th {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--rule);
+    font-weight: 600;
+  }
+
+  tbody tr:not(:last-child) td { border-bottom: 1px solid var(--rule); }
+
+  tbody td:first-child { font-weight: 600; }
+
+  .fig-caption {
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+    margin: -0.6rem 0 1.5rem;
+  }
+
+  /* ---------- City cards ---------- */
+
+  .city-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.6rem 1.8rem 1.8rem;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+
+  .city-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+
+  .city-head h3 { margin: 0; font-size: 1.35rem; }
+
+  .city-tag {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .tag-beer { background: var(--wine-soft); color: var(--wine-deep); }
+  .tag-bakery { background: var(--malt-soft); color: var(--malt-deep); }
+  .tag-balance { background: var(--good-bg); color: var(--balance); }
+
+  .city-stats {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    margin: 0.9rem 0 1.1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .stat .num {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .unit { font-size: 0.82rem; color: var(--ink-faint); }
+
+  .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 5.2rem 1fr 3.4rem;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .bar-row .bar-name { color: var(--ink-soft); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+
+  .bar-track {
+    height: 9px;
+    background: var(--rule);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .bar-fill { height: 100%; border-radius: 5px; }
+  .bar-fill.beer { background: var(--wine); }
+  .bar-fill.bakery { background: var(--malt); }
+
+  .bar-row .bar-val {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .city-note { font-size: 0.94rem; margin-top: 0.7rem; margin-bottom: 0; }
+
+  /* ---------- Comparison chart (city-level bars) ---------- */
+
+  .rank-chart {
+    display: grid;
+    gap: 0.65rem;
+    margin: 1rem 0 1.6rem;
+  }
+
+  .rank-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .rank-name {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: right;
+    color: var(--ink-soft);
+  }
+
+  .rank-track {
+    position: relative;
+    height: 28px;
+    background: var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .rank-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 0.6rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 6px 0 0 6px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  ::selection { background: var(--malt-soft); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 3rem 1.1rem 4rem; }
+    .rank-row { grid-template-columns: 6rem 1fr; }
+    .bar-row { grid-template-columns: 4rem 1fr 3rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="kicker label">Data methodology &amp; findings</div>
+    <h1 class="display">The Beer-Bun Index</h1>
+    <p class="dek">How bakery and beer-place density were measured across 500&nbsp;m hexagons in five German cities, and what the resulting maps actually show when you compare them city by city.</p>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <div class="label">Cities</div>
+        <div class="value">Berlin · München · Frankfurt am Main · Köln · Hamburg</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Spatial unit</div>
+        <div class="value">500&nbsp;m pointy-top hexagon (0.162&nbsp;km² each)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Population source</div>
+        <div class="value">Zensus 2022, 100&nbsp;m grid</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Place source</div>
+        <div class="value">Overture Maps, release 2026-06-17.0</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="methodology">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <h2 class="display">Methodology</h2>
+    </div>
+
+    <p class="wide">Each city is covered by a regular grid of 500&nbsp;m pointy-top hexagons, built in EPSG:3035 (LAEA Europe) and clipped to the city's administrative boundary. The pipeline runs the same seven stages for every city — nothing here is Berlin-specific or hand-tuned per place.</p>
+
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="step-label">01</div>
+        <div class="step-body"><strong>Boundary.</strong> Pulled from Overture's <code>division_area</code> theme. Berlin and Hamburg are city-states, so their whole-city polygon is the <code>region</code> subtype; München, Frankfurt, and Köln use the <code>county</code> (kreisfreie Stadt) subtype instead, since Overture's <code>locality</code> layer is fragmented into individual districts for those three. Offshore exclaves (e.g. Hamburg's Neuwerk island) are dropped, keeping only the main landmass.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">02</div>
+        <div class="step-body"><strong>Hex grid.</strong> A 500&nbsp;m grid is generated over each boundary and clipped to it.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">03</div>
+        <div class="step-body"><strong>Population.</strong> Germany's nationwide Zensus 2022 100&nbsp;m population grid is spatially joined into each hex and summed.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">04</div>
+        <div class="step-body"><strong>Places.</strong> Bakeries and beer/pub places are queried from Overture Maps by category keyword, clipped to the city boundary, then deduplicated (name similarity + within 15&nbsp;m) since a single real bakery often appears as 2–3 near-duplicate records.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">05</div>
+        <div class="step-body"><strong>Assignment.</strong> Each cleaned place is assigned to the one hex containing it.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">06</div>
+        <div class="step-body"><strong>Smoothing.</strong> Population and place counts are each averaged with the hex's own value plus its up-to-6 neighbors, before the rate is computed — see below.</div>
+      </div>
+      <div class="pipe-step">
+        <div class="step-label">07</div>
+        <div class="step-body"><strong>Rate.</strong> Places per 1,000 residents, computed from the smoothed counts.</div>
+      </div>
+    </div>
+
+    <h3>Why smoothing</h3>
+    <p>A raw per-hex rate is noisy at 500&nbsp;m: a hex with zero bakeries sitting next to a hex with five looks artificially empty, even though residents there are a five-minute walk from bakeries. Every rate in this report is therefore computed from neighbor-smoothed counts, not raw per-hex counts.</p>
+
+    <div class="formula-card">
+      <code class="formula">rate(hex) = 1000 × mean(count, count of ≤6 neighbors) / mean(population, population of ≤6 neighbors)</code>
+      <p class="formula-note">Hexes clipped at the city boundary have fewer than 6 neighbors; the mean is taken over however many exist. Population and count are smoothed independently, then divided — this avoids compounding the smoothing into the ratio itself.</p>
+    </div>
+
+    <h3>What "beer place" means here</h3>
+    <p>Overture's <code>categories.primary</code> values <code>bar</code>, <code>pub</code>, <code>cocktail_bar</code>, <code>beer_garden</code>, <code>gastropub</code>, <code>sports_bar</code>, <code>beer_bar</code>, <code>gay_bar</code>, and <code>hotel_bar</code> are all counted — a broad "somewhere to get a drink" definition, not narrowly craft-beer bars. "Bakery" is Overture's <code>bakery</code> category plus a few keyword-matched pastry/pretzel variants.</p>
+  </section>
+
+  <section id="citywide">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <h2 class="display">City-wide numbers</h2>
+    </div>
+
+    <p class="wide">Before the per-hex texture, the plain city totals: how many bakeries and beer places exist per 1,000 residents, city-wide, once every hex is pooled back together.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Population</th>
+            <th>Area</th>
+            <th>Density</th>
+            <th>Bakeries</th>
+            <th>Beer places</th>
+            <th>Bakeries /1k</th>
+            <th>Beer /1k</th>
+            <th>Beer : bakery</th>
+          </tr>
+        </thead>
+        <tbody id="citywide-table"></tbody>
+      </table>
+    </div>
+    <p class="fig-caption">"Beer : bakery" is the city-wide place-count ratio — e.g. 1.80 means 1.8 beer places exist for every bakery.</p>
+
+    <h3>Beer places per 1,000 residents, by city</h3>
+    <div class="rank-chart" id="rank-beer"></div>
+
+    <h3>Bakeries per 1,000 residents, by city</h3>
+    <div class="rank-chart" id="rank-bakery"></div>
+
+    <p>Frankfurt has the sparsest bakery provision (0.448/1k) but the <em>highest</em> beer-place rate (0.809/1k) of any city — the widest beer-over-bakery skew (1.80×) alongside Berlin. Köln has the densest bakery provision (0.518/1k) of the five. Hamburg sits at the other extreme on drinking establishments: it has the lowest beer rate (0.622/1k) and the narrowest beer-to-bakery gap (1.40×) — proportionally, Hamburg is the closest of the five cities to "one beer place per bakery."</p>
+  </section>
+
+  <section id="cities">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <h2 class="display">City by city</h2>
+    </div>
+
+    <p class="wide">Per-city detail: place counts, city-wide rates, and how concentrated supply is — the share of every bakery or beer place that sits inside just the busiest 10% of populated hexes. A high share means the index is being driven by a small cluster of hyper-dense blocks (a market square, a nightlife strip) rather than being spread evenly across the city.</p>
+
+    <div id="city-cards"></div>
+  </section>
+
+  <section id="comparison">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <h2 class="display">Comparing the five</h2>
+    </div>
+
+    <h3>Concentration: how much of the supply sits in the busiest 10% of hexes</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Bakery top-10% share</th>
+            <th>Beer top-10% share</th>
+            <th>Hexes with neither</th>
+          </tr>
+        </thead>
+        <tbody id="concentration-table"></tbody>
+      </table>
+    </div>
+    <p class="fig-caption">"Hexes with neither" = share of populated hexes with zero bakeries and zero beer places, after smoothing — i.e. purely residential blocks with no walkable bakery or bar in the immediate hex.</p>
+
+    <p>Hamburg is the most spatially concentrated city on both metrics at once: 93.6% of its bakeries and 90.4% of its beer places sit in the busiest tenth of populated hexes, and 81.8% of populated hexes have neither. Combined with the lowest city-wide beer rate, this points to a city where supply is unusually clustered into a few dense nodes (its historic core and nightlife strips) against a much larger residential footprint with none at all — consistent with Hamburg's hex count and area being the largest after Berlin, for a population smaller than Köln's.</p>
+
+    <p>München sits at the opposite pole: it has the <em>lowest</em> concentration on the bakery side (72.3%) and the lowest "neither" share (67.1%) — its bakery network reaches further into ordinary residential hexes than any other city studied, even though its city-wide bakery rate (0.477/1k) is only middling. Berlin and Frankfurt track each other closely on the beer-to-bakery ratio (1.80× each) despite Frankfurt being roughly a fifth of Berlin's population — Frankfurt's compact, business-district-heavy core produces the same relative skew toward drinking establishments as Berlin's much larger and more spread-out footprint.</p>
+
+    <h3>Reading the median rate</h3>
+    <p>The "median smoothed rate" in the city cards above is computed only over hexes that actually contain at least one bakery or beer place — it answers "when a hex has one, how strong is the local walkability signal," independent of how many hexes have zero. Köln and Hamburg post the two highest bakery medians (0.702 and 0.730) despite neither topping the city-wide bakery rate table, meaning that where a Köln or Hamburg hex does have a bakery, it tends to be part of a denser walkable cluster than the same situation in Berlin or Frankfurt.</p>
+  </section>
+
+  <footer>
+    Hex geometry EPSG:3035 · 500&nbsp;m pointy-top grid · 0.1624&nbsp;km² per cell · Overture Maps release 2026-06-17.0 · Zensus 2022 100&nbsp;m population grid · all rates computed from 1-ring neighbor-smoothed counts.
+  </footer>
+
+</div>
+
+<script>
+  const data = [
+    {"slug":"berlin","city":"Berlin","population":3632109,"area_km2":941.6,"pop_density_per_km2":3857,"n_hex_populated":4159,"bakeries":1388,"beer_places":2492,"bakery_per_1000_city":0.382,"beer_per_1000_city":0.686,"beer_bakery_ratio":1.80,"bakery_median_smoothed":0.519,"beer_median_smoothed":0.716,"bakery_top10pct_share":78.8,"beer_top10pct_share":78.7,"both_zero_pct":71.9},
+    {"slug":"munich","city":"München","population":1501738,"area_km2":336.8,"pop_density_per_km2":4459,"n_hex_populated":1620,"bakeries":716,"beer_places":1031,"bakery_per_1000_city":0.477,"beer_per_1000_city":0.687,"beer_bakery_ratio":1.44,"bakery_median_smoothed":0.565,"beer_median_smoothed":0.760,"bakery_top10pct_share":72.3,"beer_top10pct_share":77.6,"both_zero_pct":67.1},
+    {"slug":"frankfurt","city":"Frankfurt am Main","population":765364,"area_km2":273.6,"pop_density_per_km2":2797,"n_hex_populated":923,"bakeries":343,"beer_places":619,"bakery_per_1000_city":0.448,"beer_per_1000_city":0.809,"beer_bakery_ratio":1.80,"bakery_median_smoothed":0.532,"beer_median_smoothed":0.739,"bakery_top10pct_share":74.9,"beer_top10pct_share":79.0,"both_zero_pct":69.7},
+    {"slug":"cologne","city":"Köln","population":1028902,"area_km2":433.6,"pop_density_per_km2":2373,"n_hex_populated":1532,"bakeries":533,"beer_places":805,"bakery_per_1000_city":0.518,"beer_per_1000_city":0.782,"beer_bakery_ratio":1.51,"bakery_median_smoothed":0.702,"beer_median_smoothed":0.719,"bakery_top10pct_share":78.0,"beer_top10pct_share":83.6,"both_zero_pct":73.7},
+    {"slug":"hamburg","city":"Hamburg","population":1833380,"area_km2":794.2,"pop_density_per_km2":2308,"n_hex_populated":3253,"bakeries":812,"beer_places":1140,"bakery_per_1000_city":0.443,"beer_per_1000_city":0.622,"beer_bakery_ratio":1.40,"bakery_median_smoothed":0.730,"beer_median_smoothed":0.746,"bakery_top10pct_share":93.6,"beer_top10pct_share":90.4,"both_zero_pct":81.8}
+  ];
+
+  const fmt = (n) => n.toLocaleString("en-US");
+  const fmt1 = (n) => n.toLocaleString("en-US", {minimumFractionDigits:1, maximumFractionDigits:1});
+  const fmt3 = (n) => n.toLocaleString("en-US", {minimumFractionDigits:3, maximumFractionDigits:3});
+
+  // ---- Citywide table ----
+  const citywideBody = document.getElementById("citywide-table");
+  data.forEach(d => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${d.city}</td>
+      <td class="tabular">${fmt(d.population)}</td>
+      <td class="tabular">${fmt1(d.area_km2)} km²</td>
+      <td class="tabular">${fmt(d.pop_density_per_km2)}/km²</td>
+      <td class="tabular">${fmt(d.bakeries)}</td>
+      <td class="tabular">${fmt(d.beer_places)}</td>
+      <td class="tabular">${fmt3(d.bakery_per_1000_city)}</td>
+      <td class="tabular">${fmt3(d.beer_per_1000_city)}</td>
+      <td class="tabular">${d.beer_bakery_ratio.toFixed(2)}×</td>
+    `;
+    citywideBody.appendChild(tr);
+  });
+
+  // ---- Rank charts ----
+  function rankChart(containerId, key, colorVar, maxOverride) {
+    const container = document.getElementById(containerId);
+    const sorted = [...data].sort((a,b) => b[key] - a[key]);
+    const max = maxOverride || Math.max(...data.map(d => d[key]));
+    sorted.forEach(d => {
+      const pct = (d[key] / max) * 100;
+      const row = document.createElement("div");
+      row.className = "rank-row";
+      row.innerHTML = `
+        <div class="rank-name">${d.city}</div>
+        <div class="rank-track">
+          <div class="rank-fill" style="width:${pct}%; background:${colorVar};">${d[key].toFixed(3)}</div>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+  }
+  rankChart("rank-beer", "beer_per_1000_city", "var(--wine)");
+  rankChart("rank-bakery", "bakery_per_1000_city", "var(--malt)");
+
+  // ---- City cards ----
+  const cardsContainer = document.getElementById("city-cards");
+  data.forEach(d => {
+    const card = document.createElement("div");
+    card.className = "city-card";
+
+    let tag, tagClass;
+    if (d.beer_bakery_ratio >= 1.7) { tag = "Beer-leaning"; tagClass = "tag-beer"; }
+    else if (d.beer_bakery_ratio <= 1.42) { tag = "Most balanced"; tagClass = "tag-balance"; }
+    else { tag = "Mixed"; tagClass = "tag-bakery"; }
+
+    const maxBar = Math.max(...data.map(x => Math.max(x.beer_per_1000_city, x.bakery_per_1000_city)));
+
+    card.innerHTML = `
+      <div class="city-head">
+        <h3>${d.city}</h3>
+        <span class="city-tag ${tagClass}">${tag} · ${d.beer_bakery_ratio.toFixed(2)}× beer:bakery</span>
+      </div>
+      <div class="city-stats">
+        <div class="stat"><div class="num">${fmt(d.population)}</div><div class="unit">residents</div></div>
+        <div class="stat"><div class="num">${fmt1(d.area_km2)}</div><div class="unit">km² (city boundary)</div></div>
+        <div class="stat"><div class="num">${fmt(d.n_hex_populated)}</div><div class="unit">populated hexes</div></div>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-name">Beer /1k</div>
+          <div class="bar-track"><div class="bar-fill beer" style="width:${(d.beer_per_1000_city/maxBar*100).toFixed(1)}%"></div></div>
+          <div class="bar-val">${d.beer_per_1000_city.toFixed(3)}</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Bakery /1k</div>
+          <div class="bar-track"><div class="bar-fill bakery" style="width:${(d.bakery_per_1000_city/maxBar*100).toFixed(1)}%"></div></div>
+          <div class="bar-val">${d.bakery_per_1000_city.toFixed(3)}</div>
+        </div>
+      </div>
+      <p class="city-note"><strong>${fmt(d.beer_places)}</strong> beer places and <strong>${fmt(d.bakeries)}</strong> bakeries across ${fmt(d.n_hex_populated)} populated hexes. The busiest 10% of hexes hold <strong>${d.beer_top10pct_share.toFixed(1)}%</strong> of all beer places and <strong>${d.bakery_top10pct_share.toFixed(1)}%</strong> of all bakeries. Median smoothed rate where present: ${d.beer_median_smoothed.toFixed(3)} beer /1k, ${d.bakery_median_smoothed.toFixed(3)} bakery /1k.</p>
+    `;
+    cardsContainer.appendChild(card);
+  });
+
+  // ---- Concentration table ----
+  const concBody = document.getElementById("concentration-table");
+  [...data].sort((a,b) => b.both_zero_pct - a.both_zero_pct).forEach(d => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${d.city}</td>
+      <td class="tabular">${d.bakery_top10pct_share.toFixed(1)}%</td>
+      <td class="tabular">${d.beer_top10pct_share.toFixed(1)}%</td>
+      <td class="tabular">${d.both_zero_pct.toFixed(1)}%</td>
+    `;
+    concBody.appendChild(tr);
+  });
+</script>
+
+
+
+<script id="i18n-data">window.I18N={"dict": {"The Beer-Bun Index — Methodology & City Findings": ["Der Bier-Brötchen-Index — Methode & Ergebnisse", "Индекс пива и булочек — метод и выводы по городам"], "Data methodology & findings": ["Datenmethodik & Ergebnisse", "Методология данных и выводы"], "The Beer-Bun Index": ["Der Bier-Brötchen-Index", "Индекс пива и булочек"], "How bakery and beer-place density were measured across 500 m hexagons in five German cities, and what the resulting maps actually show when you compare them city by city.": ["Wie die Dichte von Bäckereien und Bierlokalen in 500-m-Sechsecken in fünf deutschen Städten gemessen wurde und was die Karten im Städtevergleich tatsächlich zeigen.", "Как измерялась плотность пекарен и пивных заведений в шестиугольниках 500 м в пяти городах Германии и что на самом деле показывают карты при сравнении городов."], "Cities": ["Städte", "Города"], "Spatial unit": ["Raumeinheit", "Пространственная единица"], "500 m pointy-top hexagon (0.162 km² each)": ["500-m-Sechseck mit Spitze oben (je 0,162 km²)", "Шестиугольник 500 м вершиной вверх (0,162 км² каждый)"], "Population source": ["Bevölkerungsquelle", "Источник населения"], "Zensus 2022, 100 m grid": ["Zensus 2022, 100-m-Raster", "Zensus 2022, сетка 100 м"], "Place source": ["Ortsquelle", "Источник заведений"], "Overture Maps, release 2026-06-17.0": ["Overture Maps, Release 2026-06-17.0", "Overture Maps, выпуск 2026-06-17.0"], "Methodology": ["Methodik", "Методология"], "Each city is covered by a regular grid of 500 m pointy-top hexagons, built in EPSG:3035 (LAEA Europe) and clipped to the city's administrative boundary. The pipeline runs the same seven stages for every city — nothing here is Berlin-specific or hand-tuned per place.": ["Jede Stadt wird mit einem regelmäßigen Raster aus 500-m-Sechsecken überzogen, erstellt in EPSG:3035 (LAEA Europe) und auf die Verwaltungsgrenze zugeschnitten. Die Pipeline durchläuft für jede Stadt dieselben sieben Schritte; nichts ist auf Berlin zugeschnitten oder pro Ort von Hand justiert.", "Каждый город покрыт регулярной сеткой шестиугольников 500 м, построенной в EPSG:3035 (LAEA Europe) и обрезанной по административной границе. Для каждого города выполняются одни и те же семь шагов; ничего не подогнано под Берлин и не настроено вручную."], "Boundary.": ["Grenze.", "Граница."], "Pulled from Overture's": ["Aus Overtures", "Взята из темы Overture"], "theme. Berlin and Hamburg are city-states, so their whole-city polygon is the": ["-Thema. Berlin und Hamburg sind Stadtstaaten, daher ist ihr Stadtpolygon der Subtyp", ". Берлин и Гамбург — города-земли, поэтому полигон всего города у них имеет подтип"], "region": ["region", "region"], "subtype; München, Frankfurt, and Köln use the": ["; München, Frankfurt und Köln nutzen stattdessen den Subtyp", "; Мюнхен, Франкфурт и Кёльн используют подтип"], "county": ["county", "county"], "(kreisfreie Stadt) subtype instead, since Overture's": ["(kreisfreie Stadt), da Overtures", "(kreisfreie Stadt), потому что слой Overture"], "locality": ["locality", "locality"], "layer is fragmented into individual districts for those three. Offshore exclaves (e.g. Hamburg's Neuwerk island) are dropped, keeping only the main landmass.": ["-Ebene bei diesen dreien in einzelne Stadtteile zerfällt. Exklaven im Meer (z. B. Hamburgs Insel Neuwerk) werden entfernt; nur die Hauptfläche bleibt.", "у этих трёх городов разбит на отдельные районы. Морские эксклавы (например, гамбургский остров Нойверк) отброшены, остаётся только основная территория."], "Hex grid.": ["Sechseckraster.", "Сетка шестиугольников."], "A 500 m grid is generated over each boundary and clipped to it.": ["Über jede Grenze wird ein 500-m-Raster gelegt und darauf zugeschnitten.", "Над каждой границей строится сетка 500 м и обрезается по ней."], "Population.": ["Bevölkerung.", "Население."], "Germany's nationwide Zensus 2022 100 m population grid is spatially joined into each hex and summed.": ["Das bundesweite 100-m-Bevölkerungsraster des Zensus 2022 wird räumlich jedem Sechseck zugeordnet und summiert.", "Общегерманская сетка населения Zensus 2022 со стороной 100 м пространственно присоединяется к каждому шестиугольнику и суммируется."], "Places.": ["Orte.", "Заведения."], "Bakeries and beer/pub places are queried from Overture Maps by category keyword, clipped to the city boundary, then deduplicated (name similarity + within 15 m) since a single real bakery often appears as 2–3 near-duplicate records.": ["Bäckereien und Bier-/Kneipenorte werden aus Overture Maps per Kategorie-Stichwort abgefragt, auf die Stadtgrenze zugeschnitten und dann dedupliziert (Namensähnlichkeit + innerhalb von 15 m), denn eine reale Bäckerei taucht oft als 2–3 fast gleiche Einträge auf.", "Пекарни и пивные заведения запрашиваются из Overture Maps по ключевым словам категорий, обрезаются по границе города и очищаются от дублей (похожее название + в пределах 15 м), потому что одна реальная пекарня часто встречается в 2–3 почти одинаковых записях."], "Assignment.": ["Zuordnung.", "Привязка."], "Each cleaned place is assigned to the one hex containing it.": ["Jeder bereinigte Ort wird dem Sechseck zugeordnet, in dem er liegt.", "Каждое очищенное заведение привязывается к шестиугольнику, в котором оно находится."], "Smoothing.": ["Glättung.", "Сглаживание."], "Population and place counts are each averaged with the hex's own value plus its up-to-6 neighbors, before the rate is computed — see below.": ["Bevölkerung und Ortszahl werden jeweils mit dem eigenen Wert und den bis zu 6 Nachbarn gemittelt, bevor die Rate berechnet wird (siehe unten).", "Население и число заведений усредняются по самому шестиугольнику и до 6 соседям до расчёта показателя (см. ниже)."], "Rate.": ["Rate.", "Показатель."], "Places per 1,000 residents, computed from the smoothed counts.": ["Orte pro 1.000 Einwohner, berechnet aus den geglätteten Zahlen.", "Заведений на 1 000 жителей, по сглаженным числам."], "Why smoothing": ["Warum Glättung", "Зачем сглаживание"], "A raw per-hex rate is noisy at 500 m: a hex with zero bakeries sitting next to a hex with five looks artificially empty, even though residents there are a five-minute walk from bakeries. Every rate in this report is therefore computed from neighbor-smoothed counts, not raw per-hex counts.": ["Eine rohe Rate pro Sechseck ist bei 500 m verrauscht: Ein Sechseck ohne Bäckerei neben einem mit fünf wirkt künstlich leer, obwohl die Bewohner nur fünf Gehminuten von Bäckereien entfernt sind. Jede Rate in diesem Bericht wird daher aus nachbarschaftsgeglätteten Zahlen berechnet, nicht aus rohen Zahlen pro Sechseck.", "Сырой показатель по шестиугольнику при 500 м шумный: шестиугольник без пекарен рядом с шестиугольником, где их пять, выглядит искусственно пустым, хотя жителям оттуда до пекарен пять минут пешком. Поэтому все показатели в отчёте посчитаны по сглаженным по соседям числам, а не по сырым."], "Hexes clipped at the city boundary have fewer than 6 neighbors; the mean is taken over however many exist. Population and count are smoothed independently, then divided — this avoids compounding the smoothing into the ratio itself.": ["Sechsecke am Stadtrand haben weniger als 6 Nachbarn; gemittelt wird über die vorhandenen. Bevölkerung und Anzahl werden getrennt geglättet und dann geteilt, damit sich die Glättung nicht im Verhältnis selbst aufschaukelt.", "У шестиугольников на границе города меньше 6 соседей; среднее берётся по тем, что есть. Население и число заведений сглаживаются отдельно и потом делятся, чтобы сглаживание не накапливалось в самом отношении."], "What \"beer place\" means here": ["Was hier „Bierlokal“ heißt", "Что здесь значит «пивное заведение»"], "Overture's": ["Overtures", "Значения Overture"], "categories.primary": ["categories.primary", "categories.primary"], "values": ["-Werte", ""], ", and": ["und", "и"], "are all counted — a broad \"somewhere to get a drink\" definition, not narrowly craft-beer bars. \"Bakery\" is Overture's": ["werden alle gezählt: eine breite Definition von „hier gibt es was zu trinken“, nicht nur Craft-Beer-Bars. „Bäckerei“ ist Overtures Kategorie", "учитываются все: широкое определение «где можно выпить», а не только крафтовые бары. «Пекарня» — это категория Overture"], "bakery": ["bakery", "bakery"], "category plus a few keyword-matched pastry/pretzel variants.": ["plus einige per Stichwort gefundene Varianten für Gebäck und Brezeln.", "плюс несколько найденных по ключевым словам вариантов кондитерских и брецелей."], "City-wide numbers": ["Werte für die ganze Stadt", "Цифры по городам целиком"], "Before the per-hex texture, the plain city totals: how many bakeries and beer places exist per 1,000 residents, city-wide, once every hex is pooled back together.": ["Vor dem Blick auf die Sechsecke die einfachen Stadtsummen: wie viele Bäckereien und Bierlokale es pro 1.000 Einwohner in der ganzen Stadt gibt, wenn alle Sechsecke wieder zusammengefasst werden.", "Прежде чем смотреть на шестиугольники — простые итоги по городам: сколько пекарен и пивных заведений приходится на 1 000 жителей, если снова сложить все шестиугольники."], "City": ["Stadt", "Город"], "Population": ["Einwohner", "Население"], "Area": ["Fläche", "Площадь"], "Density": ["Dichte", "Плотность"], "Bakeries": ["Bäckereien", "Пекарни"], "Beer places": ["Bierlokale", "Пивные"], "Bakeries /1k": ["Bäckereien /1k", "Пекарни /1k"], "Beer /1k": ["Bier /1k", "Пиво /1k"], "Beer : bakery": ["Bier : Bäckerei", "Пиво : пекарни"], "\"Beer : bakery\" is the city-wide place-count ratio — e.g. 1.80 means 1.8 beer places exist for every bakery.": ["„Bier : Bäckerei“ ist das Verhältnis der Ortszahlen in der ganzen Stadt; 1,80 heißt z. B., dass auf jede Bäckerei 1,8 Bierlokale kommen.", "«Пиво : пекарни» — отношение числа заведений по всему городу; например, 1,80 значит, что на каждую пекарню приходится 1,8 пивного заведения."], "Beer places per 1,000 residents, by city": ["Bierlokale pro 1.000 Einwohner nach Stadt", "Пивные заведения на 1 000 жителей по городам"], "Bakeries per 1,000 residents, by city": ["Bäckereien pro 1.000 Einwohner nach Stadt", "Пекарни на 1 000 жителей по городам"], "Frankfurt has the sparsest bakery provision (0.448/1k) but the": ["Frankfurt hat die geringste Bäckereidichte (0,448/1k), aber die", "Во Франкфурте меньше всего пекарен (0,448/1k), но"], "highest": ["höchste", "самый высокий"], "beer-place rate (0.809/1k) of any city — the widest beer-over-bakery skew (1.80×) alongside Berlin. Köln has the densest bakery provision (0.518/1k) of the five. Hamburg sits at the other extreme on drinking establishments: it has the lowest beer rate (0.622/1k) and the narrowest beer-to-bakery gap (1.40×) — proportionally, Hamburg is the closest of the five cities to \"one beer place per bakery.\"": ["Bierlokal-Rate (0,809/1k) aller Städte und, zusammen mit Berlin, das stärkste Übergewicht von Bier gegenüber Bäckereien (1,80×). Köln hat die dichteste Bäckereiversorgung (0,518/1k) der fünf. Hamburg liegt bei Kneipen am anderen Ende: die niedrigste Bierrate (0,622/1k) und den kleinsten Abstand zwischen Bier und Bäckerei (1,40×). Anteilig kommt Hamburg „ein Bierlokal pro Bäckerei“ unter den fünf Städten am nächsten.", "показатель пивных заведений (0,809/1k) среди всех городов и, вместе с Берлином, самый сильный перекос пива над пекарнями (1,80×). В Кёльне самая высокая плотность пекарен (0,518/1k) из пяти. Гамбург на другом полюсе по питейным заведениям: самый низкий показатель пива (0,622/1k) и самый маленький разрыв между пивом и пекарнями (1,40×). Пропорционально Гамбург ближе всех пяти городов к формуле «одно пивное заведение на одну пекарню»."], "City by city": ["Stadt für Stadt", "Город за городом"], "Per-city detail: place counts, city-wide rates, and how concentrated supply is — the share of every bakery or beer place that sits inside just the busiest 10% of populated hexes. A high share means the index is being driven by a small cluster of hyper-dense blocks (a market square, a nightlife strip) rather than being spread evenly across the city.": ["Details pro Stadt: Ortszahlen, stadtweite Raten und wie konzentriert das Angebot ist, also der Anteil aller Bäckereien oder Bierlokale in den belebtesten 10 % der bewohnten Sechsecke. Ein hoher Anteil heißt, dass der Index von wenigen extrem dichten Blöcken (Marktplatz, Ausgehmeile) getrieben wird, statt gleichmäßig über die Stadt verteilt zu sein.", "Подробности по городам: число заведений, показатели по всему городу и концентрация предложения, то есть доля всех пекарен или пивных в самых насыщенных 10% заселённых шестиугольников. Высокая доля означает, что индекс определяется небольшим скоплением сверхплотных кварталов (рыночная площадь, улица баров), а не равномерным распределением по городу."], "Comparing the five": ["Die fünf im Vergleich", "Сравнение пяти городов"], "Concentration: how much of the supply sits in the busiest 10% of hexes": ["Konzentration: wie viel des Angebots in den belebtesten 10 % der Sechsecke liegt", "Концентрация: какая часть предложения находится в 10% самых насыщенных шестиугольников"], "Bakery top-10% share": ["Anteil Bäckereien in Top 10 %", "Доля пекарен в топ-10%"], "Beer top-10% share": ["Anteil Bier in Top 10 %", "Доля пивных в топ-10%"], "Hexes with neither": ["Sechsecke ohne beides", "Шестиугольники без того и другого"], "\"Hexes with neither\" = share of populated hexes with zero bakeries and zero beer places, after smoothing — i.e. purely residential blocks with no walkable bakery or bar in the immediate hex.": ["„Sechsecke ohne beides“ = Anteil bewohnter Sechsecke ohne Bäckerei und ohne Bierlokal nach der Glättung, also reine Wohnblöcke ohne Bäckerei oder Bar im eigenen Sechseck.", "«Шестиугольники без того и другого» — доля заселённых шестиугольников без пекарен и без пивных после сглаживания, то есть чисто жилые кварталы без пекарни или бара в пешей доступности внутри шестиугольника."], "Hamburg is the most spatially concentrated city on both metrics at once: 93.6% of its bakeries and 90.4% of its beer places sit in the busiest tenth of populated hexes, and 81.8% of populated hexes have neither. Combined with the lowest city-wide beer rate, this points to a city where supply is unusually clustered into a few dense nodes (its historic core and nightlife strips) against a much larger residential footprint with none at all — consistent with Hamburg's hex count and area being the largest after Berlin, for a population smaller than Köln's.": ["Hamburg ist bei beiden Kennzahlen zugleich die räumlich konzentrierteste Stadt: 93,6 % der Bäckereien und 90,4 % der Bierlokale liegen im belebtesten Zehntel der bewohnten Sechsecke, und 81,8 % der bewohnten Sechsecke haben keins von beiden. Zusammen mit der niedrigsten stadtweiten Bierrate deutet das auf eine Stadt, deren Angebot ungewöhnlich stark in wenigen dichten Knoten (Altstadtkern und Ausgehmeilen) gebündelt ist, während eine viel größere Wohnfläche gar keins hat. Das passt dazu, dass Hamburg nach Berlin die meisten Sechsecke und die größte Fläche hat, bei weniger Einwohnern als Köln.", "Гамбург — самый концентрированный город сразу по обоим показателям: 93,6% его пекарен и 90,4% пивных находятся в самой насыщенной десятой части заселённых шестиугольников, а в 81,8% заселённых шестиугольников нет ни того, ни другого. Вместе с самым низким показателем пива по городу это указывает на город, где предложение необычно сильно собрано в нескольких плотных узлах (исторический центр и улицы баров), а гораздо большая жилая территория не имеет ничего. Это согласуется с тем, что по числу шестиугольников и площади Гамбург второй после Берлина, а населения в нём меньше, чем в Кёльне."], "München sits at the opposite pole: it has the": ["München liegt am anderen Pol: Es hat die", "Мюнхен на противоположном полюсе: у него"], "lowest": ["niedrigste", "самая низкая"], "concentration on the bakery side (72.3%) and the lowest \"neither\" share (67.1%) — its bakery network reaches further into ordinary residential hexes than any other city studied, even though its city-wide bakery rate (0.477/1k) is only middling. Berlin and Frankfurt track each other closely on the beer-to-bakery ratio (1.80× each) despite Frankfurt being roughly a fifth of Berlin's population — Frankfurt's compact, business-district-heavy core produces the same relative skew toward drinking establishments as Berlin's much larger and more spread-out footprint.": ["Konzentration bei Bäckereien (72,3 %) und den niedrigsten Anteil „ohne beides“ (67,1 %). Sein Bäckereinetz reicht weiter in gewöhnliche Wohnsechsecke als in jeder anderen untersuchten Stadt, obwohl seine stadtweite Bäckereirate (0,477/1k) nur mittelmäßig ist. Berlin und Frankfurt liegen beim Verhältnis Bier zu Bäckerei gleichauf (je 1,80×), obwohl Frankfurt nur etwa ein Fünftel der Einwohner Berlins hat: Frankfurts kompakter, bürolastiger Kern erzeugt dasselbe relative Übergewicht der Kneipen wie Berlins viel größere und weiter verteilte Fläche.", "концентрация пекарен (72,3%) и самая низкая доля «ни того, ни другого» (67,1%): сеть пекарен глубже проникает в обычные жилые шестиугольники, чем в любом другом изученном городе, хотя показатель пекарен по городу (0,477/1k) лишь средний. Берлин и Франкфурт близки по отношению пива к пекарням (по 1,80×), хотя во Франкфурте примерно в пять раз меньше жителей: компактный, насыщенный офисами центр Франкфурта даёт такой же относительный перекос в сторону баров, как гораздо большая и более рассредоточенная территория Берлина."], "Reading the median rate": ["Wie man die Medianrate liest", "Как читать медианный показатель"], "The \"median smoothed rate\" in the city cards above is computed only over hexes that actually contain at least one bakery or beer place — it answers \"when a hex has one, how strong is the local walkability signal,\" independent of how many hexes have zero. Köln and Hamburg post the two highest bakery medians (0.702 and 0.730) despite neither topping the city-wide bakery rate table, meaning that where a Köln or Hamburg hex does have a bakery, it tends to be part of a denser walkable cluster than the same situation in Berlin or Frankfurt.": ["Die „geglättete Medianrate“ in den Stadtkarten oben wird nur über Sechsecke berechnet, die mindestens eine Bäckerei oder ein Bierlokal enthalten. Sie beantwortet: „Wenn ein Sechseck eins hat, wie stark ist das lokale Fußläufigkeitssignal?“, unabhängig davon, wie viele Sechsecke keins haben. Köln und Hamburg haben die beiden höchsten Bäckerei-Mediane (0,702 und 0,730), obwohl keine von beiden die stadtweite Bäckereirate anführt. Wo also ein Kölner oder Hamburger Sechseck eine Bäckerei hat, gehört sie eher zu einem dichteren fußläufigen Cluster als in Berlin oder Frankfurt.", "«Сглаженный медианный показатель» в карточках городов выше считается только по шестиугольникам, где есть хотя бы одна пекарня или пивная. Он отвечает на вопрос «если в шестиугольнике что-то есть, насколько сильна местная пешая доступность», независимо от того, сколько шестиугольников пусты. У Кёльна и Гамбурга две самые высокие медианы по пекарням (0,702 и 0,730), хотя ни один из них не лидирует по показателю пекарен по городу. Значит, если в кёльнском или гамбургском шестиугольнике есть пекарня, она чаще входит в более плотное пешеходное скопление, чем в Берлине или Франкфурте."], "Hex geometry EPSG:3035 · 500 m pointy-top grid · 0.1624 km² per cell · Overture Maps release 2026-06-17.0 · Zensus 2022 100 m population grid · all rates computed from 1-ring neighbor-smoothed counts.": ["Sechseckgeometrie EPSG:3035 · 500-m-Raster mit Spitze oben · 0,1624 km² pro Zelle · Overture Maps Release 2026-06-17.0 · Zensus 2022, 100-m-Bevölkerungsraster · alle Raten aus über einen Nachbarring geglätteten Zahlen.", "Геометрия шестиугольников EPSG:3035 · сетка 500 м вершиной вверх · 0,1624 км² на ячейку · Overture Maps, выпуск 2026-06-17.0 · сетка населения Zensus 2022, 100 м · все показатели по числам, сглаженным по одному кольцу соседей."], "residents": ["Einwohner", "жителей"], "km² (city boundary)": ["km² (Stadtgrenze)", "км² (граница города)"], "populated hexes": ["bewohnte Sechsecke", "заселённых шестиугольников"], "Bakery /1k": ["Bäckerei /1k", "Пекарни /1k"]}, "frag": [["Beer-leaning", "Bierlastig", "Перекос к пиву"], ["Most balanced", "Am ausgewogensten", "Самый сбалансированный"], ["Mixed", "Gemischt", "Смешанный"], ["× beer:bakery", "× Bier:Bäckerei", "× пиво:пекарни"], [" beer places and ", " Bierlokale und ", " пивных и "], [" bakeries across ", " Bäckereien in ", " пекарен в "], [" populated hexes. The busiest 10% of hexes hold ", " bewohnten Sechsecken. Die belebtesten 10 % der Sechsecke enthalten ", " заселённых шестиугольниках. В 10% самых насыщенных шестиугольников находятся "], [" of all beer places and ", " aller Bierlokale und ", " всех пивных и "], [" of all bakeries. Median smoothed rate where present: ", " aller Bäckereien. Geglättete Medianrate, wo vorhanden: ", " всех пекарен. Сглаженная медиана там, где есть заведения: "], [" beer /1k, ", " Bier /1k, ", " пиво /1k, "], [" bakery /1k.", " Bäckerei /1k.", " пекарни /1k."]]};</script>
+<script id="i18n-runtime">(function () {
+  // Page translations: exact text lookups (I18N.dict) plus substring rules
+  // (I18N.frag) for text that scripts build at runtime. English is the source.
+  var D = (window.I18N && window.I18N.dict) || {};
+  var F = ((window.I18N && window.I18N.frag) || []).slice().sort(function (a, b) { return b[0].length - a[0].length; });
+  var LANGS = ["en", "de", "ru"], IDX = { de: 0, ru: 1 };
+  var ATTRS = ["aria-label", "placeholder", "title", "alt"];
+  var orig = new WeakMap(), origAttr = new WeakMap(), wrote = new WeakMap(), wroteAttr = new WeakMap();
+  var lang = "en";
+
+  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  function tr(en) {
+    if (lang === "en") return en;
+    var k = norm(en);
+    if (!k || !/[A-Za-zÀ-ÿ]/.test(k)) return en;
+    var hit = D[k];
+    var out = hit ? hit[IDX[lang]] : null;
+    if (out == null) {
+      // pad with spaces so rules that start or end with a space also match at the edges
+      var t = " " + k + " ", changed = false;
+      for (var i = 0; i < F.length; i++) {
+        if (t.indexOf(F[i][0]) !== -1) { t = t.split(F[i][0]).join(F[i][1 + IDX[lang]]); changed = true; }
+      }
+      if (!changed) return en;
+      out = t.trim();
+    }
+    var lead = en.match(/^\s*/)[0], trail = en.match(/\s*$/)[0];
+    return lead + out + trail;
+  }
+  function doText(n) {
+    var p = n.parentNode;
+    if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName) || (p.closest && p.closest("#i18n-switch"))) return;
+    if (!orig.has(n)) orig.set(n, n.nodeValue);
+    var v = tr(orig.get(n));
+    if (n.nodeValue !== v) { wrote.set(n, v); n.nodeValue = v; }
+  }
+  function doEl(el) {
+    if (el.id === "i18n-switch") return;
+    var m = origAttr.get(el);
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a)) continue;
+      if (!m) { m = {}; origAttr.set(el, m); }
+      if (!(a in m)) m[a] = el.getAttribute(a);
+      var v = tr(m[a]);
+      if (el.getAttribute(a) !== v) {
+        var w = wroteAttr.get(el) || {}; w[a] = v; wroteAttr.set(el, w);
+        el.setAttribute(a, v);
+      }
+    }
+  }
+  function walk(root) {
+    if (root.nodeType === 3) { doText(root); return; }
+    if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/.test(root.nodeName)) return;
+    doEl(root);
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    var n;
+    while ((n = w.nextNode())) {
+      if (n.nodeType === 3) doText(n);
+      else if (n.id === "i18n-switch") continue;
+      else doEl(n);
+    }
+  }
+  var titleEn = document.title;
+  function apply() {
+    walk(document.body);
+    document.title = tr(titleEn);
+    document.documentElement.lang = lang;
+  }
+  // Page scripts keep writing English; record it as the new original and
+  // translate it, but ignore the mutations this script made itself.
+  new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) {
+      var m = ms[i], t = m.target;
+      if (m.type === "characterData") {
+        if (t.nodeValue === wrote.get(t)) continue;
+        orig.set(t, t.nodeValue);
+        if (lang !== "en") doText(t);
+      } else if (m.type === "attributes") {
+        var a = m.attributeName, val = t.getAttribute(a), w = wroteAttr.get(t);
+        if (w && w[a] === val) continue;
+        var o = origAttr.get(t) || {};
+        o[a] = val; origAttr.set(t, o);
+        if (lang !== "en") doEl(t);
+      } else if (lang !== "en") {
+        for (var j = 0; j < m.addedNodes.length; j++) walk(m.addedNodes[j]);
+      }
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+
+  var css = document.createElement("style");
+  css.textContent =
+    "#i18n-switch{position:fixed;z-index:2147483000;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(20,28,26,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.25);font:500 12px/1 ui-monospace,Menlo,monospace}" +
+    "#i18n-switch button{all:unset;cursor:pointer;color:#cfd8d5;padding:6px 9px;border-radius:999px;letter-spacing:.05em}" +
+    "#i18n-switch button[aria-pressed=true]{background:#3cc4ad;color:#0e1513}" +
+    "#i18n-switch button:focus-visible{outline:2px solid #3cc4ad;outline-offset:2px}";
+  document.head.appendChild(css);
+  var box = document.createElement("div");
+  box.id = "i18n-switch"; box.setAttribute("role", "group"); box.setAttribute("aria-label", "Language");
+  LANGS.forEach(function (l) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = l.toUpperCase(); b.dataset.lang = l;
+    b.addEventListener("click", function () { set(l, true); });
+    box.appendChild(b);
+  });
+  document.body.appendChild(box);
+
+  function set(l, save) {
+    lang = LANGS.indexOf(l) >= 0 ? l : "en";
+    [].forEach.call(box.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    apply();
+    if (save) { try { localStorage.setItem("lang", lang); } catch (e) {} }
+  }
+  var start = (location.hash || "").replace("#", "");
+  if (LANGS.indexOf(start) < 0) { try { start = localStorage.getItem("lang"); } catch (e) { start = null; } }
+  set(start || "en", false);
+})();
+</script>
+</body></html>

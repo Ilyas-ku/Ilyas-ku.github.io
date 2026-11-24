@@ -1,0 +1,341 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Housing in Germany's 7 Largest Cities</title>
+<style>
+/* Layout: one reading column, each section = heading, chart, data table underneath */
+:root{
+  --bg:#f9f9f7; --surface:#fcfcfb; --fg:#0b0b0b; --fg2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10); --accent:#256abf;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7;
+  --bar:#2a78d6; --bar2:#86b6ef;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d0d0d; --surface:#1a1a19; --fg:#ffffff; --fg2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10); --accent:#6da7ec;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9;
+  --bar:#3987e5; --bar2:#184f95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d0d0d; --surface:#1a1a19; --fg:#ffffff; --fg2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10); --accent:#6da7ec;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9;
+  --bar:#3987e5; --bar2:#184f95; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;gap:36px}
+header{display:grid;gap:8px}
+h1{font-size:1.75rem;line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:1.25rem;margin:0;text-wrap:balance}
+p{margin:0;max-width:68ch;color:var(--fg2)}
+.lede{color:var(--fg2)}
+section{display:grid;gap:14px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:16px;display:grid;gap:12px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--ring);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;padding:5px 12px;border:0;background:transparent;color:var(--fg2);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--fg2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chart{position:relative;min-width:0}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{fill:var(--muted);font-size:11px;font-family:var(--sans)}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--ring);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);min-width:150px;z-index:2;font-variant-numeric:tabular-nums}
+.tip b{display:block;margin-bottom:4px;color:var(--fg)}
+.tip div{display:flex;justify-content:space-between;gap:12px;color:var(--fg2)}
+.tip div span:first-child{display:inline-flex;align-items:center;gap:6px}
+.tip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{color:var(--muted);font-weight:600;font-size:12px}
+td.dn{color:var(--fg2)}
+.small{font-size:12.5px;color:var(--muted);max-width:none}
+.small a{color:var(--accent)}
+details summary{cursor:pointer;color:var(--fg2);font-size:13.5px}
+details[open] summary{margin-bottom:8px}
+.multi{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.mini{display:grid;gap:4px;min-width:0}
+.mini h3{font-size:13.5px;margin:0;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.mini h3 span{white-space:nowrap;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.key{display:flex;gap:14px;font-size:12.5px;color:var(--fg2);flex-wrap:wrap}
+.key span{display:inline-flex;gap:6px;align-items:center}
+.key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Housing in Germany's 7 Largest Cities</h1>
+  <p class="lede">New flats completed in 2021–2025, asking rents and flat purchase prices in Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart and Düsseldorf. Official and academic sources only, linked below each block.</p>
+</header>
+
+<section id="build">
+  <h2>Completions: new flats in new residential buildings</h2>
+  <p>In 2025 the seven cities together completed 27,711 flats, down from 36,296 a year earlier (−24%). Only Cologne grew. Frankfurt stayed flat. The largest drops were in Stuttgart (−65%), Berlin (−35%) and Munich (−33%).</p>
+  <div class="card">
+    <div class="row">
+      <div class="key"><span><i style="background:var(--bar)"></i>Apartment buildings</span><span><i style="background:var(--bar2)"></i>1–2-family houses</span></div>
+      <div class="seg" role="group" aria-label="Unit">
+        <button type="button" id="b-abs" aria-pressed="true">Flats</button>
+        <button type="button" id="b-rel" aria-pressed="false">Per 10,000 residents</button>
+      </div>
+    </div>
+    <div class="multi" id="multi"></div>
+    <div class="tablewrap"><table id="t-build"></table></div>
+    <p class="small">Flats in new residential buildings (1–2-family houses and apartment buildings). Excludes dormitories and flats created by converting existing buildings. Source: <a href="https://www.bbsr.bund.de/BBSR/DE/forschung/fachbeitraege/wohnen-immobilien/bautaetigkeit/wohnungsbaufertigstellungen/wohnungsbaufertigstellungen.html" target="_blank" rel="noopener">BBSR, Wohnungsmarktbeobachtung</a> based on Baufertigstellungen statistics. Checked against Bavaria's report for Munich (2021, 2024 and 2025 match).</p>
+    <details>
+      <summary>All flats including conversions (Munich, Cologne, Düsseldorf)</summary>
+      <div class="tablewrap"><table>
+        <thead><tr><th>City</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+        <tbody>
+          <tr><td>München</td><td>7 509</td><td>7 528</td><td>9 857</td><td>6 503</td><td>4 324</td></tr>
+          <tr><td>Köln</td><td>2 515</td><td>2 337</td><td>3 442</td><td>1 788</td><td>4 371</td></tr>
+          <tr><td>Düsseldorf</td><td>2 361</td><td>2 140</td><td>2 063</td><td>1 990</td><td>1 704</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small">Flats in residential and non-residential buildings, all construction work. Sources: <a href="https://www.statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/f2200c_202500.pdf" target="_blank" rel="noopener">Bayerisches Landesamt für Statistik, F2200C</a>; <a href="https://statistik.nrw/wirtschaft-und-umwelt/handwerk-und-bau/bautaetigkeit" target="_blank" rel="noopener">IT.NRW, F223</a> (table 13).</p>
+    </details>
+  </div>
+</section>
+
+<section id="rent">
+  <h2>Rent: asking rents</h2>
+  <p>From 2020 to 2025 asking rents rose everywhere, from +11% in Stuttgart to +23% in Berlin. Munich is the most expensive at €21.01/m² in 2025.</p>
+  <div class="card">
+    <div class="row">
+      <div class="legend" id="lg-rent"></div>
+      <div class="seg" role="group" aria-label="Rent measure">
+        <button type="button" id="r-eur" aria-pressed="true">€/m²</button>
+        <button type="button" id="r-idx" aria-pressed="false">Index, 2020 = 100</button>
+      </div>
+    </div>
+    <div class="chart" id="c-rent"></div>
+    <div class="tablewrap"><table id="t-rent"></table></div>
+    <p class="small">Average asking rent for re-lets in online listings, €/m² excluding utilities. Revised BBSR series (2026). Source: <a href="https://www.bbsr.bund.de/BBSR/DE/forschung/fachbeitraege/wohnen-immobilien/mieten-preise/mieten/wohnungsmieten.html" target="_blank" rel="noopener">BBSR, Wohnungsmieten</a>. Listings overstate actual new-lease rents: cheap flats are often let without being advertised.</p>
+  </div>
+</section>
+
+<section id="buy">
+  <h2>Buying: flat prices</h2>
+  <p>Prices rose to a peak in 2022, fell in 2023 and have recovered slowly since. By 2025 they were above the 2020 level in Cologne (+20%) and Berlin (+16%). Munich is back at its 2020 level.</p>
+  <div class="card">
+    <div class="row"><div class="legend" id="lg-buy"></div></div>
+    <div class="chart" id="c-buy"></div>
+    <div class="tablewrap"><table id="t-buy"></table></div>
+    <p class="small">GREIX flat price index from actual sales (valuation committee data), quality-adjusted, nominal, quarterly. Rebased: 2020 average = 100. Hamburg data runs only to Q4 2024. Source: <a href="https://greix.de" target="_blank" rel="noopener">GREIX, Kiel Institut</a>.</p>
+  </div>
+</section>
+</div>
+
+<script>
+const D={"cities": ["Berlin", "Hamburg", "München", "Köln", "Frankfurt am Main", "Stuttgart", "Düsseldorf"], "comp": {"Berlin": [{"y": 2021, "e": 1252, "m": 12882, "t": 14134, "p": 3566201, "k": 39.6}, {"y": 2022, "e": 975, "m": 14393, "t": 15368, "p": 3632853, "k": 42.3}, {"y": 2023, "e": 988, "m": 13443, "t": 14431, "p": 3782202, "k": 38.2}, {"y": 2024, "e": 978, "m": 13637, "t": 14615, "p": 3685265, "k": 39.7}, {"y": 2025, "e": 804, "m": 8627, "t": 9431, "p": 3685265, "k": 25.6}], "Hamburg": [{"y": 2021, "e": 1031, "m": 6283, "t": 7314, "p": 1799892, "k": 40.6}, {"y": 2022, "e": 1147, "m": 7509, "t": 8656, "p": 1832675, "k": 47.2}, {"y": 2023, "e": 887, "m": 4733, "t": 5620, "p": 1910160, "k": 29.4}, {"y": 2024, "e": 704, "m": 7196, "t": 7900, "p": 1862565, "k": 42.4}, {"y": 2025, "e": 482, "m": 5006, "t": 5488, "p": 1862565, "k": 29.5}], "München": [{"y": 2021, "e": 676, "m": 6144, "t": 6820, "p": 1467731, "k": 46.5}, {"y": 2022, "e": 471, "m": 5996, "t": 6467, "p": 1490516, "k": 43.4}, {"y": 2023, "e": 772, "m": 8307, "t": 9079, "p": 1510378, "k": 60.1}, {"y": 2024, "e": 571, "m": 5344, "t": 5915, "p": 1505005, "k": 39.3}, {"y": 2025, "e": 365, "m": 3595, "t": 3960, "p": 1505005, "k": 26.3}], "Köln": [{"y": 2021, "e": 250, "m": 1982, "t": 2232, "p": 1015298, "k": 22.0}, {"y": 2022, "e": 328, "m": 1773, "t": 2101, "p": 1021253, "k": 20.6}, {"y": 2023, "e": 277, "m": 2955, "t": 3232, "p": 1087353, "k": 29.7}, {"y": 2024, "e": 186, "m": 1387, "t": 1573, "p": 1024621, "k": 15.4}, {"y": 2025, "e": 231, "m": 3250, "t": 3481, "p": 1024621, "k": 34.0}], "Frankfurt am Main": [{"y": 2021, "e": 199, "m": 2813, "t": 3012, "p": 735880, "k": 40.9}, {"y": 2022, "e": 166, "m": 2332, "t": 2498, "p": 747389, "k": 33.4}, {"y": 2023, "e": 113, "m": 2729, "t": 2842, "p": 775790, "k": 36.6}, {"y": 2024, "e": 110, "m": 3353, "t": 3463, "p": 756021, "k": 45.8}, {"y": 2025, "e": 95, "m": 3368, "t": 3463, "p": 756021, "k": 45.8}], "Stuttgart": [{"y": 2021, "e": 118, "m": 1203, "t": 1321, "p": 607344, "k": 21.8}, {"y": 2022, "e": 104, "m": 671, "t": 775, "p": 612041, "k": 12.7}, {"y": 2023, "e": 123, "m": 1523, "t": 1646, "p": 633484, "k": 26.0}, {"y": 2024, "e": 113, "m": 910, "t": 1023, "p": 612663, "k": 16.7}, {"y": 2025, "e": 45, "m": 318, "t": 363, "p": 612663, "k": 5.9}], "Düsseldorf": [{"y": 2021, "e": 115, "m": 1847, "t": 1962, "p": 606161, "k": 32.4}, {"y": 2022, "e": 145, "m": 1667, "t": 1812, "p": 614399, "k": 29.5}, {"y": 2023, "e": 227, "m": 1659, "t": 1886, "p": 631217, "k": 29.9}, {"y": 2024, "e": 117, "m": 1690, "t": 1807, "p": 618685, "k": 29.2}, {"y": 2025, "e": 83, "m": 1442, "t": 1525, "p": 618685, "k": 24.6}]}, "rent": {"Berlin": [11.42, 11.0, 11.85, 13.6, 13.84, 14.09], "Hamburg": [12.01, 12.53, 13.03, 13.44, 14.29, 14.68], "München": [18.66, 18.98, 19.22, 20.0, 20.66, 21.01], "Köln": [11.62, 12.06, 12.55, 13.05, 13.43, 13.79], "Frankfurt am Main": [14.53, 14.3, 14.43, 14.83, 15.88, 16.64], "Stuttgart": [14.41, 14.24, 14.44, 14.83, 15.44, 16.02], "Düsseldorf": [11.34, 11.37, 11.82, 12.33, 13.15, 13.77]}, "price": {"t": ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4", "2022Q1", "2022Q2", "2022Q3", "2022Q4", "2023Q1", "2023Q2", "2023Q3", "2023Q4", "2024Q1", "2024Q2", "2024Q3", "2024Q4", "2025Q1", "2025Q2", "2025Q3", "2025Q4", "2026Q1", "2026Q2"], "s": {"Berlin": [97.8, 99.0, 100.4, 102.8, 106.5, 111.7, 115.2, 119.0, 122.4, 125.5, 126.1, 122.0, 118.7, 116.2, 115.1, 114.6, 113.3, 115.6, 115.7, 114.8, 116.6, 116.7, 116.3, 114.6, 114.3, null], "Hamburg": [96.0, 97.6, 100.6, 105.8, 108.8, 112.9, 119.4, 121.5, 122.3, 123.5, 121.0, 114.3, 110.7, 107.4, 104.9, 106.4, 103.7, 103.1, 102.7, 102.4, null, null, null, null, null, null], "München": [98.1, 99.0, 100.1, 102.9, 105.4, 110.1, 112.7, 116.1, 117.5, 119.8, 114.0, 105.9, 103.1, 101.0, 98.6, 96.1, 96.6, 97.2, 98.0, 99.6, 100.6, 100.4, 101.0, 98.8, 99.3, null], "Köln": [96.1, 99.1, 101.6, 103.2, 110.6, 113.3, 116.8, 117.9, 120.8, 124.1, 120.4, 119.3, 112.9, 114.8, 112.8, 110.8, 115.2, 117.0, 116.3, 115.4, 119.1, 119.4, 120.0, 121.7, 123.2, 123.3], "Frankfurt am Main": [97.9, 98.4, 101.6, 102.0, 109.6, 112.5, 116.0, 115.4, 118.5, 118.8, 113.8, 107.5, 100.7, 102.3, 99.8, 99.9, 99.8, 104.6, 103.9, 102.5, 103.2, 103.5, 103.8, 104.3, 103.3, 102.7], "Stuttgart": [96.2, 98.3, 101.1, 104.4, 112.4, 116.2, 117.1, 121.2, 125.4, 124.6, 119.5, 112.4, 110.8, 107.8, 102.8, 99.3, 99.1, 99.5, 100.5, 101.2, 102.9, 100.9, 100.5, 102.1, 100.3, 98.8], "Düsseldorf": [94.4, 100.2, 101.3, 104.2, 107.4, 115.6, 116.5, 117.9, 123.5, 121.7, 122.1, 110.0, 103.2, 107.5, 100.5, 102.9, 103.4, 104.5, 105.2, 104.7, 106.8, 107.5, 109.6, 108.3, 108.6, 109.9]}}};
+const C=D.cities, COL=C.map((_,i)=>`var(--s${i+1})`);
+const NS="http://www.w3.org/2000/svg";
+const fmt=(v,d=0)=>v==null?"–":v.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+function legend(id){document.getElementById(id).innerHTML=C.map((c,i)=>`<span><i style="background:${COL[i]}"></i>${c}</span>`).join("")}
+function niceTicks(lo,hi,n=5){const r=hi-lo,s=Math.pow(10,Math.floor(Math.log10(r/n))),m=[1,2,2.5,5,10].find(x=>r/(s*x)<=n)*s;const a=Math.floor(lo/m)*m,b=Math.ceil(hi/m)*m,t=[];for(let v=a;v<=b+1e-9;v+=m)t.push(+v.toFixed(6));return t}
+
+function lineChart(host,labels,series,opt){
+  host.innerHTML="";const W=900,H=340,ml=44,mr=16,mt=12,mb=28,iw=W-ml-mr,ih=H-mt-mb;
+  const all=series.flatMap(s=>s.v.filter(v=>v!=null));
+  const ticks=niceTicks(Math.min(...all),Math.max(...all));const y0=ticks[0],y1=ticks[ticks.length-1];
+  const X=i=>ml+(labels.length===1?0:i*iw/(labels.length-1)),Y=v=>mt+ih-(v-y0)/(y1-y0)*ih;
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":opt.aria},host);
+  ticks.forEach(t=>{el("line",{x1:ml,x2:W-mr,y1:Y(t),y2:Y(t),stroke:"var(--grid)","stroke-width":1},svg);const tx=el("text",{x:ml-6,y:Y(t)+4,"text-anchor":"end"},svg);tx.textContent=fmt(t,opt.dec||0)});
+  el("line",{x1:ml,x2:W-mr,y1:mt+ih,y2:mt+ih,stroke:"var(--axis)","stroke-width":1},svg);
+  labels.forEach((l,i)=>{if(opt.xshow(l,i)){const tx=el("text",{x:X(i),y:H-8,"text-anchor":"middle"},svg);tx.textContent=opt.xfmt(l)}});
+  if(opt.base!=null&&opt.base>=y0)el("line",{x1:ml,x2:W-mr,y1:Y(opt.base),y2:Y(opt.base),stroke:"var(--axis)","stroke-dasharray":"3 3"},svg);
+  series.forEach((s,k)=>{let d="",pen=false;s.v.forEach((v,i)=>{if(v==null){pen=false;return}d+=(pen?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1);pen=true});
+    el("path",{d,fill:"none",stroke:COL[k],"stroke-width":2,"stroke-linejoin":"round","stroke-linecap":"round"},svg);
+    let li=s.v.length-1;while(li>=0&&s.v[li]==null)li--;
+    el("circle",{cx:X(li),cy:Y(s.v[li]),r:3.5,fill:COL[k],stroke:"var(--surface)","stroke-width":2},svg)});
+  const cross=el("line",{y1:mt,y2:mt+ih,stroke:"var(--axis)","stroke-width":1,visibility:"hidden"},svg);
+  const dots=series.map((s,k)=>el("circle",{r:4,fill:COL[k],stroke:"var(--surface)","stroke-width":2,visibility:"hidden"},svg));
+  const tip=document.createElement("div");tip.className="tip";tip.hidden=true;host.appendChild(tip);
+  const hit=el("rect",{x:ml,y:mt,width:iw,height:ih,fill:"transparent"},svg);
+  const move=e=>{const r=svg.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*W;const i=Math.max(0,Math.min(labels.length-1,Math.round((px-ml)/iw*(labels.length-1))));
+    cross.setAttribute("x1",X(i));cross.setAttribute("x2",X(i));cross.setAttribute("visibility","visible");
+    const rows=series.map((s,k)=>({k,v:s.v[i]})).sort((a,b)=>(b.v??-1e9)-(a.v??-1e9));
+    dots.forEach((d,k)=>{const v=series[k].v[i];if(v==null){d.setAttribute("visibility","hidden");return}d.setAttribute("cx",X(i));d.setAttribute("cy",Y(v));d.setAttribute("visibility","visible")});
+    tip.innerHTML=`<b>${opt.xfmt(labels[i],true)}</b>`+rows.map(o=>`<div><span><i style="background:${COL[o.k]}"></i>${C[o.k]}</span><span>${fmt(o.v,opt.dec||0)}${opt.unit||""}</span></div>`).join("");
+    tip.hidden=false;const hr=host.getBoundingClientRect(),xp=X(i)/W*hr.width;tip.style.top="8px";
+    tip.style.left=(xp>hr.width/2?Math.max(0,xp-tip.offsetWidth-12):Math.min(hr.width-tip.offsetWidth,xp+12))+"px"};
+  hit.addEventListener("pointermove",move);hit.addEventListener("pointerdown",move);
+  hit.addEventListener("pointerleave",()=>{tip.hidden=true;cross.setAttribute("visibility","hidden");dots.forEach(d=>d.setAttribute("visibility","hidden"))});
+}
+function table(id,head,rows){document.getElementById(id).innerHTML=`<thead><tr>${head.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,j)=>`<td${j&&c==="–"?' class="dn"':""}>${c}</td>`).join("")}</tr>`).join("")}</tbody>`}
+function seg(a,b,cb){const A=document.getElementById(a),B=document.getElementById(b);A.onclick=()=>{A.setAttribute("aria-pressed","true");B.setAttribute("aria-pressed","false");cb(0)};B.onclick=()=>{B.setAttribute("aria-pressed","true");A.setAttribute("aria-pressed","false");cb(1)}}
+
+/* completions: small multiples, shared scale */
+function drawBuild(rel){
+  const host=document.getElementById("multi");host.innerHTML="";
+  const val=r=>rel?[r.e/r.p*1e4,r.m/r.p*1e4]:[r.e,r.m];
+  const max=Math.max(...C.flatMap(c=>D.comp[c].map(r=>{const v=val(r);return v[0]+v[1]})));
+  const ticks=niceTicks(0,max,3);const top=ticks[ticks.length-1];
+  C.forEach(c=>{const rows=D.comp[c];const last=rows[rows.length-1];
+    const box=document.createElement("div");box.className="mini";
+    box.innerHTML=`<h3>${c}<span>2025: ${rel?fmt(last.k,1):fmt(last.t)}</span></h3>`;
+    const W=220,H=130,ml=34,mb=18,mt=6,ih=H-mt-mb,iw=W-ml-4,bw=iw/rows.length;
+    const ch=document.createElement("div");ch.className="chart";box.appendChild(ch);
+    const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":`${c}: flats completed by year`},ch);
+    const Y=v=>mt+ih-v/top*ih;
+    ticks.forEach(t=>{el("line",{x1:ml,x2:W-4,y1:Y(t),y2:Y(t),stroke:"var(--grid)"},svg);const tx=el("text",{x:ml-4,y:Y(t)+3.5,"text-anchor":"end"},svg);tx.textContent=t>=1000?fmt(t/1000)+"k":fmt(t)});
+    const tip=document.createElement("div");tip.className="tip";tip.hidden=true;ch.appendChild(tip);
+    rows.forEach((r,i)=>{const [e,m]=val(r),x=ml+i*bw+bw*.18,w=bw*.64;
+      const g=el("g",{},svg);
+      el("rect",{x,y:Y(e),width:w,height:Math.max(0,ih+mt-Y(e)),fill:"var(--bar2)",rx:1},g);
+      const ym=Y(e+m);el("rect",{x,y:ym,width:w,height:Math.max(0,Y(e)-ym-1.5),fill:"var(--bar)",rx:2},g);
+      const tx=el("text",{x:x+w/2,y:H-4,"text-anchor":"middle"},svg);tx.textContent="’"+String(r.y).slice(2);
+      const hit=el("rect",{x:ml+i*bw,y:mt,width:bw,height:ih,fill:"transparent"},svg);
+      const show=()=>{tip.innerHTML=`<b>${c}, ${r.y}</b><div><span>Total</span><span>${fmt(r.t)}</span></div><div><span>Apartment bldgs</span><span>${fmt(r.m)}</span></div><div><span>1–2-family</span><span>${fmt(r.e)}</span></div><div><span>Per 10,000 res.</span><span>${fmt(r.k,1)}</span></div>`;tip.hidden=false;
+        const hr=ch.getBoundingClientRect(),xp=(ml+i*bw+bw/2)/W*hr.width;tip.style.top="0px";tip.style.left=(xp>hr.width/2?Math.max(0,xp-tip.offsetWidth-8):Math.min(hr.width-tip.offsetWidth,xp+8))+"px"};
+      hit.addEventListener("pointerenter",show);hit.addEventListener("pointerdown",show);hit.addEventListener("pointerleave",()=>tip.hidden=true)});
+    host.appendChild(box)});
+  const yrs=D.comp[C[0]].map(r=>r.y);
+  table("t-build",["City",...yrs,"2025 vs 2024"],C.map(c=>{const r=D.comp[c];const a=r[r.length-2].t,b=r[r.length-1].t;const ch=Math.round((b/a-1)*100);
+    return [c,...r.map(x=>rel?fmt(x.k,1):fmt(x.t)),(ch>0?"+":ch<0?"−":"")+Math.abs(ch)+"%"]}).concat([["All 7 cities",...yrs.map((y,i)=>{const t=C.reduce((s,c)=>s+D.comp[c][i].t,0);const p=C.reduce((s,c)=>s+D.comp[c][i].p,0);return rel?fmt(t/p*1e4,1):fmt(t)}),"−24%"]]));
+}
+seg("b-abs","b-rel",v=>drawBuild(v));drawBuild(0);
+
+/* rent */
+const RY=[2020,2021,2022,2023,2024,2025];
+legend("lg-rent");
+function drawRent(idx){const s=C.map(c=>({v:D.rent[c].map(v=>idx?v/D.rent[c][0]*100:v)}));
+  lineChart(document.getElementById("c-rent"),RY,s,{dec:idx?0:2,unit:idx?"":" €",aria:"Asking rents by year",xshow:()=>true,xfmt:l=>String(l),base:idx?100:null});}
+seg("r-eur","r-idx",v=>drawRent(v));drawRent(0);
+table("t-rent",["City, €/m²",...RY,"2025 vs 2020"],C.map(c=>{const v=D.rent[c];return [c,...v.map(x=>fmt(x,2)),"+"+fmt((v[5]/v[0]-1)*100,1)+"%"]}));
+
+/* buy */
+legend("lg-buy");
+const T=D.price.t;
+lineChart(document.getElementById("c-buy"),T,C.map(c=>({v:D.price.s[c]})),{dec:1,aria:"Flat price index by quarter",base:100,
+  xshow:(l)=>l.endsWith("Q1"),xfmt:(l,full)=>full?l.replace("Q"," · Q"):l.slice(0,4)});
+const ann=c=>{const s=D.price.s[c];return [2020,2021,2022,2023,2024,2025].map(y=>{const v=T.map((t,i)=>t.startsWith(y)?s[i]:null).filter(x=>x!=null);return v.length===4?v.reduce((a,b)=>a+b)/4:null})};
+table("t-buy",["City, index (2020 = 100)","2020","2021","2022","2023","2024","2025","Peak → 2025"],C.map(c=>{const a=ann(c);const pk=Math.max(...a.filter(x=>x!=null));const l=a[5];
+  return [c,...a.map(x=>fmt(x,1)),l==null?"–":"−"+fmt((1-l/pk)*100,1)+"%"]}));
+</script>
+
+
+
+<script id="i18n-data">window.I18N={"dict": {"Housing in Germany's 7 Largest Cities": ["Wohnen in den 7 größten Städten Deutschlands", "Жильё в 7 крупнейших городах Германии"], "New flats completed in 2021–2025, asking rents and flat purchase prices in Berlin, Hamburg, Munich, Cologne, Frankfurt, Stuttgart and Düsseldorf. Official and academic sources only, linked below each block.": ["Fertiggestellte Wohnungen 2021–2025, Angebotsmieten und Kaufpreise für Wohnungen in Berlin, Hamburg, München, Köln, Frankfurt, Stuttgart und Düsseldorf. Nur amtliche und wissenschaftliche Quellen, verlinkt unter jedem Block.", "Ввод новых квартир за 2021–2025 годы, ставки аренды и цены покупки квартир в Берлине, Гамбурге, Мюнхене, Кёльне, Франкфурте, Штутгарте и Дюссельдорфе. Только официальные и научные источники, ссылки внизу каждого блока."], "Completions: new flats in new residential buildings": ["Fertigstellungen: neue Wohnungen in neuen Wohngebäuden", "Ввод жилья: новые квартиры в новых жилых домах"], "In 2025 the seven cities together completed 27,711 flats, down from 36,296 a year earlier (−24%). Only Cologne grew. Frankfurt stayed flat. The largest drops were in Stuttgart (−65%), Berlin (−35%) and Munich (−33%).": ["2025 wurden in den sieben Städten zusammen 27.711 Wohnungen fertiggestellt, nach 36.296 im Vorjahr (−24 %). Nur Köln legte zu. Frankfurt blieb gleich. Am stärksten sanken Stuttgart (−65 %), Berlin (−35 %) und München (−33 %).", "В 2025 году в семи городах вместе сдано 27 711 квартир против 36 296 годом ранее (−24%). Рост только в Кёльне. Во Франкфурте объём не изменился. Сильнее всего упали Штутгарт (−65%), Берлин (−35%) и Мюнхен (−33%)."], "Apartment buildings": ["Mehrfamilienhäuser", "Многоквартирные дома"], "1–2-family houses": ["Ein- und Zweifamilienhäuser", "Дома на 1–2 квартиры"], "Flats": ["Wohnungen", "Квартир"], "Per 10,000 residents": ["Je 10.000 Einwohner", "На 10 000 жителей"], "Flats in new residential buildings (1–2-family houses and apartment buildings). Excludes dormitories and flats created by converting existing buildings. Source:": ["Wohnungen in neuen Wohngebäuden (Ein- und Zweifamilienhäuser und Mehrfamilienhäuser). Ohne Wohnheime und Wohnungen aus Umbauten bestehender Gebäude. Quelle:", "Квартиры в новых жилых домах (на 1–2 квартиры и многоквартирных). Не входят общежития и квартиры, полученные перестройкой существующих зданий. Источник:"], "based on Baufertigstellungen statistics. Checked against Bavaria's report for Munich (2021, 2024 and 2025 match).": ["auf Basis der Baufertigstellungsstatistik. Abgeglichen mit dem bayerischen Bericht für München (2021, 2024 und 2025 stimmen überein).", "по статистике Baufertigstellungen. Сверено с отчётом Баварии по Мюнхену (2021, 2024 и 2025 совпадают)."], "All flats including conversions (Munich, Cologne, Düsseldorf)": ["Alle Wohnungen einschließlich Umbauten (München, Köln, Düsseldorf)", "Все квартиры с учётом перестроек (Мюнхен, Кёльн, Дюссельдорф)"], "City": ["Stadt", "Город"], "Flats in residential and non-residential buildings, all construction work. Sources:": ["Wohnungen in Wohn- und Nichtwohngebäuden, alle Baumaßnahmen. Quellen:", "Квартиры в жилых и нежилых зданиях, все строительные работы. Источники:"], "(table 13).": ["(Tabelle 13).", "(табл. 13)."], "Rent: asking rents": ["Miete: Angebotsmieten", "Аренда: ставки в объявлениях"], "From 2020 to 2025 asking rents rose everywhere, from +11% in Stuttgart to +23% in Berlin. Munich is the most expensive at €21.01/m² in 2025.": ["Von 2020 bis 2025 stiegen die Angebotsmieten überall, von +11 % in Stuttgart bis +23 % in Berlin. Am teuersten ist München mit 21,01 €/m² im Jahr 2025.", "За 2020–2025 годы ставки выросли везде: от +11% в Штутгарте до +23% в Берлине. Самая дорогая аренда в Мюнхене, 21,01 €/м² в 2025 году."], "Index, 2020 = 100": ["Index, 2020 = 100", "Индекс, 2020 = 100"], "Average asking rent for re-lets in online listings, €/m² excluding utilities. Revised BBSR series (2026). Source:": ["Durchschnittliche Angebotsmiete bei Wiedervermietung in Online-Inseraten, €/m² nettokalt. Revidierte BBSR-Reihe (2026). Quelle:", "Средняя ставка повторной сдачи в объявлениях в интернете, €/м² без коммунальных платежей. Пересмотренный ряд BBSR (2026). Источник:"], ". Listings overstate actual new-lease rents: cheap flats are often let without being advertised.": [". Inserate überzeichnen die tatsächlichen Neuvertragsmieten: günstige Wohnungen werden oft ohne Inserat vermietet.", ". Объявления завышают реальные ставки новых договоров: дешёвые квартиры часто сдаются без объявлений."], "Buying: flat prices": ["Kauf: Wohnungspreise", "Покупка: цены квартир"], "Prices rose to a peak in 2022, fell in 2023 and have recovered slowly since. By 2025 they were above the 2020 level in Cologne (+20%) and Berlin (+16%). Munich is back at its 2020 level.": ["Die Preise stiegen bis zum Höchststand 2022, fielen 2023 und erholen sich seitdem langsam. 2025 lagen sie in Köln (+20 %) und Berlin (+16 %) über dem Niveau von 2020. München ist wieder auf dem Stand von 2020.", "Цены выросли к пику 2022 года, упали в 2023-м и с тех пор восстанавливаются медленно. К 2025 году выше уровня 2020-го: Кёльн (+20%) и Берлин (+16%). Мюнхен вернулся к уровню 2020-го."], "GREIX flat price index from actual sales (valuation committee data), quality-adjusted, nominal, quarterly. Rebased: 2020 average = 100. Hamburg data runs only to Q4 2024. Source:": ["GREIX-Preisindex für Eigentumswohnungen aus tatsächlichen Verkäufen (Daten der Gutachterausschüsse), qualitätsbereinigt, nominal, quartalsweise. Neu basiert: Durchschnitt 2020 = 100. Für Hamburg liegen Daten nur bis Q4 2024 vor. Quelle:", "Индекс цен квартир GREIX по реальным сделкам (данные комиссий оценщиков), с учётом качества объектов, номинальный, квартальный. Перебазирован: среднее 2020 = 100. Для Гамбурга данные есть только до IV кв. 2024. Источник:"], "Unit": ["Einheit", "Единица измерения"], "Rent measure": ["Mietkennzahl", "Показатель аренды"], "Total": ["Gesamt", "Всего"], "Apartment bldgs": ["Mehrfamilienh.", "Многокварт."], "1–2-family": ["1–2 Fam.", "1–2 кв."], "Per 10,000 res.": ["Je 10.000 Einw.", "На 10 000 жит."], "2025 vs 2024": ["2025 ggü. 2024", "2025 к 2024"], "All 7 cities": ["Alle 7 Städte", "Все 7 городов"], "Asking rents by year": ["Angebotsmieten nach Jahr", "Ставки аренды по годам"], "City, €/m²": ["Stadt, €/m²", "Город, €/м²"], "2025 vs 2020": ["2025 ggü. 2020", "2025 к 2020"], "Flat price index by quarter": ["Preisindex für Wohnungen nach Quartal", "Индекс цен квартир по кварталам"], "City, index (2020 = 100)": ["Stadt, Index (2020 = 100)", "Город, индекс (2020 = 100)"], "Peak → 2025": ["Höchststand → 2025", "Пик → 2025"], "München": ["München", "Мюнхен"], "Köln": ["Köln", "Кёльн"], "Düsseldorf": ["Düsseldorf", "Дюссельдорф"], "Berlin": ["Berlin", "Берлин"], "Hamburg": ["Hamburg", "Гамбург"], "Frankfurt am Main": ["Frankfurt am Main", "Франкфурт-на-Майне"], "Stuttgart": ["Stuttgart", "Штутгарт"]}, "frag": [[": flats completed by year", ": fertiggestellte Wohnungen nach Jahr", ": ввод квартир по годам"]]};</script>
+<script id="i18n-runtime">(function () {
+  // Page translations: exact text lookups (I18N.dict) plus substring rules
+  // (I18N.frag) for text that scripts build at runtime. English is the source.
+  var D = (window.I18N && window.I18N.dict) || {};
+  var F = ((window.I18N && window.I18N.frag) || []).slice().sort(function (a, b) { return b[0].length - a[0].length; });
+  var LANGS = ["en", "de", "ru"], IDX = { de: 0, ru: 1 };
+  var ATTRS = ["aria-label", "placeholder", "title", "alt"];
+  var orig = new WeakMap(), origAttr = new WeakMap(), wrote = new WeakMap(), wroteAttr = new WeakMap();
+  var lang = "en";
+
+  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  function tr(en) {
+    if (lang === "en") return en;
+    var k = norm(en);
+    if (!k || !/[A-Za-zÀ-ÿ]/.test(k)) return en;
+    var hit = D[k];
+    var out = hit ? hit[IDX[lang]] : null;
+    if (out == null) {
+      // pad with spaces so rules that start or end with a space also match at the edges
+      var t = " " + k + " ", changed = false;
+      for (var i = 0; i < F.length; i++) {
+        if (t.indexOf(F[i][0]) !== -1) { t = t.split(F[i][0]).join(F[i][1 + IDX[lang]]); changed = true; }
+      }
+      if (!changed) return en;
+      out = t.trim();
+    }
+    var lead = en.match(/^\s*/)[0], trail = en.match(/\s*$/)[0];
+    return lead + out + trail;
+  }
+  function doText(n) {
+    var p = n.parentNode;
+    if (!p || /^(SCRIPT|STYLE|TEXTAREA)$/.test(p.nodeName) || (p.closest && p.closest("#i18n-switch"))) return;
+    if (!orig.has(n)) orig.set(n, n.nodeValue);
+    var v = tr(orig.get(n));
+    if (n.nodeValue !== v) { wrote.set(n, v); n.nodeValue = v; }
+  }
+  function doEl(el) {
+    if (el.id === "i18n-switch") return;
+    var m = origAttr.get(el);
+    for (var i = 0; i < ATTRS.length; i++) {
+      var a = ATTRS[i];
+      if (!el.hasAttribute(a)) continue;
+      if (!m) { m = {}; origAttr.set(el, m); }
+      if (!(a in m)) m[a] = el.getAttribute(a);
+      var v = tr(m[a]);
+      if (el.getAttribute(a) !== v) {
+        var w = wroteAttr.get(el) || {}; w[a] = v; wroteAttr.set(el, w);
+        el.setAttribute(a, v);
+      }
+    }
+  }
+  function walk(root) {
+    if (root.nodeType === 3) { doText(root); return; }
+    if (root.nodeType !== 1 || /^(SCRIPT|STYLE)$/.test(root.nodeName)) return;
+    doEl(root);
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    var n;
+    while ((n = w.nextNode())) {
+      if (n.nodeType === 3) doText(n);
+      else if (n.id === "i18n-switch") continue;
+      else doEl(n);
+    }
+  }
+  var titleEn = document.title;
+  function apply() {
+    walk(document.body);
+    document.title = tr(titleEn);
+    document.documentElement.lang = lang;
+  }
+  // Page scripts keep writing English; record it as the new original and
+  // translate it, but ignore the mutations this script made itself.
+  new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) {
+      var m = ms[i], t = m.target;
+      if (m.type === "characterData") {
+        if (t.nodeValue === wrote.get(t)) continue;
+        orig.set(t, t.nodeValue);
+        if (lang !== "en") doText(t);
+      } else if (m.type === "attributes") {
+        var a = m.attributeName, val = t.getAttribute(a), w = wroteAttr.get(t);
+        if (w && w[a] === val) continue;
+        var o = origAttr.get(t) || {};
+        o[a] = val; origAttr.set(t, o);
+        if (lang !== "en") doEl(t);
+      } else if (lang !== "en") {
+        for (var j = 0; j < m.addedNodes.length; j++) walk(m.addedNodes[j]);
+      }
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+
+  var css = document.createElement("style");
+  css.textContent =
+    "#i18n-switch{position:fixed;z-index:2147483000;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(20,28,26,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.25);font:500 12px/1 ui-monospace,Menlo,monospace}" +
+    "#i18n-switch button{all:unset;cursor:pointer;color:#cfd8d5;padding:6px 9px;border-radius:999px;letter-spacing:.05em}" +
+    "#i18n-switch button[aria-pressed=true]{background:#3cc4ad;color:#0e1513}" +
+    "#i18n-switch button:focus-visible{outline:2px solid #3cc4ad;outline-offset:2px}";
+  document.head.appendChild(css);
+  var box = document.createElement("div");
+  box.id = "i18n-switch"; box.setAttribute("role", "group"); box.setAttribute("aria-label", "Language");
+  LANGS.forEach(function (l) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = l.toUpperCase(); b.dataset.lang = l;
+    b.addEventListener("click", function () { set(l, true); });
+    box.appendChild(b);
+  });
+  document.body.appendChild(box);
+
+  function set(l, save) {
+    lang = LANGS.indexOf(l) >= 0 ? l : "en";
+    [].forEach.call(box.children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    apply();
+    if (save) { try { localStorage.setItem("lang", lang); } catch (e) {} }
+  }
+  var start = (location.hash || "").replace("#", "");
+  if (LANGS.indexOf(start) < 0) { try { start = localStorage.getItem("lang"); } catch (e) { start = null; } }
+  set(start || "en", false);
+})();
+</script>
+</body></html>
